@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>ClickTwice.UpdateManager</id>
     <version>0.1.1.8</version>
@@ -14,5 +14,12 @@
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2015. Icon by Icons8</copyright>
     <tags>wpf mvvm clickonce deployment update upgrade</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Deployment" />
+      <frameworkAssembly assemblyName="PresentationCore" />
+    </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="bin\release\*.dll" target="lib\net45" />
+  </files>
 </package>
