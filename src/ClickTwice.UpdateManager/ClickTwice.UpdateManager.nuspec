@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ClickTwice.UpdateManager</id>
-    <version>$version$</version>
+    <version>0.1.1.8</version>
     <title>ClickTwice Update Manager (WPF)</title>
     <authors>Alistair Chapman</authors>
     <owners>Alistair Chapman</owners>
