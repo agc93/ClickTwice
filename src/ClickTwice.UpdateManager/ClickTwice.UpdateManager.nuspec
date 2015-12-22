@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ClickTwice.UpdateManager</id>
+    <version>$version$</version>
+    <title>ClickTwice Update Manager (WPF)</title>
+    <authors>Alistair Chapman</authors>
+    <owners>Alistair Chapman</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <projectUrl>https://bitbucket.org/agc93/clicktwice</projectUrl>
+    <iconUrl>https://maxcdn.icons8.com/Color/PNG/48/Programming/software_box-48.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A helper library for managing updates to ClickOnce-deployed applications. Provides a fully-fledged ViewModel for use in WPF apps allowing for granular control and visibility into application updates. This library is built around the standard System.Deployment update mechanisms.</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2015. Icon by Icons8</copyright>
+    <tags>wpf mvvm clickonce deployment update upgrade</tags>
+  </metadata>
+</package>
