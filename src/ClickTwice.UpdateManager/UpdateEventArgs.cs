@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClickTwice.UpdateManager
 {
-    class UpdateEventArgs : EventArgs
+    public class UpdateEventArgs : EventArgs
     {
         public Version PreviousVersion { get; set; }
         public Version NewVersion { get; set; }

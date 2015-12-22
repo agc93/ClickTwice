@@ -51,6 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateEventArgs.cs" />
     <Compile Include="UpdateInfo.cs" />
+    <Compile Include="UpdateManagerCommands.cs" />
+    <Compile Include="UpdateManagerEvents.cs" />
+    <Compile Include="UpdateManagerProperties.cs" />
     <Compile Include="UpdateManagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
