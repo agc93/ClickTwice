@@ -53,8 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CoreExtensions.cs" />
+    <Compile Include="Exceptions\BuildFailedException.cs" />
+    <Compile Include="Exceptions\HandlerProcessingException.cs" />
+    <Compile Include="Exceptions\OperationInProgressException.cs" />
+    <Compile Include="Handlers\HandlerResponse.cs" />
+    <Compile Include="Handlers\IInputHandler.cs" />
+    <Compile Include="Handlers\IOutputHandler.cs" />
+    <Compile Include="Handlers\MockOutputHandler.cs" />
     <Compile Include="Loggers\ConsoleLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishManager.cs" />

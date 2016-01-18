@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ClickTwice.Publisher.Core;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClickTwice.Publisher.Core;
 
 namespace TestApp
 {
-    class Program
+    internal class Program
     {
         private static string DefaultProjectPath { get; set; } =
-            @"C:\Users\alist\Source\ACN\TFSShowcase\src\ScreenshotReportCreator\ScreenshotReportCreator.csproj";
-        static void Main(string[] args)
+            @"C:\Users\alist_000\Source\ACN\TFSShowcase\src\ScreenshotReportCreator\ScreenshotReportCreator.csproj";
+
+        private static void Main(string[] args)
         {
             if (args.Any())
             {
@@ -22,9 +20,9 @@ namespace TestApp
                 Platform = "AnyCPU",
                 Configuration = "Debug"
             };
-            var result = mgr.PublishApp(PublishBehaviour.CleanFirst);
-            Console.WriteLine(result.OverallResult.ToString());
-            Console.WriteLine(result.OverallResult.ToString());
+            // ReSharper disable once RedundantArgumentDefaultValue
+            var result = mgr.PublishApp(null, behaviour: PublishBehaviour.CleanFirst);
+            Console.WriteLine(result.Select(r => $"{r.Handler.Name} - {r.Result} - {r.ResultMessage}" + Environment.NewLine));
         }
     }
 }

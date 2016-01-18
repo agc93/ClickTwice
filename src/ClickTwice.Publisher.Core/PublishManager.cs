@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using ClickTwice.Publisher.Core.Exceptions;
+using ClickTwice.Publisher.Core.Handlers;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
@@ -26,61 +29,120 @@ namespace ClickTwice.Publisher.Core
         public string Platform { private get; set; } = "x86";
         public bool CleanOutputOnCompletion { get; set; } = true;
 
-        public BuildResult PublishApp()
-        {
-            var pi = new ProjectInstance(ProjectFilePath);
-            var targets = new[] {Configuration + ";" + Platform};
-            BuildParameters buildParams = new BuildParameters()
-            {
-                DetailedSummary = true
-            };
-            var reqData = new BuildRequestData(pi, targets);
-            Manager.BeginBuild(buildParams);
-            var buildResult = Manager.BuildRequest(reqData);
-            return buildResult;
-        }
+        public List<IInputHandler> InputHandlers { private get; set; } = new List<IInputHandler>();
+        public List<IOutputHandler> OutputHandlers { private get; set; } = new List<IOutputHandler>();
 
-        public BuildResult PublishApp(PublishBehaviour behaviour)
+        /// <exception cref="HandlerProcessingException">Thrown when input or output handlers encounter an exception.</exception>
+        /// <exception cref="OperationInProgressException">Thrown when a build or publish operation is already in progress.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Invalid behaviour type provided.</exception>
+        /// <exception cref="SecurityException">The caller does not have the required permission. </exception>
+        /// <exception cref="BuildFailedException">Thrown when the build fails.</exception>
+        public List<HandlerResponse> PublishApp(string targetPath, PublishBehaviour behaviour = PublishBehaviour.CleanFirst)
         {
             var pc = new ProjectCollection();
             var loggers = new List<ILogger> {new ConsoleLogger(LoggerVerbosity.Normal)};
             var path = Directory.CreateDirectory(Path.GetTempPath() + Guid.NewGuid().ToString("N") + "\\");
             var props = new Dictionary<string, string> {{"Configuration", Configuration}, {"Platform", Platform}, {"OutputPath", path.FullName} };
-            var targets = new List<string> {"PrepareForBuild"};
-            switch (behaviour)
+            var results = ProcessInputHandlers();
+            if (results.All(r => r.Result != HandlerResult.Error))
             {
-                case PublishBehaviour.None:
-                    targets.Add("Build", "Publish");
-                    break;
-                case PublishBehaviour.CleanFirst:
-                    targets.Add("Clean", "Build", "Publish");
-                    break;
-                case PublishBehaviour.DoNotBuild:
-                    targets.Add("Publish");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(behaviour), behaviour, null);
+                var targets = new List<string> {"PrepareForBuild"};
+                switch (behaviour)
+                {
+                    case PublishBehaviour.None:
+                        targets.Add("Build", "Publish");
+                        break;
+                    case PublishBehaviour.CleanFirst:
+                        targets.Add("Clean", "Build", "Publish");
+                        break;
+                    case PublishBehaviour.DoNotBuild:
+                        targets.Add("Publish");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(behaviour), behaviour, null);
+                }
+                BuildParameters buildParams = new BuildParameters(pc)
+                {
+                    DetailedSummary = true,
+                    Loggers = loggers,
+                    DefaultToolsVersion = "14.0"
+                };
+                var reqData = new BuildRequestData(ProjectFilePath, props, null, targets.ToArray(), null);
+                try
+                {
+                    Manager.BeginBuild(buildParams);
+                }
+                catch (InvalidOperationException ex) when (ex.Message.Contains("in progress"))
+                {
+                    throw new OperationInProgressException(OperationType.Build, ex);
+                }
+                var buildResult = Manager.BuildRequest(reqData);
+                List<HandlerResponse> output = new List<HandlerResponse>();
+                if (buildResult.OverallResult == BuildResultCode.Success)
+                {
+                    output = ProcessOutputHandlers(path);
+                    if (output.Any(o => o.Result == HandlerResult.Error))
+                    {
+                        throw new HandlerProcessingException(OutputHandlers, output);
+                    }
+                    if (!string.IsNullOrWhiteSpace(targetPath))
+                    {
+                        path.Copy(destDirPath: targetPath, copySubDirs: true); 
+                    }
+                }
+                else
+                {
+                    throw new BuildFailedException(buildResult.Exception,
+                        buildResult.ResultsByTarget.Values.Where(t => t?.Exception != null).Select(r => r.Exception));
+                }
+                if (CleanOutputOnCompletion)
+                {
+                    Directory.Delete(path.FullName, true);
+                }
+                return output;
             }
-            BuildParameters buildParams = new BuildParameters(pc)
+            else
             {
-                DetailedSummary = true,
-                Loggers =  loggers,
-                DefaultToolsVersion = "14.0"
-            };
-            var reqData = new BuildRequestData(ProjectFilePath, props, null, targets.ToArray(), null);
-            try
-            {
-                Manager.BeginBuild(buildParams);
+                throw new HandlerProcessingException(InputHandlers, results);
             }
-            catch (InvalidOperationException ex) when (ex.Message.Contains("in progress"))
+        }
+
+        private void CopyPublishOutput(DirectoryInfo outputPath, DirectoryInfo targetPath)
+        {
+            
+        }
+
+        private List<HandlerResponse> ProcessInputHandlers()
+        {
+            var fi = new FileInfo(ProjectFilePath).Directory?.FullName;
+            var list = new List<HandlerResponse>();
+            if (string.IsNullOrWhiteSpace(fi))
             {
-                    throw new OperationInProgressException(OperationType.Build);
+                return null;
             }
-            var buildResult = Manager.BuildRequest(reqData);
-            if (buildResult.OverallResult == BuildResultCode.Success)
+            foreach (var handler in InputHandlers)
             {
+                try
+                {
+                    var result = handler.Process(fi);
+                    if (result.Result == HandlerResult.NotRun)
+                    {
+                        result.Result = HandlerResult.OK;
+                    }
+                    list.Add(result);
+                }
+                catch (Exception ex)
+                {
+                    list.Add(new HandlerResponse(handler, false, ex.Message));
+                }
             }
-            return buildResult;
+            return list;
+        }
+
+        private List<HandlerResponse> ProcessOutputHandlers(FileSystemInfo outputPath)
+        {
+            var results = OutputHandlers.Where(_ => !string.IsNullOrWhiteSpace(outputPath?.FullName)).Select(handler => handler.Process(outputPath.FullName)).ToList();
+            return results;
         }
 
         public void Dispose()
@@ -88,16 +150,6 @@ namespace ClickTwice.Publisher.Core
             Manager.EndBuild();
             Manager.Dispose();
         }
-    }
-
-    public class OperationInProgressException : Exception
-    {
-        public OperationInProgressException(OperationType operationType)
-        {
-            this.Operation = operationType;
-        }
-
-        public OperationType Operation { get; set; }
     }
 
     public enum OperationType
