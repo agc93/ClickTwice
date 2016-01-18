@@ -24,6 +24,7 @@ namespace ClickTwice.Publisher.Core
         internal string ProjectFilePath { get; set; }
         public string Configuration { private get; set; } = "Release";
         public string Platform { private get; set; } = "x86";
+        public bool CleanOutputOnCompletion { get; set; } = true;
 
         public BuildResult PublishApp()
         {
@@ -43,7 +44,7 @@ namespace ClickTwice.Publisher.Core
         {
             var pc = new ProjectCollection();
             var loggers = new List<ILogger> {new ConsoleLogger(LoggerVerbosity.Normal)};
-            var path = Directory.CreateDirectory(Path.GetTempPath() + Guid.NewGuid().ToString("N"));
+            var path = Directory.CreateDirectory(Path.GetTempPath() + Guid.NewGuid().ToString("N") + "\\");
             var props = new Dictionary<string, string> {{"Configuration", Configuration}, {"Platform", Platform}, {"OutputPath", path.FullName} };
             var targets = new List<string> {"PrepareForBuild"};
             switch (behaviour)
