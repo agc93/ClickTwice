@@ -15,19 +15,18 @@ using Microsoft.Build.Tasks;
 
 namespace ClickTwice.Publisher.Core
 {
-    public class PublishManager : IDisposable
+    public class PublishManager : Manager, IDisposable
     {
         private BuildManager Manager => BuildManager.DefaultBuildManager;
 
-        public PublishManager(string projectFilePath)
+        public PublishManager(string projectFilePath) : base(projectFilePath)
         {
-            ProjectFilePath = projectFilePath;
+            
         }
 
-        internal string ProjectFilePath { get; set; }
         public string Configuration { private get; set; } = "Release";
         public string Platform { private get; set; } = "x86";
-        public bool CleanOutputOnCompletion { get; set; } = true;
+        
 
         public List<IInputHandler> InputHandlers { private get; set; } = new List<IInputHandler>();
         public List<IOutputHandler> OutputHandlers { private get; set; } = new List<IOutputHandler>();
