@@ -106,11 +106,6 @@ namespace ClickTwice.Publisher.Core
             }
         }
 
-        private void CopyPublishOutput(DirectoryInfo outputPath, DirectoryInfo targetPath)
-        {
-            
-        }
-
         private List<HandlerResponse> ProcessInputHandlers()
         {
             var fi = new FileInfo(ProjectFilePath).Directory?.FullName;

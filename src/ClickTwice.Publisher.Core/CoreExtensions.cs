@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClickTwice.Publisher.Core
 {
     internal static class CoreExtensions
     {
+        [DebuggerStepThrough]
         internal static void Add<T>(this List<T> list, params T[] items)
         {
             list.AddRange(items);
         }
 
+
         /// <exception cref="DirectoryNotFoundException">Source directory does not exist.</exception>
+        [DebuggerStepThrough]
         internal static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
         {
             
@@ -49,6 +54,25 @@ namespace ClickTwice.Publisher.Core
                 string temppath = Path.Combine(destDirPath, subdir.Name);
                 subdir.Copy(temppath, true);
             }
+        }
+
+        [DebuggerStepThrough]
+        internal static string Property(this List<string> propList, string property)
+        {
+            var line = propList.FirstOrDefault(s => s.Contains(property));
+            return line?.Split('"', '\'')[1] ?? string.Empty;
+        }
+
+        [DebuggerStepThrough]
+        internal static string FindAttribute(this XElement element, string key)
+        {
+            return element.Attributes().FirstOrDefault(a => a.Name.LocalName == key)?.Value ?? string.Empty;
+        }
+
+        [DebuggerStepThrough]
+        internal static string Find(this IEnumerable<string> list, string key)
+        {
+            return list.FirstOrDefault(_ => _ == key) ?? string.Empty;
         }
     }
 }
