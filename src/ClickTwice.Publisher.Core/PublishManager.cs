@@ -86,7 +86,8 @@ namespace ClickTwice.Publisher.Core
                     }
                     if (!string.IsNullOrWhiteSpace(targetPath))
                     {
-                        path.Copy(destDirPath: targetPath, copySubDirs: true); 
+                        var publishDir = path.GetDirectories().FirstOrDefault(d => d.Name == "app.publish");
+                        publishDir.Copy(destDirPath: targetPath, copySubDirs: true); 
                     }
                 }
                 else

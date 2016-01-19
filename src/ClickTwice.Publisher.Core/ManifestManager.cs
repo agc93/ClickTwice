@@ -7,20 +7,29 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using ClickTwice.Publisher.Core.Manifests;
+using Newtonsoft.Json;
 
 namespace ClickTwice.Publisher.Core
 {
-    class ManifestManager : Manager
+    public class ManifestManager : Manager
     {
-        public ManifestManager(string projectFilePath, InformationSource source = InformationSource.AppManifest) : base(projectFilePath)
+        private ManifestManager(string projectFilePath, InformationSource source = InformationSource.AssemblyInfo) : base(projectFilePath)
         {
             Source = source;
         }
 
-        public ManifestManager(string projectFilePath, string applicationManifestFilePath) : base(projectFilePath)
+        public ManifestManager(string projectFilePath, string applicationManifestFilePath, InformationSource source = InformationSource.AppManifest) : base(projectFilePath)
         {
-            Source = InformationSource.AppManifest;
-            ApplicationManifestLocation = applicationManifestFilePath;
+            Source = source;
+            if (applicationManifestFilePath.EndsWith(".application"))
+            {
+                ApplicationManifestLocation = applicationManifestFilePath;
+            }
+            else
+            {
+                var di = new DirectoryInfo(applicationManifestFilePath);
+                ApplicationManifestLocation = di.GetFiles("*.application").First().FullName;
+            }
         }
 
         private string ApplicationManifestLocation { get; set; }
@@ -62,7 +71,7 @@ namespace ClickTwice.Publisher.Core
             manifest.AppVersion = new Version(identEl.FindAttribute("version"));
             manifest.ShortName = identEl.FindAttribute("name").Split('.').First();
             var frameworksRoot = xdoc.XPathSelectElement("//*[local-name()='compatibleFrameworks']");
-            manifest.FrameworkVersion = new Version(frameworksRoot.Elements("framework").OrderByDescending(x => x.FindAttribute("targetVersion")).First().FindAttribute("targetVersion"));
+            manifest.FrameworkVersion = new Version(frameworksRoot.Elements().OrderByDescending(x => x.FindAttribute("targetVersion")).First().FindAttribute("targetVersion"));
             return manifest;
         }
 
@@ -94,8 +103,17 @@ namespace ClickTwice.Publisher.Core
             return CreateFromAssemblyInfo(new AppManifest());
         }
 
-        public void CreateWebManifest()
+        public FileInfo DeployManifest(AppManifest manifest)
         {
+            var j = JsonConvert.SerializeObject(manifest);
+            File.WriteAllText(GetPublishLocation(), j);
+            return new FileInfo(GetPublishLocation());
+        }
+
+        private string GetPublishLocation()
+        {
+            var fi = new FileInfo(ApplicationManifestLocation);
+            return Path.Combine(fi.Directory?.FullName ?? new FileInfo(ProjectFilePath).Directory?.FullName ?? string.Empty, fi.Name.Replace(fi.Extension, ".cltw"));
         }
     }
 
