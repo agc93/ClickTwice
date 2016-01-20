@@ -18,15 +18,30 @@ namespace ClickTwice.Publisher.Core
     public class PublishManager : Manager, IDisposable
     {
         private BuildManager Manager => BuildManager.DefaultBuildManager;
+        private bool GenerateManifest { get; set; }
+        private ManifestManager ManifestManager { get; set; }
+        private InformationSource ManifestInformationSource { get; set; }
 
-        public PublishManager(string projectFilePath) : base(projectFilePath)
+        public PublishManager(string projectFilePath, InformationSource manifestInformationSource) : base(projectFilePath)
         {
-            
+            switch (manifestInformationSource)
+            {
+                case InformationSource.AssemblyInfo:
+                case InformationSource.AppManifest:
+                case InformationSource.Both:
+                    GenerateManifest = true;
+                    break;
+                case InformationSource.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(manifestInformationSource), manifestInformationSource, null);
+            }
+            ManifestInformationSource = manifestInformationSource;
         }
 
         public string Configuration { private get; set; } = "Release";
         public string Platform { private get; set; } = "x86";
-        
+
 
         public List<IInputHandler> InputHandlers { private get; set; } = new List<IInputHandler>();
         public List<IOutputHandler> OutputHandlers { private get; set; } = new List<IOutputHandler>();
@@ -45,7 +60,7 @@ namespace ClickTwice.Publisher.Core
             }
             var loggers = new List<ILogger> {new ConsoleLogger(LoggerVerbosity.Normal)};
             var path = Directory.CreateDirectory(Path.GetTempPath() + Guid.NewGuid().ToString("N") + "\\");
-            var props = new Dictionary<string, string> {{"Configuration", Configuration}, {"Platform", Platform}, {"OutputPath", path.FullName} };
+            var props = new Dictionary<string, string> {{"Configuration", Configuration}, {"Platform", Platform}, {"OutputPath", path.FullName}};
             var results = ProcessInputHandlers();
             if (results.All(r => r.Result != HandlerResult.Error))
             {
@@ -66,9 +81,7 @@ namespace ClickTwice.Publisher.Core
                 }
                 BuildParameters buildParams = new BuildParameters(pc)
                 {
-                    DetailedSummary = true,
-                    Loggers = loggers,
-                    DefaultToolsVersion = "14.0"
+                    DetailedSummary = true, Loggers = loggers, DefaultToolsVersion = "14.0"
                 };
                 var reqData = new BuildRequestData(ProjectFilePath, props, null, targets.ToArray(), null);
                 try
@@ -83,21 +96,25 @@ namespace ClickTwice.Publisher.Core
                 List<HandlerResponse> output = new List<HandlerResponse>();
                 if (buildResult.OverallResult == BuildResultCode.Success)
                 {
-                    output = ProcessOutputHandlers(path);
+                    var publishDir = path.GetDirectories().FirstOrDefault(d => d.Name == "app.publish");
+                    if (GenerateManifest)
+                    {
+                        PrepareManifestManager(publishDir?.FullName);
+                        ManifestManager.DeployManifest(ManifestManager.CreateAppManifest());
+                    }
+                    output = ProcessOutputHandlers(publishDir);
                     if (output.Any(o => o.Result == HandlerResult.Error))
                     {
                         throw new HandlerProcessingException(OutputHandlers, output);
                     }
                     if (!string.IsNullOrWhiteSpace(targetPath))
                     {
-                        var publishDir = path.GetDirectories().FirstOrDefault(d => d.Name == "app.publish");
-                        publishDir.Copy(destDirPath: targetPath, copySubDirs: true); 
+                        publishDir.Copy(destDirPath: targetPath, copySubDirs: true);
                     }
                 }
                 else
                 {
-                    throw new BuildFailedException(buildResult.Exception,
-                        buildResult.ResultsByTarget.Values.Where(t => t?.Exception != null).Select(r => r.Exception));
+                    throw new BuildFailedException(buildResult.Exception, buildResult.ResultsByTarget.Values.Where(t => t?.Exception != null).Select(r => r.Exception));
                 }
                 if (CleanOutputOnCompletion)
                 {
@@ -108,6 +125,14 @@ namespace ClickTwice.Publisher.Core
             else
             {
                 throw new HandlerProcessingException(InputHandlers, results);
+            }
+        }
+
+        private void PrepareManifestManager(string targetPath)
+        {
+            if (!string.IsNullOrWhiteSpace(targetPath) && GenerateManifest)
+            {
+                ManifestManager = new ManifestManager(ProjectFilePath, targetPath, ManifestInformationSource);
             }
         }
 

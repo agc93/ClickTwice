@@ -105,7 +105,7 @@ namespace ClickTwice.Publisher.Core
 
         public FileInfo DeployManifest(AppManifest manifest)
         {
-            var j = JsonConvert.SerializeObject(manifest);
+            var j = JsonConvert.SerializeObject(manifest, Formatting.Indented, new Newtonsoft.Json.Converters.VersionConverter());
             File.WriteAllText(GetPublishLocation(), j);
             return new FileInfo(GetPublishLocation());
         }
