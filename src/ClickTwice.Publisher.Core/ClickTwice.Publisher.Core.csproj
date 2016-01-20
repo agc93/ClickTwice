@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppInfoManager.cs" />
     <Compile Include="CoreExtensions.cs" />
     <Compile Include="Exceptions\BuildFailedException.cs" />
     <Compile Include="Exceptions\HandlerProcessingException.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Loggers\ConsoleLogger.cs" />
     <Compile Include="ManifestManager.cs" />
     <Compile Include="Manifests\AppManifest.cs" />
+    <Compile Include="Manifests\ExtendedAppInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishManager.cs" />
   </ItemGroup>

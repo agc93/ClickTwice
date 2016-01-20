@@ -74,5 +74,14 @@ namespace ClickTwice.Publisher.Core
         {
             return list.FirstOrDefault(_ => _ == key) ?? string.Empty;
         }
+
+        [DebuggerStepThrough]
+        internal static void AddIfNotExists(this IEnumerable<string> collection, string entry)
+        {
+            if (!collection.Contains(entry))
+            {
+                collection.ToList().Add(entry);
+            }
+        }
     }
 }

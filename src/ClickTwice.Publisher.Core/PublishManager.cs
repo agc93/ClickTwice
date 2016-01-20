@@ -39,6 +39,10 @@ namespace ClickTwice.Publisher.Core
         public List<HandlerResponse> PublishApp(string targetPath, PublishBehaviour behaviour = PublishBehaviour.CleanFirst)
         {
             var pc = new ProjectCollection();
+            if (!File.Exists(ProjectFilePath))
+            {
+                throw new FileNotFoundException($"Project file not found at path {ProjectFilePath}! Please ensure you have provided a valid csproj file.", ProjectFilePath);
+            }
             var loggers = new List<ILogger> {new ConsoleLogger(LoggerVerbosity.Normal)};
             var path = Directory.CreateDirectory(Path.GetTempPath() + Guid.NewGuid().ToString("N") + "\\");
             var props = new Dictionary<string, string> {{"Configuration", Configuration}, {"Platform", Platform}, {"OutputPath", path.FullName} };
