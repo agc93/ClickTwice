@@ -23,7 +23,7 @@ namespace TestApp
             {
                 DefaultProjectPath = args.First();
             }
-            var mgr = new PublishManager(DefaultProjectPath, InformationSource.Both)
+            var mgr = new PublishManager(DefaultProjectPath, InformationSource.None)
             {
                 Platform = "AnyCPU",
                 Configuration = "Debug",
@@ -33,9 +33,9 @@ namespace TestApp
             // ReSharper disable once RedundantArgumentDefaultValue
             var path = Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N")));
             var result = mgr.PublishApp(path.FullName, behaviour: PublishBehaviour.CleanFirst);
-            //var manager = new ManifestManager(DefaultProjectPath, path.FullName, InformationSource.Both);
-            //var manifest = manager.CreateAppManifest();
-            //var cltw = manager.DeployManifest(manifest);
+            var manager = new ManifestManager(DefaultProjectPath, path.FullName, InformationSource.Both);
+            var manifest = manager.CreateAppManifest();
+            var cltw = manager.DeployManifest(manifest);
             Console.WriteLine(result.Select(r => $"{r.Handler.Name} - {r.Result} - {r.ResultMessage}" + Environment.NewLine));
         }
     }

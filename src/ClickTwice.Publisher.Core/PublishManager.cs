@@ -93,7 +93,7 @@ namespace ClickTwice.Publisher.Core
                     throw new OperationInProgressException(OperationType.Build, ex);
                 }
                 var buildResult = Manager.BuildRequest(reqData);
-                List<HandlerResponse> output = new List<HandlerResponse>();
+                List<HandlerResponse> output;
                 if (buildResult.OverallResult == BuildResultCode.Success)
                 {
                     var publishDir = path.GetDirectories().FirstOrDefault(d => d.Name == "app.publish");
