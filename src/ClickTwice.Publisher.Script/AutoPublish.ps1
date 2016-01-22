@@ -10,33 +10,55 @@ Write-Host "ClickTwice Publisher - Script Publish Tool"
 
 $outputPrefix = " "
 
+function GetProgramFilesPath() {
+	$os_type = (Get-WmiObject -Class Win32_ComputerSystem).SystemType -match '(x64)'
+	If (-not ${env:ProgramFiles(x86)}) {
+		$programFilesPath = $env:ProgramFiles
+	} Else {
+		$programFilesPath = ${env:ProgramFiles(x86)}
+	}
+	return $programFilesPath
+}
+
 function CheckMSBuildPath ()
 {
-    If (-not $env:msbuild) {
-        $msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE" 
-    } Else {
-        $msbuild = $env:msbuild
-    }
+	$path = GetProgramFilesPath
+	If (-not $env:msbuild) {
+		if (Test-Path "$path\MSBuild\14.0") {
+			$msbuild = "$path\MSBuild\14.0\Bin\MSBuild.exe"
+		} else {
+			if (Test-Path "$path\MSBuild\12.0") {
+				$msbuild = "$path\MSBuild\12.0\Bin\MSBuild.exe"
+			} else {
+				$msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.EXE" 
+			}
+		}
+	} Else {
+		$msbuild = $env:msbuild
+	}
+	$msbuild = $msbuild -replace ' ', '` '
+	return $msbuild
 }
 
 function GetProjectDirectory ($projectFile)
 {
-    return Get-ChildItem $ProjectFilePath | Select-Object -Property DirectoryName
+	return Get-ChildItem $ProjectFilePath | % {$_.DirectoryName}
 }
 
 function GetApplicationName() {
-	[string]$projectName = Get-ChildItem $ProjectFilePath | Select-Object -Property Name
-	[string]$extension = $projectName.Substring(0, $projectName.Length) 
+	[string]$projectName = Get-ChildItem $ProjectFilePath | % {$_.BaseName}
+	return $projectName
 }
-CheckMSBuildPath
+$msbuild = CheckMSBuildPath
+Write-Host "Using MSBuild from $msbuild"
 Write-Host $outputPrefix"Cleaning the build directory..."
-Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:clean /v:quiet /nologo"
+Invoke-Expression '"$msbuild" $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:clean /v:quiet /nologo'
 
 Write-Host $outputPrefix"Building Executable application..."
 Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:build /v:quiet /nologo"
 $projectDir = GetProjectDirectory($ProjectFilePath)
 $appName = GetApplicationName
-$newExeVersion = Get-ChildItem .\bin\$Configuration\$appName.exe | Select-Object -ExpandProperty VersionInfo | % { $_.FileVersion }
+$newExeVersion = Get-ChildItem $projectDir\bin\$Configuration\$appName.exe | Select-Object -ExpandProperty VersionInfo | % { $_.FileVersion }
 
 Write-Host $outputPrefix"Building ClickOnce installer..."
 #
