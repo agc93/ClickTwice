@@ -5,6 +5,9 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 using ClickTwice.Publisher.Core.Exceptions;
 using ClickTwice.Publisher.Core.Handlers;
 using Microsoft.Build.Evaluation;
@@ -167,6 +170,34 @@ namespace ClickTwice.Publisher.Core
         {
             var results = OutputHandlers.Where(_ => !string.IsNullOrWhiteSpace(outputPath?.FullName)).Select(handler => handler.Process(outputPath.FullName)).ToList();
             return results;
+        }
+
+        /// <summary>
+        /// Reads the assembly version number from AssemblyInfo.cs and updates it in the project file
+        /// </summary>
+        public void SyncVersionNumber()
+        {
+            
+            var v = ReadVersionFromAssemblyInfo();
+            SaveVersionToProjectFile(v);
+        }
+
+        private void SaveVersionToProjectFile(string v)
+        {
+            var doc = XDocument.Load(ProjectFilePath);
+            var vElement = doc.XPathSelectElement(
+                "//*[local-name()='Project']/*[local-name()='Property-Group']/*[local-name()='ApplicationVersion']");
+            vElement.Value = v;
+            doc.Save(ProjectFilePath);
+        }
+
+        private string ReadVersionFromAssemblyInfo()
+        {
+            var projectFolder = new FileInfo(ProjectFilePath).Directory;
+            var infoFilePath = Path.Combine(projectFolder.FullName, "Properties", "AssemblyInfo.cs");
+            var props = File.ReadAllLines(infoFilePath).Where(l => l.StartsWith("[assembly: ")).ToList();
+            var v = props.Property("Version");
+            return v;
         }
 
         public void Dispose()
