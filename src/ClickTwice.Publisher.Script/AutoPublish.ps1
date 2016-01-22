@@ -3,7 +3,8 @@
 #
 Param (
 	[string]$ProjectFilePath,
-	[string]$Configuration
+	[string]$Configuration,
+	[string]$DeployPath
 )
 Write-Host "ClickTwice Publisher - Script Publish Tool"
 
@@ -25,18 +26,17 @@ function GetProjectDirectory ($projectFile)
 
 function GetApplicationName() {
 	[string]$projectName = Get-ChildItem $ProjectFilePath | Select-Object -Property Name
-	[string]$extension = 
-	$projectName.Substring(0, $projectName.Length, 
+	[string]$extension = $projectName.Substring(0, $projectName.Length) 
 }
-CheckMSBuildPath()
+CheckMSBuildPath
 Write-Host $outputPrefix"Cleaning the build directory..."
 Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:clean /v:quiet /nologo"
 
 Write-Host $outputPrefix"Building Executable application..."
 Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:build /v:quiet /nologo"
-
-$newExeVersion = Get-ChildItem .\Executable\bin\Release\Executable.exe | Select-Object -ExpandProperty VersionInfo | % { $_.FileVersion }
-$newLibVersion = Get-ChildItem .\Executable\bin\Release\Library.dll | Select-Object -ExpandProperty VersionInfo | % { $_.FileVersion }
+$projectDir = GetProjectDirectory($ProjectFilePath)
+$appName = GetApplicationName
+$newExeVersion = Get-ChildItem .\bin\$Configuration\$appName.exe | Select-Object -ExpandProperty VersionInfo | % { $_.FileVersion }
 
 Write-Host $outputPrefix"Building ClickOnce installer..."
 #
@@ -44,22 +44,16 @@ Write-Host $outputPrefix"Building ClickOnce installer..."
 # with the assembly version of the EXE, we need to grab the version off of the built assembly
 # and update the Executable.csproj file with the new application version.
 #
-$ProjectXml = [xml](Get-Content Executable\Executable.csproj)
+$ProjectXml = [xml](Get-Content $ProjectFilePath)
 $ns = new-object Xml.XmlNamespaceManager $ProjectXml.NameTable
 $ns.AddNamespace('msb', 'http://schemas.microsoft.com/developer/msbuild/2003')
 $AppVersion = $ProjectXml.SelectSingleNode("//msb:Project/msb:PropertyGroup/msb:ApplicationVersion", $ns)
 $AppVersion.InnerText = $newExeVersion
-$TargetPath = Resolve-Path "Executable\Executable.csproj"
+$TargetPath = Resolve-Path $ProjectFilePath
 $ProjectXml.Save($TargetPath)
 
-Invoke-Expression "$msbuild Executable\Executable.csproj /p:Configuration=Release /p:Platform=AnyCPU /t:publish /v:quiet /nologo"
+Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:publish /v:quiet /nologo"
 
 Write-Host $outputPrefix"Deploying updates to network server..."
-$LocalInstallerPath = (Resolve-Path "Executable\bin\Release\app.publish").ToString() + "\*"
-$RemoteInstallerPath = "\\network\path\Executable\DesktopClient\"
-Copy-Item $LocalInstallerPath $RemoteInstallerPath -Recurse -Force
-
-Write-Host $outputPrefix"Committing version increments to Perforce..."
-p4 submit -d "Updating Executable ClickOnce Installer to version $newExeVersion" //my/project/tool/path/Executable/Executable.csproj | Out-Null
-p4 submit -d "Updating Library to version $newLibVersion" //my/project/tool/path/Library/Properties/AssemblyInfo.cs | Out-Null
-p4 submit -d "Updating Executable to version $newExeVersion" //my/project/tool/path/Executable/Properties/AssemblyInfo.cs | Out-Null
+$LocalInstallerPath = (Resolve-Path "$projectDir\bin\$Configuration\app.publish").ToString() + "\*"
+Copy-Item $LocalInstallerPath $DeployPath -Recurse -Force
