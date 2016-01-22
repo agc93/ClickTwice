@@ -51,6 +51,7 @@
     <Compile Include="LaunchPageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateEngine.cs" />
+    <Compile Include="TemplateSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClickTwice.Publisher.Core\ClickTwice.Publisher.Core.csproj">
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Templates\Eventually.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
