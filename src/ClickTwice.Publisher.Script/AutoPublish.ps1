@@ -36,7 +36,6 @@ function CheckMSBuildPath ()
 	} Else {
 		$msbuild = $env:msbuild
 	}
-	$msbuild = $msbuild -replace ' ', '` '
 	return $msbuild
 }
 
@@ -52,10 +51,10 @@ function GetApplicationName() {
 $msbuild = CheckMSBuildPath
 Write-Host "Using MSBuild from $msbuild"
 Write-Host $outputPrefix"Cleaning the build directory..."
-Invoke-Expression '"$msbuild" $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:clean /v:quiet /nologo'
+Invoke-Expression "& '$msbuild' $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:clean /v:quiet /nologo"
 
 Write-Host $outputPrefix"Building Executable application..."
-Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:build /v:quiet /nologo"
+Invoke-Expression "& '$msbuild' $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:build /v:quiet /nologo"
 $projectDir = GetProjectDirectory($ProjectFilePath)
 $appName = GetApplicationName
 $newExeVersion = Get-ChildItem $projectDir\bin\$Configuration\$appName.exe | Select-Object -ExpandProperty VersionInfo | % { $_.FileVersion }
@@ -74,8 +73,8 @@ $AppVersion.InnerText = $newExeVersion
 $TargetPath = Resolve-Path $ProjectFilePath
 $ProjectXml.Save($TargetPath)
 
-Invoke-Expression "$msbuild $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:publish /v:quiet /nologo"
+Invoke-Expression "& '$msbuild' $ProjectFilePath /p:Configuration=$Configuration /p:Platform=AnyCPU /t:publish /v:quiet /nologo"
 
-Write-Host $outputPrefix"Deploying updates to network server..."
+Write-Host $outputPrefix"Deploying application files to target..."
 $LocalInstallerPath = (Resolve-Path "$projectDir\bin\$Configuration\app.publish").ToString() + "\*"
 Copy-Item $LocalInstallerPath $DeployPath -Recurse -Force
