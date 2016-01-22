@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClickTwice.Publisher.Core.Manifests
 {
-    internal class ExtendedAppInfo
+    public class ExtendedAppInfo
     {
         public string InstallationInformation { get; set; } = string.Empty;
         public IList<string> PrerequisiteInformation { get; set; } = new List<string>();

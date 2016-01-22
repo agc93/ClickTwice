@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace ClickTwice.Publisher.Core
 {
-    class AppInfoManager : Manager
+    public class AppInfoManager : Manager
     {
         private ExtendedAppInfo AppInfo { get; set; } = new ExtendedAppInfo();
         public AppInfoManager(string projectFilePath) : base(projectFilePath)
@@ -66,6 +66,11 @@ namespace ClickTwice.Publisher.Core
                 return new FileInfo(Path.Combine(di.FullName, "app.info"));
             }
             throw new FileNotFoundException($"Could not locate application manifest in {di.Name} directory", di.FullName);
+        }
+
+        public static ExtendedAppInfo ReadFromFile(string fullPathToInfoFile)
+        {
+            return JsonConvert.DeserializeObject<ExtendedAppInfo>(fullPathToInfoFile);
         }
     }
 }

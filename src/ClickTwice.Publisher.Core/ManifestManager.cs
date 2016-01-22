@@ -115,6 +115,11 @@ namespace ClickTwice.Publisher.Core
             var fi = new FileInfo(ApplicationManifestLocation);
             return Path.Combine(fi.Directory?.FullName ?? new FileInfo(ProjectFilePath).Directory?.FullName ?? string.Empty, fi.Name.Replace(fi.Extension, ".cltw"));
         }
+
+        public static AppManifest ReadFromFile(string manifestFilePath)
+        {
+            return JsonConvert.DeserializeObject<AppManifest>(manifestFilePath);
+        }
     }
 
     public enum InformationSource
