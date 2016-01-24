@@ -1,8 +1,10 @@
 ﻿using ClickTwice.Publisher.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using ClickTwice.Handlers.LaunchPage;
 using ClickTwice.Publisher.Core.Handlers;
 
 namespace TestApp
@@ -13,9 +15,9 @@ namespace TestApp
             //@"C:\Users\UCRM4\Source\ACN\TFSShowcase\src\ScreenshotReportCreator\ScreenshotReportCreator.csproj"; // ATO
             //@"C:\Users\alist_000\Source\ACN\TFSShowcase\src\ScreenshotReportCreator\ScreenshotReportCreator.csproj"; //others
             //@"C:\Users\alist\Source\ACN\TFSShowcase\src\ScreenshotReportCreator\ScreenshotReportCreator.csproj"; // Zenbook
-            //@"C:\Users\alist_000\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj";
-            //@"C:\Users\alist\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj";
-            @"C:\Users\UCRM4\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj";
+            @"C:\Users\alist_000\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj";
+        //@"C:\Users\alist\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj";
+        //@"C:\Users\UCRM4\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj";
 
         private static void Main(string[] args)
         {
@@ -23,12 +25,12 @@ namespace TestApp
             {
                 DefaultProjectPath = args.First();
             }
-            var mgr = new PublishManager(DefaultProjectPath, InformationSource.None)
+            var mgr = new PublishManager(DefaultProjectPath, InformationSource.AppManifest)
             {
                 Platform = "AnyCPU",
                 Configuration = "Debug",
                 InputHandlers = new List<IInputHandler> {new MockInputHandler()},
-                OutputHandlers = new List<IOutputHandler> {new MockOutputHandler(), new PublishPageHandler() }
+                OutputHandlers = new List<IOutputHandler> {new MockOutputHandler(), new PublishPageHandler(), new LaunchPageHandler() }
             };
             // ReSharper disable once RedundantArgumentDefaultValue
             var path = Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N")));
@@ -36,6 +38,7 @@ namespace TestApp
             var manager = new ManifestManager(DefaultProjectPath, path.FullName, InformationSource.Both);
             var manifest = manager.CreateAppManifest();
             var cltw = manager.DeployManifest(manifest);
+            Process.Start(path.FullName);
             Console.WriteLine(result.Select(r => $"{r.Handler.Name} - {r.Result} - {r.ResultMessage}" + Environment.NewLine));
         }
     }

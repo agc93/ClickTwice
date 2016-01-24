@@ -118,7 +118,7 @@ namespace ClickTwice.Publisher.Core
 
         public static AppManifest ReadFromFile(string manifestFilePath)
         {
-            return JsonConvert.DeserializeObject<AppManifest>(manifestFilePath);
+            return JsonConvert.DeserializeObject<AppManifest>(File.ReadAllText(manifestFilePath));
         }
     }
 

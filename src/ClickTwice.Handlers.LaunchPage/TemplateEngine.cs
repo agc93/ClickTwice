@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClickTwice.Publisher.Core.Manifests;
 using RazorEngine;
+using RazorEngine.Configuration;
 using RazorEngine.Templating;
 using Encoding = System.Text.Encoding;
 
@@ -14,12 +15,20 @@ namespace ClickTwice.Handlers.LaunchPage
 {
     class TemplateEngine
     {
-        private IRazorEngineService Engine => RazorEngine.Engine.Razor;
+        private IRazorEngineService Engine { get; }
 
         public TemplateEngine(AppManifest manifest)
         {
             this.Manifest = manifest;
+            TemplateSource = new EmbeddedTemplateManager(Templates.ResourceManager);
+            var config = new TemplateServiceConfiguration()
+            {
+                TemplateManager = TemplateSource,
+            };
+            Engine = RazorEngineService.Create(config);
         }
+
+        private EmbeddedTemplateManager TemplateSource { get; set; }
 
         private AppManifest Manifest { get; set; }
 
@@ -30,8 +39,11 @@ namespace ClickTwice.Handlers.LaunchPage
 
         private ExtendedAppInfo AppInfo { get; set; }
 
-        internal string BuildPage()
+        internal string BuildPage(string templateName)
         {
+            var templateKey = TemplateSource.GetKey(templateName, ResolveType.Global, null);
+            var result = Engine.RunCompile(templateKey, typeof (LaunchPageModel), new LaunchPageModel(Manifest, AppInfo));
+            return result;
         }
 
         internal FileInfo WritePage(string page, string path)

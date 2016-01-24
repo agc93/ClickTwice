@@ -16,6 +16,10 @@ namespace ClickTwice.Handlers.LaunchPage
         {
             
         }
+
+        private EmbeddedTemplateManager TemplateSource { get; set; }
+
+
         public string Name => "Advanced Launch/Install Page Handler";
         public HandlerResponse Process(string outputPath)
         {
@@ -25,16 +29,38 @@ namespace ClickTwice.Handlers.LaunchPage
             var files = di.GetFiles();
             var manifestPresent = files.Any(f => f.Extension == ".cltw");
             var infoPresent = files.Any(f => f.Name == "app.info");
+            TemplateEngine engine = null;
             if (manifestPresent)
             {
                 Manifest = ManifestManager.ReadFromFile(GetManifest(outputPath).FullName);
+            }
+            else
+            {
+                Manifest = CreateManifest(outputPath);
+                manifestPresent = Manifest != null;
             }
             if (infoPresent)
             {
                 AppInfo = AppInfoManager.ReadFromFile(GetInfoFile(outputPath).FullName);
             }
-            
+            if (manifestPresent && infoPresent)
+            {
+                engine = new TemplateEngine(AppInfo, Manifest);
+            }
+            else
+            {
+                engine = new TemplateEngine(Manifest);
+            }
+            var page = engine.BuildPage("Eventually");
+            engine.WritePage(page, Path.Combine(outputPath, "index.htm"));
             return new HandlerResponse(this, true);
+        }
+
+        private AppManifest CreateManifest(string deployDir)
+        {
+            var mgr = new ManifestManager(string.Empty, deployDir, InformationSource.AppManifest);
+            var appManifest = mgr.CreateAppManifest();
+            return appManifest;
         }
 
         private FileInfo GetManifest(string outputPath)

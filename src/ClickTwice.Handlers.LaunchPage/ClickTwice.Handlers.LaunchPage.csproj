@@ -49,9 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LaunchPageHandler.cs" />
+    <Compile Include="LaunchPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateEngine.cs" />
-    <Compile Include="TemplateSource.cs" />
+    <Compile Include="Templates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Templates.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedTemplateManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClickTwice.Publisher.Core\ClickTwice.Publisher.Core.csproj">
@@ -61,8 +67,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Templates\Eventually.cshtml" />
+    <None Include="TemplateContent\Eventually.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Templates.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eventually.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,49 +1,50 @@
-﻿<!DOCTYPE HTML>
+﻿@inherits RazorEngine.Templating.TemplateBase<ClickTwice.Handlers.LaunchPage.LaunchPageModel>
+
+<!DOCTYPE HTML>
 <!--
     Eventually by HTML5 UP
-    html5up.net | @n33co
+    
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
 <head>
-    <title>Eventually by HTML5 UP</title>
+    <title>@Model.Manifest.ApplicationName</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!-- <link rel="stylesheet" href="assets/css/main.css"/> -->
+    <link rel="stylesheet" href="http://html5up.net/uploads/demos/eventually/assets/css/main.css"/>
 </head>
 <body>
 
     <!-- Header -->
     <header id="header">
-        <h1>DocumentConversion</h1>
-        <h2>Alistair Chapman</h2>
-        <h3>Accenture Australia</h3>
+        <h1>@Model.Manifest.ApplicationName</h1>
+        <h2>@Model.Manifest.AuthorName</h2>
+        <h3>@Model.Manifest.PublisherName</h3>
         <p>
-            Quite a lengthy paragraph detailing the many many details of the application and all the ways it will brighten your life and/or consume your soul, like sex and testing respectively.
+            @Model.Manifest.SuiteName
+        </p>
+        <p>
+            @Model.Manifest.Summary
         </p>
     </header>
-    <p>Hopefully, this doesn't end up looking very awkward as I would be terribly disappointed. But it just might be this long. You never know. Now it can be. Doesn't make a difference. As long as it wraps. And would you know it, it does wrap. Spacing's even right. Lucky too, since I'm awful at CSS.</p>
+    <p>@Model.Manifest.Description</p>
     <!-- Signup Form -->
     <form id="signup-form" method="post" action="#">
-        <p class="message">Requires .NET Framework v4.5</p>
-        <!--<input type="text" name="framework" id="framework" placeholder="Framework version: 4.5" disabled />-->
+        <p class="message">Requires .NET Framework @Model.Manifest.FrameworkVersion </p>
         <button class="button btn-lg">Launch</button>
         <button class="button btn-lg">Install</button>
     </form>
-
     <!-- Footer -->
     <footer id="footer">
-        <ul class="icons">
+        @*<ul class="icons">
             <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
             <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
             <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
+        </ul>*@
         <ul class="copyright">
-            <li>&copy; Copyright text here.</li>
+            <li>@(string.IsNullOrWhiteSpace(@Model.Manifest.Copyright) ? "© " + @Model.Manifest.Copyright : string.Empty) </li>
             <li><a href="http://html5up.net">HTML5 UP</a></li>
             <li><a href="https://bitbucket.org/agc93/clicktwice" target="_blank">ClickTwice</a></li>
         </ul>
@@ -51,7 +52,8 @@
 
     <!-- Scripts -->
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="assets/js/main.js"></script>
+<!-- <script src="assets/js/main.js"></script> -->
+<script src="http://html5up.net/uploads/demos/eventually/assets/js/main.js"></script>
 
 </body>
 </html>
