@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ClickTwice.Publisher.Core.Manifests;
+using ClickTwice.Publisher.Core.Resources;
 using RazorEngine;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;

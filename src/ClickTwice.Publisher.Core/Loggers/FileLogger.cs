@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,21 +8,24 @@ using Microsoft.Build.Framework;
 
 namespace ClickTwice.Publisher.Core.Loggers
 {
-    public class ConsoleLogger : IPublishLogger
+    public class FileLogger : IPublishLogger
     {
-        public ConsoleLogger(bool includeBuildMessages = false)
+        private List<string> Messages { get; set; } = new List<string>();
+        public FileLogger(bool includeBuildMessages = true)
         {
             IncludeBuildMessages = includeBuildMessages;
         }
         public void Log(string content)
         {
-            Console.WriteLine(content);
+            Messages.Add(content);
         }
 
         public bool IncludeBuildMessages { get; set; }
         public string Close(string outputPath)
         {
-            throw new NotImplementedException();
+            var path = Path.Combine(outputPath, $"BuildLog_{DateTime.Now.ToString("YYMMdd-HHmmss")}.txt");
+            File.WriteAllLines(path, Messages);
+            return $"Log file written to {path}";
         }
     }
 }

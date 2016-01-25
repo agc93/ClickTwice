@@ -1,6 +1,6 @@
 ﻿using ClickTwice.Publisher.Core.Manifests;
 
-namespace ClickTwice.Handlers.LaunchPage
+namespace ClickTwice.Publisher.Core.Resources
 {
     public class LaunchPageModel
     {

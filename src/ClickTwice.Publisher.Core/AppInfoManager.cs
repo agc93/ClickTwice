@@ -11,10 +11,20 @@ namespace ClickTwice.Publisher.Core
 {
     public class AppInfoManager : Manager
     {
-        private ExtendedAppInfo AppInfo { get; set; } = new ExtendedAppInfo();
+        private ExtendedAppInfo AppInfo { get; } = new ExtendedAppInfo();
         public AppInfoManager(string projectFilePath) : base(projectFilePath)
         {
 
+        }
+
+        public AppInfoManager() : base(string.Empty)
+        {
+            
+        }
+
+        public AppInfoManager(ExtendedAppInfo appInfo) : base(string.Empty)
+        {
+            this.AppInfo = appInfo;
         }
 
         public void AddAuthor(string authorName)
@@ -70,7 +80,7 @@ namespace ClickTwice.Publisher.Core
 
         public static ExtendedAppInfo ReadFromFile(string fullPathToInfoFile)
         {
-            return JsonConvert.DeserializeObject<ExtendedAppInfo>(fullPathToInfoFile);
+            return JsonConvert.DeserializeObject<ExtendedAppInfo>(File.ReadAllText(fullPathToInfoFile));
         }
     }
 }
