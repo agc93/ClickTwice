@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace ClickTwice.Publisher.Core.Manifests
         public string AuthorName { get; set; } = string.Empty;
         public string PublisherName { get; set; } = string.Empty;
         public string SuiteName { get; set; } = string.Empty;
+        [Obsolete("Use an ExtendedAppInfo object (or the AppInfoManager) to store application information")]
         public string Summary { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Copyright { get; set; } = string.Empty;
