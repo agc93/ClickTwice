@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MyApplication</RootNamespace>
     <AssemblyName>MyApplication</AssemblyName>
-    <Name>ClickTwice.Publisher.Script</Name>
+    <Name>ClickTwice.Templates.Packager</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,7 +28,7 @@
   </PropertyGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="AutoPublish.ps1" />
+    <Compile Include="Script.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />

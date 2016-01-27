@@ -15,6 +15,8 @@ namespace ClickTwice.Handlers.AppDetailsPage
         public AppDetailsPageHandler(string templateName)
         {
             //NuGet-related template extraction goes here
+            var packageEngine = new PackageEngine(templateName);
+            packageEngine.ExtractPackage();
         }
         public string Name => "App Details Page generator";
         public HandlerResponse Process(string outputPath)

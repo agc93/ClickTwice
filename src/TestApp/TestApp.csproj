@@ -63,6 +63,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClickTwice.Handlers.AppDetailsPage\ClickTwice.Handlers.AppDetailsPage.csproj">
+      <Project>{0d7cfab8-ab4b-4dd7-8b74-96bbcb81f48f}</Project>
+      <Name>ClickTwice.Handlers.AppDetailsPage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClickTwice.Handlers.LaunchPage\ClickTwice.Handlers.LaunchPage.csproj">
       <Project>{71B40F23-7A8D-4F7E-8BF0-46D85E02142B}</Project>
       <Name>ClickTwice.Handlers.LaunchPage</Name>

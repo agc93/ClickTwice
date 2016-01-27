@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using ClickTwice.Handlers.AppDetailsPage;
 using ClickTwice.Handlers.LaunchPage;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
@@ -22,6 +23,7 @@ namespace TestApp
 
         private static void Main(string[] args)
         {
+            var handler = new AppDetailsPageHandler()
             if (args.Any())
             {
                 DefaultProjectPath = args.First();
