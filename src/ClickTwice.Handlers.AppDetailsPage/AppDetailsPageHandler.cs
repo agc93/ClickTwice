@@ -18,6 +18,16 @@ namespace ClickTwice.Handlers.AppDetailsPage
             var packageEngine = new PackageEngine(templateName);
             packageEngine.ExtractPackage();
         }
+
+        public AppDetailsPageHandler(FileInfo localPackage)
+        {
+            var packageEngine = new PackageEngine(localPackage);
+            var extractPackage = packageEngine.ExtractPackage();
+            TemplateDirectory = extractPackage;
+        }
+
+        private DirectoryInfo TemplateDirectory { get; set; }
+
         public string Name => "App Details Page generator";
         public HandlerResponse Process(string outputPath)
         {

@@ -63,6 +63,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClickTwice.CommandLine\ClickTwice.CommandLine.csproj">
+      <Project>{8265f22f-8451-42d8-b0b7-9bbb537ff4d3}</Project>
+      <Name>ClickTwice.CommandLine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClickTwice.Handlers.AppDetailsPage\ClickTwice.Handlers.AppDetailsPage.csproj">
       <Project>{0d7cfab8-ab4b-4dd7-8b74-96bbcb81f48f}</Project>
       <Name>ClickTwice.Handlers.AppDetailsPage</Name>

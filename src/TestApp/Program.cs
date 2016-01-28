@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using ClickTwice.CommandLine.Packaging;
 using ClickTwice.Handlers.AppDetailsPage;
 using ClickTwice.Handlers.LaunchPage;
 using ClickTwice.Publisher.Core.Handlers;
@@ -23,7 +24,10 @@ namespace TestApp
 
         private static void Main(string[] args)
         {
-            var handler = new AppDetailsPageHandler()
+            var packager = new TemplatePackager("ClickTwice.Templates.SolidState", "0.0.1", "Alistair Chapman",
+                "ClickTwice Template using the HTML5UP Solid State design");
+            var package = packager.Package(@"C:\Users\alist\Source\ClickTwice\src\ClickTwice.Templates.SolidState", PackagingMode.VisualStudio);
+            var handler = new AppDetailsPageHandler(package);
             if (args.Any())
             {
                 DefaultProjectPath = args.First();

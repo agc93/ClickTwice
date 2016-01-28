@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,13 @@ using NuGet;
 
 namespace ClickTwice.CommandLine.Packaging
 {
-    class TemplatePackager
+    /// <summary>
+    /// This should be made internal when testing is complete
+    /// </summary>
+    public class TemplatePackager
     {
-
-        public Manifest NuSpec { get; set; }
+        public Uri PublishDestination { get; set; } = new Uri("http://nudev.azurewebsites.net");
+        private Manifest NuSpec { get; set; }
         public TemplatePackager(string id, string version, string authors, string description)
         {
             var manifest = new Manifest
@@ -35,9 +39,11 @@ namespace ClickTwice.CommandLine.Packaging
             
         }
 
-        internal void SetContentFiles(List<string> contentFiles)
+        private void SetContentFiles(List<string> contentFiles)
         {
-            NuSpec.Files.AddRange(contentFiles.Select(f => new ManifestFile() {Source = f, Target = f}));
+            NuSpec.Files = new List<ManifestFile>();
+            contentFiles = contentFiles.Select(f => f.Contains("\\") ? f.Replace("\\", "/") : f).ToList();
+            NuSpec.Files.AddRange(contentFiles.Select(f => new ManifestFile() {Source = f, Target = $"content/{f}"}));
             //foreach (var file in contentFiles)
             //{
             //    NuSpec.Files.Add(new ManifestFile()
@@ -48,7 +54,7 @@ namespace ClickTwice.CommandLine.Packaging
             //}
         }
         private IPackager Packager { get; set; }
-        public void Package(string templateProjectDirectory, PackagingMode mode)
+        public FileInfo Package(string templateProjectDirectory, PackagingMode mode)
         {
             switch (mode)
             {
@@ -63,29 +69,51 @@ namespace ClickTwice.CommandLine.Packaging
             }
             var files = Packager.GetContentFiles(templateProjectDirectory);
             SetContentFiles(files);
-            NuSpec.Save(new FileStream(Path.Combine(templateProjectDirectory, "TemplatePackage.nuspec"), FileMode.Create), validate: true);
-            BuildPackage(templateProjectDirectory);
+            using (var stream = new FileStream(Path.Combine(templateProjectDirectory, "TemplatePackage.nuspec"), FileMode.Create))
+            {
+                NuSpec.Save(stream, validate: true);
+            }
+            //NuSpec.Save(new FileStream(Path.Combine(templateProjectDirectory, "TemplatePackage.nuspec"), FileMode.Create), validate: true);
+            var package = BuildPackage(templateProjectDirectory);
+            return package;
         }
 
-        private void BuildPackage(string outputDirectory)
+        private FileInfo BuildPackage(string outputDirectory)
         {
             var builder = new PackageBuilder();
             builder.Populate(NuSpec.Metadata);
-            foreach (ManifestFile value in NuSpec.Files)
-            {
-                builder.PopulateFiles(value.Target, NuSpec.Files);
-                builder.Files.Add(new PhysicalPackageFile()
-                {
-                    SourcePath = value.Source,
-                    TargetPath = value.Target
-                });
-            }
+            builder.PopulateFiles(outputDirectory, NuSpec.Files);
+            //foreach (ManifestFile value in NuSpec.Files)
+            //{
+                
+            //    //builder.Files.Add(new PhysicalPackageFile()
+            //    //{
+            //    //    SourcePath = value.Source,
+            //    //    TargetPath = value.Target
+            //    //});
+            //}
+            var path = Path.Combine(outputDirectory, $"{NuSpec.Metadata.Id}.nupkg");
             using (
-                FileStream stream = new FileStream(Path.Combine(outputDirectory, $"{NuSpec.Metadata.Id}.nupkg"),
-                    FileMode.Create))
+                FileStream stream = new FileStream(path, FileMode.Create))
             {
                 builder.Save(stream);
             }
+            return new FileInfo(path);
+        }
+
+        public void PublishPackage(string pathToNupkg)
+        {
+            PublishPackage(pathToNupkg, System.Environment.GetEnvironmentVariable("ApiKey"));
+        }
+
+        public void PublishPackage(string pathToNupkg, string apiKey)
+        {
+            var fi = new FileInfo(pathToNupkg);
+            var localRepo = PackageRepositoryFactory.Default.CreateRepository(fi.Directory.FullName);
+            var package = localRepo.FindPackagesById(fi.Name.Replace(fi.Extension, string.Empty)).First();
+            var size = fi.Length;
+            var ps = new PackageServer(PublishDestination.ToString(), "userAgent");
+            ps.PushPackage(apiKey, package, size, 1800, false);
         }
     }
 
@@ -101,7 +129,7 @@ namespace ClickTwice.CommandLine.Packaging
             var xml = new XmlDocument();
             xml.Load(new DirectoryInfo(rootDirectory).GetFiles("*.csproj").First().FullName);
             XmlNamespaceManager mgr = new XmlNamespaceManager(xml.NameTable);
-            mgr.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
+            mgr.AddNamespace("msb", "http://schemas.microsoft.com/developer/msbuild/2003");
             var nodeList = xml.SelectNodes("//msb:Project/msb:ItemGroup/msb:Content", mgr);
             if (nodeList != null)
             {
@@ -109,7 +137,7 @@ namespace ClickTwice.CommandLine.Packaging
                     nodeList.Cast<XmlNode>()
                         .Where(x => !string.IsNullOrWhiteSpace(x.Attributes?["Include"].Value))
                         .Select(x => x.Attributes["Include"].Value);
-                return contentFiles.ToList();
+                return contentFiles.Where(f => !f.EndsWith("config")).ToList();
             }
             return new List<string>();
         }
