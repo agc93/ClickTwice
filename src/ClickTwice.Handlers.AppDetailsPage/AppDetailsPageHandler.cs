@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Manifests;
+using ClickTwice.Publisher.Core.Resources;
 
 namespace ClickTwice.Handlers.AppDetailsPage
 {
     public class AppDetailsPageHandler : IOutputHandler
     {
+        private AppDetailsPageHandler()
+        {
+            var config = new RazorEngine.Configuration.TemplateServiceConfiguration()
+            {
+                TemplateManager = 
+            };
+        }
         public AppDetailsPageHandler(string templateName)
         {
             //NuGet-related template extraction goes here
@@ -38,11 +46,11 @@ namespace ClickTwice.Handlers.AppDetailsPage
             var infoPresent = files.Any(f => f.Name == "app.info");
             if (!(manifestPresent && infoPresent))
             {
-                throw new InvalidOperationException("This handler requires both a deployment manifest (cltw file) and an info file (app.info)! Try adding AppInfoHandler to your OutputHandlers and ensure you have set an InformationSource to generate a manifest.") ;
+                return new HandlerResponse(this, false, "This handler requires both a deployment manifest (cltw file) and an info file (app.info)! Try adding AppInfoHandler to your OutputHandlers and ensure you have set an InformationSource to generate a manifest.");
             }
             Manifest = ManifestManager.ReadFromFile(GetManifest(outputPath).FullName);
             AppInfo = AppInfoManager.ReadFromFile(GetInfoFile(outputPath).FullName);
-
+            var model = new LaunchPageModel(Manifest, AppInfo)
             return new HandlerResponse(this, true);
         }
 
