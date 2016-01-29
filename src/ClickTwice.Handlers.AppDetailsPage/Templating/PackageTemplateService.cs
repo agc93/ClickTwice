@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RazorEngine.Templating;
 
-namespace ClickTwice.Handlers.AppDetailsPage
+namespace ClickTwice.Handlers.AppDetailsPage.Templating
 {
     class PackageTemplateManager : ITemplateManager
     {
@@ -24,9 +21,10 @@ namespace ClickTwice.Handlers.AppDetailsPage
 
         public ITemplateKey GetKey(string name, ResolveType resolveType, ITemplateKey context)
         {
-            var files = PackageDirectory.GetFiles("*.cshtml");
-            var tree = PackageDirectory.GetDirectories().Select(d => d.GetFiles("*.cshtml"));
-            return new PackageKey(name, resolveType, context);
+            var files = PackageDirectory.EnumerateFiles("*.cshtml", SearchOption.AllDirectories);
+            var template = files.FirstOrDefault(f => f.Name.Replace(f.Extension, string.Empty) == name);
+            if (template == null) throw new FileNotFoundException("Could not find requested template", name);
+            return new PackageKey(template.FullName, resolveType, context);
         }
 
         public void AddDynamic(ITemplateKey key, ITemplateSource source)

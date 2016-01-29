@@ -4,10 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClickTwice.Handlers.AppDetailsPage.Templating;
 using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Manifests;
 using ClickTwice.Publisher.Core.Resources;
+using RazorEngine;
+using RazorEngine.Templating;
 
 namespace ClickTwice.Handlers.AppDetailsPage
 {
@@ -15,16 +18,14 @@ namespace ClickTwice.Handlers.AppDetailsPage
     {
         private AppDetailsPageHandler()
         {
-            var config = new RazorEngine.Configuration.TemplateServiceConfiguration()
-            {
-                TemplateManager = 
-            };
+            
         }
         public AppDetailsPageHandler(string templateName)
         {
             //NuGet-related template extraction goes here
             var packageEngine = new PackageEngine(templateName);
-            packageEngine.ExtractPackage();
+            TemplateDirectory = packageEngine.ExtractPackage();
+            BuildEngine();
         }
 
         public AppDetailsPageHandler(FileInfo localPackage)
@@ -32,7 +33,15 @@ namespace ClickTwice.Handlers.AppDetailsPage
             var packageEngine = new PackageEngine(localPackage);
             var extractPackage = packageEngine.ExtractPackage();
             TemplateDirectory = extractPackage;
+            BuildEngine();
         }
+
+        private void BuildEngine()
+        {
+            Engine = new TemplateEngine(TemplateDirectory);
+        }
+
+        private TemplateEngine Engine { get; set; }
 
         private DirectoryInfo TemplateDirectory { get; set; }
 
@@ -50,7 +59,8 @@ namespace ClickTwice.Handlers.AppDetailsPage
             }
             Manifest = ManifestManager.ReadFromFile(GetManifest(outputPath).FullName);
             AppInfo = AppInfoManager.ReadFromFile(GetInfoFile(outputPath).FullName);
-            var model = new LaunchPageModel(Manifest, AppInfo)
+            Engine.Manifest = Manifest;
+            Engine.AppInfo = AppInfo;
             return new HandlerResponse(this, true);
         }
 
