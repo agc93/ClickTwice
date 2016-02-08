@@ -1,4 +1,6 @@
-﻿namespace ClickTwice.Publisher.Core.Handlers
+﻿using System.Runtime.CompilerServices;
+
+namespace ClickTwice.Publisher.Core.Handlers
 {
     public class HandlerResponse
     {
@@ -17,6 +19,12 @@
 
         public HandlerResponse(IHandler handler, bool succeeded, string message) : this(handler, succeeded)
         {
+            ResultMessage = message;
+        }
+
+        public HandlerResponse(IHandler handler, HandlerResult result, string message) : this(handler)
+        {
+            Result = result;
             ResultMessage = message;
         }
     }

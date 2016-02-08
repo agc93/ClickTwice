@@ -61,6 +61,8 @@ namespace ClickTwice.Handlers.AppDetailsPage
             AppInfo = AppInfoManager.ReadFromFile(GetInfoFile(outputPath).FullName);
             Engine.Manifest = Manifest;
             Engine.AppInfo = AppInfo;
+            var contentDirectory = Engine.CreateContentDirectory(new DirectoryInfo(outputPath));
+            contentDirectory.Copy(outputPath, copySubDirs: true);
             return new HandlerResponse(this, true);
         }
 

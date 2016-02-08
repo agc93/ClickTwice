@@ -96,7 +96,7 @@
   <ItemGroup>
     <Content Include="js\site.js" />
     <Content Include="packages.config" />
-    <Content Include="Index.cshtml" />
+    <Content Include="index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,5 @@
-﻿using ClickTwice.Publisher.Core.Manifests;
+﻿using System;
+using ClickTwice.Publisher.Core.Manifests;
 
 namespace ClickTwice.Publisher.Core.Resources
 {
@@ -19,5 +20,9 @@ namespace ClickTwice.Publisher.Core.Resources
         public AppManifest Manifest { get; set; }
 
         public ExtendedAppInfo AppInfo { get; set; }
+
+        public string ContentDirectory { get; set; } = string.Empty;
+        public string Launcher { get; set; } = string.Empty;
+        public string Installer { get; set; } = string.Empty;
     }
 }

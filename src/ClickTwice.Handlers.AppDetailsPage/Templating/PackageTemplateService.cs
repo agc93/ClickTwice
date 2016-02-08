@@ -22,7 +22,7 @@ namespace ClickTwice.Handlers.AppDetailsPage.Templating
         public ITemplateKey GetKey(string name, ResolveType resolveType, ITemplateKey context)
         {
             var files = PackageDirectory.EnumerateFiles("*.cshtml", SearchOption.AllDirectories);
-            var template = files.FirstOrDefault(f => f.Name.Replace(f.Extension, string.Empty) == name);
+            var template = files.FirstOrDefault(f => f.Name == name);
             if (template == null) throw new FileNotFoundException("Could not find requested template", name);
             return new PackageKey(template.FullName, resolveType, context);
         }

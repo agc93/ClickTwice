@@ -71,7 +71,7 @@ namespace ClickTwice.CommandLine.Packaging
             SetContentFiles(files);
             using (var stream = new FileStream(Path.Combine(templateProjectDirectory, "TemplatePackage.nuspec"), FileMode.Create))
             {
-                NuSpec.Save(stream, validate: true);
+                //NuSpec.Save(stream, validate: true);
             }
             //NuSpec.Save(new FileStream(Path.Combine(templateProjectDirectory, "TemplatePackage.nuspec"), FileMode.Create), validate: true);
             var package = BuildPackage(templateProjectDirectory);
@@ -147,10 +147,15 @@ namespace ClickTwice.CommandLine.Packaging
     {
         public List<string> GetContentFiles(string rootDirectory)
         {
+            var files = new DirectoryInfo(rootDirectory).EnumerateFilesForExtensions(false, ".nupkg", ".nuspec", ".config");
             return
-                new DirectoryInfo(rootDirectory).GetFilesExceptExtensions(".nupkg", ".nuspec", ".dll", ".config")
-                    .Select(f => f.FullName.Replace(rootDirectory, string.Empty))
+                files.Select(f => f.FullName)
+                    .Select(n => n.Replace(rootDirectory, string.Empty).Trim().TrimStart('\\'))
                     .ToList();
+            //return
+            //    new DirectoryInfo(rootDirectory).GetFilesExceptExtensions(".nupkg", ".nuspec", ".dll", ".config")
+            //        .Select(f => f.FullName.Replace(rootDirectory, string.Empty))
+            //        .ToList();
         }
     }
 

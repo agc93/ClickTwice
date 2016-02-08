@@ -60,6 +60,11 @@ namespace ClickTwice.Publisher.Core
             AppInfo.DeveloperInformation = devInfo;
         }
 
+        public void AddAppInformation(string appInfo)
+        {
+            AppInfo.AppInformation = appInfo;
+        }
+
         public void DeployAppInformation(string pathToDeploymentDir)
         {
             var j = JsonConvert.SerializeObject(AppInfo, Formatting.Indented);

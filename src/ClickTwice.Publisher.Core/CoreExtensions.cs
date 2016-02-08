@@ -21,7 +21,7 @@ namespace ClickTwice.Publisher.Core
 
         /// <exception cref="DirectoryNotFoundException">Source directory does not exist.</exception>
         [DebuggerStepThrough]
-        internal static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
+        public static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
         {
             
             // Get the subdirectories for the specified directory.
@@ -101,6 +101,19 @@ namespace ClickTwice.Publisher.Core
             }
             var files = dir.EnumerateFiles();
             return files.Where(f => !extensions.Contains(f.Extension));
+        }
+
+        public static IEnumerable<FileInfo> EnumerateFilesForExtensions(this DirectoryInfo dir, bool match,
+            params string[] extensions)
+        {
+            if (extensions == null)
+            {
+                throw new ArgumentNullException(nameof(extensions));
+            }
+            var files = dir.EnumerateFiles("*", SearchOption.AllDirectories);
+            return (match)
+                ? files.Where(f => extensions.Contains(f.Extension))
+                : files.Where(f => !extensions.Contains(f.Extension));
         } 
     }
 }
