@@ -9,13 +9,17 @@ namespace ClickTwice.Publisher.Core.Manifests
 {
     public class ExtendedAppInfo
     {
+        public ExtendedAppInfo()
+        {
+            Links = new LinkList();
+        }
         public string AppInformation { get; set; } = string.Empty;
         public string InstallationInformation { get; set; } = string.Empty;
         public IList<string> PrerequisiteInformation { get; set; } = new List<string>();
         public ContactDetails Author { get; set; } = new ContactDetails();
         public string SupportInformation { get; set; } = string.Empty;
         public string DeveloperInformation { get; set; } = string.Empty;
-        public LinkList Links { get; set; } = new LinkList();
+        public LinkList Links { get; set; }
     }
 
     public class LinkList

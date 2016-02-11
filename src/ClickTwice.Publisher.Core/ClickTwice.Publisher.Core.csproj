@@ -67,7 +67,6 @@
     <Compile Include="Handlers\IInputHandler.cs" />
     <Compile Include="Handlers\IOutputHandler.cs" />
     <Compile Include="Handlers\LaunchPageHandler.cs" />
-    <Compile Include="Handlers\MockOutputHandler.cs" />
     <Compile Include="Handlers\NuGetRestoreHandler.cs" />
     <Compile Include="Handlers\PublishPageHandler.cs" />
     <Compile Include="IManager.cs" />
