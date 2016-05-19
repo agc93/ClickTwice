@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickTwice.UpdateManager", "ClickTwice.UpdateManager\ClickTwice.UpdateManager.csproj", "{27FECEED-7288-46CD-B2F2-A40936EFA312}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickTwice.Handlers.AppDetailsPage", "ClickTwice.Handlers.AppDetailsPage\ClickTwice.Handlers.AppDetailsPage.csproj", "{0D7CFAB8-AB4B-4DD7-8B74-96BBCB81F48F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickTwice.CommandLine", "ClickTwice.CommandLine\ClickTwice.CommandLine.csproj", "{8265F22F-8451-42D8-B0B7-9BBB537FF4D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.ClickTwice", "Cake.ClickTwice\Cake.ClickTwice.csproj", "{56941755-0CE6-46E3-BA6F-4450F9C0AE68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8265F22F-8451-42D8-B0B7-9BBB537FF4D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8265F22F-8451-42D8-B0B7-9BBB537FF4D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8265F22F-8451-42D8-B0B7-9BBB537FF4D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

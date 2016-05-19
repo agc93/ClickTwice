@@ -36,7 +36,7 @@ namespace TestApp
             var log = new ConsoleLogger();
             var file = new FileLogger();
             var info = new AppInfoManager();
-            var infoHandler = new AppInfoFileHandler();
+            var infoHandler = new AppInfoHandler();
             BuildInfo(info);
             var mgr = new PublishManager(DefaultProjectPath, InformationSource.Both)
             {

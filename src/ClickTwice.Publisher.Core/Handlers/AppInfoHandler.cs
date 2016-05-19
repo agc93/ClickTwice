@@ -8,40 +8,16 @@ using ClickTwice.Publisher.Core.Manifests;
 
 namespace ClickTwice.Publisher.Core.Handlers
 {
-    public class AppInfoHandler : IOutputHandler
+    public class AppInfoHandler : IInputHandler, IOutputHandler
     {
-        public AppInfoHandler(AppInfoManager manager)
+        public AppInfoHandler(AppInfoManager manager = null)
         {
-            this.Manager = manager;
+            Manager = manager;
         }
 
-        public AppInfoManager Manager { get; set; }
+        private AppInfoManager Manager { get; set; }
 
-        public AppInfoHandler(ExtendedAppInfo appInfo) : this(new AppInfoManager(appInfo))
-        {
-            
-        }
-        public string Name => "Simple handler to generate app.info files";
-        public HandlerResponse Process(string outputPath)
-        {
-            Manager.DeployAppInformation(outputPath);
-            try
-            {
-                var fromFile = AppInfoManager.ReadFromFile(Path.Combine(outputPath, "app.info"));
-                return fromFile != null
-                    ? new HandlerResponse(this, true, "AppInfo successfully generated")
-                    : new HandlerResponse(this, false, "No app.info found in output folder!");
-            }
-            catch (Exception ex)
-            {
-                return new HandlerResponse(this, false, $"Error encountered while creating app.info: {ex.Message}");
-            }
-        }
-    }
-
-    public class AppInfoFileHandler : IInputHandler, IOutputHandler
-    {
-        public string Name => "Handler to use existing app.info files";
+        public string Name => "app.info file handler";
         HandlerResponse IOutputHandler.Process(string outputPath)
         {
             var di = new DirectoryInfo(outputPath);
@@ -59,9 +35,21 @@ namespace ClickTwice.Publisher.Core.Handlers
         {
             var files = new DirectoryInfo(inputPath).EnumerateFiles("app.info", SearchOption.AllDirectories);
             if (!files.Any())
-                return new HandlerResponse(this, HandlerResult.NotRun, $"No app.info file found in '{inputPath}'");
-            var info = AppInfoManager.ReadFromFile(files.First().FullName);
-            this.AppInfo = info;
+            {
+                if (Manager != null)
+                {
+                    Manager.DeployAppInformation(inputPath);
+                    AppInfo = AppInfoManager.ReadFromFile(Path.Combine(inputPath, "app.info"));
+                }
+                else
+                {
+                    return new HandlerResponse(this, HandlerResult.NotRun, $"No app.info file found in '{inputPath}'");
+                }
+            }
+            else
+            {
+                AppInfo = AppInfoManager.ReadFromFile(files.First().FullName);
+            }
             return new HandlerResponse(this, true);
         }
 

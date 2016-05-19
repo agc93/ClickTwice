@@ -211,3 +211,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /src/ClickTwice.Templates.SolidState/TemplatePackage.nuspec
+
+#Cake (generated)
+[Tt]ools/**
+![Tt]ools/packages.config
