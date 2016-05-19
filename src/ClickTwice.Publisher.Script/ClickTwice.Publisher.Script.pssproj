@@ -29,7 +29,6 @@
   <ItemGroup />
   <ItemGroup>
     <Compile Include="AutoPublish.ps1" />
-    <Compile Include="Script.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />

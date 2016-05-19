@@ -1,0 +1,203 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>@Model.Manifest.ApplicationName</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="@Model.ContentDirectory/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">@Model.Manifest.ApplicationName</a></h1>
+                        <h2>@Model.Manifest.AuthorName
+						<nav>
+							<a href="@Model.Launcher">Launch</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="@Model.Launcher">Launch</a></li>
+								<li><a href="@Model.Installer">Installer</a></li>
+								<hr />
+								<li><a href="https://bitbucket.org/agc93/clicktwice">ClickTwice</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<div class="logo"><span class="icon fa-cd"></span></div>
+							<h2>@Model.Manifest.ApplicationName</h2>    <h4>@Model.Manifest.AppVersion.ToString()</h4>
+							<p>@Model.Manifest.Description</p>
+						</div>
+					</section>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
+								<div class="inner">
+									<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic01.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">@Model.Manifest.ShortName</h2>
+										<p>@Model.AppInfo.AppInformation</p>
+									</div>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two" class="wrapper alt spotlight style2">
+								<div class="inner">
+									<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic02.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Installation</h2>
+										<p>@Model.AppInfo.InstallationInformation</p>
+										<a href="@Model.Launcher" class="special">Launch</a>
+                                        <a href="@Model.Installer">Install</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three" class="wrapper spotlight style3">
+								<div class="inner">
+									<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic03.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Support</h2>
+										<p>@Model.AppInfo.SupportInformation</p>
+										<a href="@Model.AppInfo.Links.SupportUrl" class="special">Support</a>
+                                        <a href="@Model.AppInfo.Links.DocumentationUri" class="special">Documentation</a>
+									</div>
+								</div>
+							</section>
+                            
+                            <section id="threehalf" class="wrapper spotlight alt style1">
+                                <div class="inner">
+                                    <div class="content">
+                                        <h2 class="major">Requirements</h2>
+                                        <h3>Requires .NET Framework @Model.Manifest.FrameworkVersion.ToString()</h3>
+                                        @if (Model.Manifest.Prerequisites.Any()) {
+                                            <h4>Prerequisites</h4>
+                                            <ul class="alt">
+                                                @foreach (var prereq in Model.Manifest.Prerequisites) {
+                                                    <li>@prereq</li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            </section>
+
+						<!-- Four -->
+							<section id="four" class="wrapper spotlight style2">
+								<div class="inner">
+                                    <div class="content">
+									<h2 class="major">Developers</h2>
+									<p>@Model.AppInfo.DeveloperInformation</p>
+									<!--<section class="features">
+										<article>
+											<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic04.jpg" alt="" /></a>
+											<h3 class="major">Sed feugiat lorem</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic05.jpg" alt="" /></a>
+											<h3 class="major">Nisl placerat</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic06.jpg" alt="" /></a>
+											<h3 class="major">Ante fermentum</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="@Model.ContentDirectory/images/pic07.jpg" alt="" /></a>
+											<h3 class="major">Fusce consequat</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+									</section>-->
+									<ul class="actions">
+										<li><a href="@Model.AppInfo.Links.DeveloperDocumentation" class="button">More Info</a></li>
+									</ul>
+								</div>
+							</section>
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Get in touch</h2>
+							<!--<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>-->
+							<!--<form method="post" action="#">
+								<div class="field">
+									<label for="name">Name</label>
+									<input type="text" name="name" id="name" />
+								</div>
+								<div class="field">
+									<label for="email">Email</label>
+									<input type="email" name="email" id="email" />
+								</div>
+								<div class="field">
+									<label for="message">Message</label>
+									<textarea name="message" id="message" rows="4"></textarea>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>-->
+							<ul class="contact">
+								<li class="fa-user">
+									@foreach(var author in Model.AppInfo.Author.Names) {
+                                        <span>@author</span><br />
+                                    }
+								</li>
+								<li class="fa-phone">@Model.AppInfo.Author.Phone</li>
+								<li class="fa-envelope"><a href="#">@Model.AppInfo.Author.Email</a></li>
+								<li class="fa-home"><a href="#">@Model.AppInfo.Author.Location</a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; @Model.Manifest.Copyright</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li><a href="https://bitbucket.org/agc93/clicktwice">ClickTwice</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="@Model.ContentDirectory/assets/js/skel.min.js"></script>
+			<script src="@Model.ContentDirectory/assets/js/jquery.min.js"></script>
+			<script src="@Model.ContentDirectory/assets/js/jquery.scrollex.min.js"></script>
+			<script src="@Model.ContentDirectory/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="@Model.ContentDirectory/assets/js/main.js"></script>
+
+	</body>
+</html>

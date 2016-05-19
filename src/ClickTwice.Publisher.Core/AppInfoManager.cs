@@ -9,12 +9,22 @@ using Newtonsoft.Json;
 
 namespace ClickTwice.Publisher.Core
 {
-    class AppInfoManager : Manager
+    public class AppInfoManager : Manager
     {
-        private ExtendedAppInfo AppInfo { get; set; } = new ExtendedAppInfo();
+        private ExtendedAppInfo AppInfo { get; } = new ExtendedAppInfo();
         public AppInfoManager(string projectFilePath) : base(projectFilePath)
         {
 
+        }
+
+        public AppInfoManager() : base(string.Empty)
+        {
+            
+        }
+
+        public AppInfoManager(ExtendedAppInfo appInfo) : base(string.Empty)
+        {
+            this.AppInfo = appInfo;
         }
 
         public void AddAuthor(string authorName)
@@ -50,6 +60,11 @@ namespace ClickTwice.Publisher.Core
             AppInfo.DeveloperInformation = devInfo;
         }
 
+        public void AddAppInformation(string appInfo)
+        {
+            AppInfo.AppInformation = appInfo;
+        }
+
         public void DeployAppInformation(string pathToDeploymentDir)
         {
             var j = JsonConvert.SerializeObject(AppInfo, Formatting.Indented);
@@ -66,6 +81,11 @@ namespace ClickTwice.Publisher.Core
                 return new FileInfo(Path.Combine(di.FullName, "app.info"));
             }
             throw new FileNotFoundException($"Could not locate application manifest in {di.Name} directory", di.FullName);
+        }
+
+        public static ExtendedAppInfo ReadFromFile(string fullPathToInfoFile)
+        {
+            return JsonConvert.DeserializeObject<ExtendedAppInfo>(File.ReadAllText(fullPathToInfoFile));
         }
     }
 }

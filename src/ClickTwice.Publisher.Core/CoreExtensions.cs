@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.Build.Framework.XamlTypes;
 
 namespace ClickTwice.Publisher.Core
 {
-    internal static class CoreExtensions
+    public static class CoreExtensions
     {
         [DebuggerStepThrough]
         internal static void Add<T>(this List<T> list, params T[] items)
@@ -20,7 +21,7 @@ namespace ClickTwice.Publisher.Core
 
         /// <exception cref="DirectoryNotFoundException">Source directory does not exist.</exception>
         [DebuggerStepThrough]
-        internal static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
+        public static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
         {
             
             // Get the subdirectories for the specified directory.
@@ -83,5 +84,36 @@ namespace ClickTwice.Publisher.Core
                 collection.ToList().Add(entry);
             }
         }
+
+        public static IEnumerable<FileInfo> GetFilesByExtensions(this DirectoryInfo dir, params string[] extensions)
+        {
+            if (extensions == null)
+                throw new ArgumentNullException(nameof(extensions));
+            IEnumerable<FileInfo> files = dir.EnumerateFiles();
+            return files.Where(f => extensions.Contains(f.Extension));
+        }
+
+        public static IEnumerable<FileInfo> GetFilesExceptExtensions(this DirectoryInfo dir, params string[] extensions)
+        {
+            if (extensions == null)
+            {
+                throw new ArgumentNullException(nameof(extensions));
+            }
+            var files = dir.EnumerateFiles();
+            return files.Where(f => !extensions.Contains(f.Extension));
+        }
+
+        public static IEnumerable<FileInfo> EnumerateFilesForExtensions(this DirectoryInfo dir, bool match,
+            params string[] extensions)
+        {
+            if (extensions == null)
+            {
+                throw new ArgumentNullException(nameof(extensions));
+            }
+            var files = dir.EnumerateFiles("*", SearchOption.AllDirectories);
+            return (match)
+                ? files.Where(f => extensions.Contains(f.Extension))
+                : files.Where(f => !extensions.Contains(f.Extension));
+        } 
     }
 }
