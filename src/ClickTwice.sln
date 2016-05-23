@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickTwice.CommandLine", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.ClickTwice", "Cake.ClickTwice\Cake.ClickTwice.csproj", "{56941755-0CE6-46E3-BA6F-4450F9C0AE68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.ClickTwice.Tests", "Cake.ClickTwice.Tests\Cake.ClickTwice.Tests.csproj", "{EA73B387-5F21-417B-9C73-B7AA51EA82E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56941755-0CE6-46E3-BA6F-4450F9C0AE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA73B387-5F21-417B-9C73-B7AA51EA82E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA73B387-5F21-417B-9C73-B7AA51EA82E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA73B387-5F21-417B-9C73-B7AA51EA82E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA73B387-5F21-417B-9C73-B7AA51EA82E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,13 +13,18 @@ namespace Cake.ClickTwice
 {
     public class ClickTwiceManager
     {
-        internal ClickTwiceManager(FilePath projectFile, ICakeContext ctx)
+        internal ClickTwiceManager(FilePath projectFile, ICakeContext ctx) : this(projectFile, ctx.Log)
         {
-            ProjectFilePath = projectFile;
-            Context = ctx;
+            
         }
 
-        private ICakeContext Context { get; set; }
+        public ClickTwiceManager(FilePath projectFile, ICakeLog log)
+        {
+            ProjectFilePath = projectFile;
+            Log = log;
+        }
+
+        private ICakeLog Log { get; set; }
 
         private FilePath ProjectFilePath { get; set; }
 
@@ -31,6 +36,7 @@ namespace Cake.ClickTwice
         internal List<IPublishLogger> Loggers { get; set; } = new List<IPublishLogger>();
         internal bool CleanOutput { get; set; }
         internal bool ThrowOnHandlerFailure { get; set; }
+        internal bool ForceBuild { get; set; }
 
         private bool AppInfoSupported
             =>
@@ -40,7 +46,7 @@ namespace Cake.ClickTwice
         public void PublishTo(DirectoryPath outputDirectory)
         {
             OutputHandlers.Add(new PublishPageHandler());
-            Loggers.Add(new CakeLogger(Context.Log));
+            Loggers.Add(new CakeLogger(Log));
             var mgr = new PublishManager(ProjectFilePath.FullPath, AppInfoSupported ? InformationSource.Both : InformationSource.AssemblyInfo)
             {
                 CleanOutputOnCompletion = CleanOutput,
@@ -50,7 +56,7 @@ namespace Cake.ClickTwice
                 OutputHandlers = OutputHandlers,
                 Loggers = Loggers,
             };
-            var responses = mgr.PublishApp(outputDirectory.FullPath, PublishBehaviour.DoNotBuild);
+            var responses = mgr.PublishApp(outputDirectory.FullPath, ForceBuild ? PublishBehaviour.CleanFirst : PublishBehaviour.DoNotBuild);
             if (ThrowOnHandlerFailure)
             {
                 if (responses.Any(r => r.Result == HandlerResult.Error))
@@ -60,7 +66,7 @@ namespace Cake.ClickTwice
             }
             foreach (var r in responses)
             {
-                Context.Log.Information($"Handler finished: {r.Result} - {r.ResultMessage}");
+                Log.Information($"Handler finished: {r.Result} - {r.ResultMessage}");
             }
         }
 

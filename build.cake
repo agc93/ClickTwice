@@ -72,7 +72,7 @@ Task("Build")
 	Information("Building solution...");
 	MSBuild(solutionPath, settings =>
 		settings.SetPlatformTarget(PlatformTarget.MSIL)
-			.WithProperty("TreatWarningsAsErrors","true")
+			//.WithProperty("TreatWarningsAsErrors","true")
 			.SetVerbosity(Verbosity.Quiet)
 			.WithTarget("Build")
 			.SetConfiguration(configuration));
@@ -95,7 +95,7 @@ Task("Copy-Files")
 ///////////////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Build");
+    .IsDependentOn("Copy-Files");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTION

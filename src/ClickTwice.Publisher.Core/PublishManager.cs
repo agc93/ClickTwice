@@ -112,7 +112,7 @@ namespace ClickTwice.Publisher.Core
                     Loggers = loggers,
                     DefaultToolsVersion = "14.0"
                 };
-                var reqData = new BuildRequestData(ProjectFilePath, props, null, targets.ToArray(), null);
+                var reqData = new BuildRequestData(ProjectFilePath, props, "14.0", targets.ToArray(), null);
                 Log("Preparing for build");
                 try
                 {

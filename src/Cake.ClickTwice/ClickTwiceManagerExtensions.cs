@@ -60,5 +60,11 @@ namespace Cake.ClickTwice
             manager.ThrowOnHandlerFailure = true;
             return manager;
         }
+
+        public static ClickTwiceManager ForceRebuild(this ClickTwiceManager manager)
+        {
+            manager.ForceBuild = true;
+            return manager;
+        }
     }
 }

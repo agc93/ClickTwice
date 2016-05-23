@@ -215,3 +215,5 @@ ModelManifest.xml
 #Cake (generated)
 [Tt]ools/**
 ![Tt]ools/packages.config
+
+artifacts/**
