@@ -66,5 +66,11 @@ namespace Cake.ClickTwice
             manager.ForceBuild = true;
             return manager;
         }
+
+        public static ClickTwiceManager WithVersion(this ClickTwiceManager manager, string s)
+        {
+            manager.PublishVersion = s;
+            return manager;
+        }
     }
 }

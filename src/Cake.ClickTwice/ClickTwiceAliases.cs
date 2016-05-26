@@ -19,7 +19,7 @@ namespace Cake.ClickTwice
         public static ClickTwiceManager ClickTwice(this ICakeContext ctx, FilePath projectFile)
         {
             if (ctx == null) throw new ArgumentNullException(nameof(ctx));
-            return new ClickTwiceManager(projectFile, ctx);
+            return new ClickTwiceManager(projectFile.FullPath, ctx);
         }
     }
 }

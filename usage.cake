@@ -9,7 +9,7 @@ Task("Publish")
 {
     CreateDirectory("./artifacts/publish");
     #break
-    ClickTwice(new FilePath(@"..\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj"))
+    ClickTwice(File(@"C:\Users\alist\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj"))
                 .SetConfiguration("Debug")
                 .ThrowOnHandlerFailure()
                 .ForceRebuild()

@@ -54,6 +54,7 @@ namespace ClickTwice.Publisher.Core
         public List<IOutputHandler> OutputHandlers { private get; set; } = new List<IOutputHandler>();
         public List<IBuildConfigurator> BuildConfigurators { private get; set; } = new List<IBuildConfigurator>();
         public List<IPublishLogger> Loggers { get; set; } = new List<IPublishLogger>();
+        public Dictionary<string, string> AdditionalProperties { get; set; } = new Dictionary<string, string>();
 
         /// <exception cref="HandlerProcessingException">Thrown when input or output handlers encounter an exception.</exception>
         /// <exception cref="OperationInProgressException">Thrown when a build or publish operation is already in progress.</exception>
@@ -81,6 +82,8 @@ namespace ClickTwice.Publisher.Core
                 {"Platform", Platform},
                 {"OutputPath", path.FullName}
             };
+            props = props.Concat(AdditionalProperties.Where(p => !props.ContainsKey(p.Key)))
+                .ToDictionary(k => k.Key, v => v.Value);
             Log("Processing input handlers");
             var results = ProcessInputHandlers();
             Log($"Completed processing input handlers: {results.Count(r => r.Result == HandlerResult.OK)} OK, {results.Count(r => r.Result == HandlerResult.Error)} errors, {results.Count(r => r.Result == HandlerResult.NotRun)} not run");

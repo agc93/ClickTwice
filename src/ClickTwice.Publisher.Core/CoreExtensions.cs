@@ -21,7 +21,7 @@ namespace ClickTwice.Publisher.Core
 
         /// <exception cref="DirectoryNotFoundException">Source directory does not exist.</exception>
         [DebuggerStepThrough]
-        public static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
+        public static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs, bool overwrite = true)
         {
             
             // Get the subdirectories for the specified directory.
@@ -45,7 +45,7 @@ namespace ClickTwice.Publisher.Core
             foreach (var file in files)
             {
                 string temppath = Path.Combine(destDirPath, file.Name);
-                file.CopyTo(temppath, false);
+                file.CopyTo(temppath, overwrite);
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -53,7 +53,7 @@ namespace ClickTwice.Publisher.Core
             foreach (DirectoryInfo subdir in dirs)
             {
                 string temppath = Path.Combine(destDirPath, subdir.Name);
-                subdir.Copy(temppath, true);
+                subdir.Copy(temppath, true, overwrite);
             }
         }
 

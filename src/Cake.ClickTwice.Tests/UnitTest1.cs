@@ -55,7 +55,7 @@ namespace Cake.ClickTwice.Tests
 
         public ClickTwiceManager Run(FilePath projectFile)
         {
-            var manager = new ClickTwiceManager(projectFile, new FakeLog());
+            var manager = new ClickTwiceManager(projectFile.FullPath, new FakeLog(), Environment);
             manager.LogTo(Logger);
             return manager;
         }

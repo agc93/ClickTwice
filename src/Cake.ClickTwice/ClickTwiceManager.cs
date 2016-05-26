@@ -13,20 +13,23 @@ namespace Cake.ClickTwice
 {
     public class ClickTwiceManager
     {
-        internal ClickTwiceManager(FilePath projectFile, ICakeContext ctx) : this(projectFile, ctx.Log)
+        internal ClickTwiceManager(string projectFile, ICakeContext ctx) : this(projectFile, ctx.Log, ctx.Environment)
         {
             
         }
 
-        public ClickTwiceManager(FilePath projectFile, ICakeLog log)
+        public ClickTwiceManager(string projectFile, ICakeLog log, ICakeEnvironment env)
         {
             ProjectFilePath = projectFile;
             Log = log;
+            Environment = env;
         }
+
+        private ICakeEnvironment Environment { get; set; }
 
         private ICakeLog Log { get; set; }
 
-        private FilePath ProjectFilePath { get; set; }
+        private string ProjectFilePath { get; set; }
 
         internal string Platform { private get; set; } = "AnyCPU";
         internal string Configuration { private get; set; } = "Release";
@@ -38,6 +41,8 @@ namespace Cake.ClickTwice
         internal bool ThrowOnHandlerFailure { get; set; }
         internal bool ForceBuild { get; set; }
 
+        internal string PublishVersion { get; set; }
+
         private bool AppInfoSupported
             =>
                 InputHandlers.Any(
@@ -47,7 +52,7 @@ namespace Cake.ClickTwice
         {
             OutputHandlers.Add(new PublishPageHandler());
             Loggers.Add(new CakeLogger(Log));
-            var mgr = new PublishManager(ProjectFilePath.FullPath, AppInfoSupported ? InformationSource.Both : InformationSource.AssemblyInfo)
+            var mgr = new PublishManager(ProjectFilePath, AppInfoSupported ? InformationSource.Both : InformationSource.AssemblyInfo)
             {
                 CleanOutputOnCompletion = CleanOutput,
                 Configuration = Configuration,
@@ -56,7 +61,8 @@ namespace Cake.ClickTwice
                 OutputHandlers = OutputHandlers,
                 Loggers = Loggers,
             };
-            var responses = mgr.PublishApp(outputDirectory.FullPath, ForceBuild ? PublishBehaviour.CleanFirst : PublishBehaviour.DoNotBuild);
+            if (!string.IsNullOrWhiteSpace(PublishVersion)) mgr.AdditionalProperties.Add("ApplicationVersion", PublishVersion);
+            var responses = mgr.PublishApp(outputDirectory.MakeAbsolute(Environment).FullPath, ForceBuild ? PublishBehaviour.CleanFirst : PublishBehaviour.DoNotBuild);
             if (ThrowOnHandlerFailure)
             {
                 if (responses.Any(r => r.Result == HandlerResult.Error))
