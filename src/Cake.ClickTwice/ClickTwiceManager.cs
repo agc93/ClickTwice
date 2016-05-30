@@ -24,17 +24,17 @@ namespace Cake.ClickTwice
             ProjectFilePath = projectFile.MakeAbsolute(Environment).FullPath;
         }
 
-        private ICakeEnvironment Environment { get; set; }
+        internal ICakeEnvironment Environment { get; set; }
 
-        private ICakeLog Log { get; set; }
-        private IFileSystem FileSystem { get; set; }
-        private IProcessRunner ProcessRunner { get; set; }
-        private IGlobber Globber { get; set; }
+        internal ICakeLog Log { get; set; }
+        internal IFileSystem FileSystem { get; set; }
+        internal IProcessRunner ProcessRunner { get; set; }
+        internal IGlobber Globber { get; set; }
 
-        private string ProjectFilePath { get; set; }
+        internal string ProjectFilePath { get; set; }
 
-        internal string Platform { private get; set; } = "AnyCPU";
-        internal string Configuration { private get; set; } = "Release";
+        internal string Platform { get; set; } = "AnyCPU";
+        internal string Configuration { get; set; } = "Release";
 
         internal List<IInputHandler> InputHandlers { get; set; } = new List<IInputHandler>();
         internal List<IOutputHandler> OutputHandlers { get; set; } = new List<IOutputHandler>();
@@ -45,7 +45,7 @@ namespace Cake.ClickTwice
 
         internal string PublishVersion { get; set; }
 
-        internal Action<CakePublishManager> BuildAction { private get; set; }
+        internal Action<CakePublishManager> BuildAction { get; set; }
 
         private bool AppInfoSupported
             =>
@@ -56,16 +56,7 @@ namespace Cake.ClickTwice
         {
             OutputHandlers.Add(new PublishPageHandler());
             Loggers.Add(new CakeLogger(Log));
-            var mgr = new CakePublishManager(Environment, FileSystem, ProcessRunner, Globber, ProjectFilePath, AppInfoSupported ? InformationSource.Both : InformationSource.AssemblyInfo)
-            {
-                CleanOutputOnCompletion = CleanOutput,
-                Configuration = Configuration,
-                Platform = Platform,
-                InputHandlers = InputHandlers,
-                OutputHandlers = OutputHandlers,
-                BuildAction = BuildAction
-            };
-            if (!string.IsNullOrWhiteSpace(PublishVersion)) mgr.AdditionalProperties.Add("ApplicationVersion", PublishVersion);
+            var mgr = new CakePublishManager(this);
             var responses = mgr.PublishApp(outputDirectory.MakeAbsolute(Environment).FullPath, ForceBuild ? PublishBehaviour.CleanFirst : PublishBehaviour.DoNotBuild);
             if (ThrowOnHandlerFailure)
             {

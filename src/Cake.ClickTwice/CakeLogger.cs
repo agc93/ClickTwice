@@ -18,11 +18,7 @@ namespace Cake.ClickTwice
             CakeLog.Information(content);
         }
 
-        public bool IncludeBuildMessages
-        {
-            get { return false; }
-            set { }
-        }
+        public bool IncludeBuildMessages => false;
 
         public string Close(string outputPath)
         {

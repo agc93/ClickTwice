@@ -106,6 +106,18 @@ Task("Publish")
 			assemblyList);
         }
 	});
+    
+    Task("Merge")
+    .IsDependentOn("Copy-Files")
+    .Does(() => {
+        var assemblyList = GetFiles("./src/Cake.ClickTwice/bin/" + configuration + "/**/*.dll").ToList();
+        assemblyList.AddRange(GetFiles("./src/ClickTwice.Handlers.LaunchPage/bin/" + configuration + "/**/*.dll"));
+        Information("Merging {0} assemblies", assemblyList.Count);
+        ILRepack(
+            artifacts + "Cake.ClickTwice.dll",
+            "./src/Cake.ClickTwice/bin/" + configuration + "/Cake.ClickTwice.dll",
+            assemblyList);
+    });
 
 ///////////////////////////////////////////////////////////////////////////////
 // TARGETS

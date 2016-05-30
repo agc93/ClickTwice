@@ -1,5 +1,6 @@
 #r "src/packages/Newtonsoft.Json.8.0.2/lib/net45/Newtonsoft.Json.dll"
 #r "artifacts/build/Cake.ClickTwice/Cake.ClickTwice.dll"
+#r "artifacts/build/ClickTwice.Publisher.Core/ClickTwice.Publisher.Core.dll"
 #r "artifacts/ClickTwice.Handlers.LaunchPage.dll"
 //#r "artifacts/build/ClickTwice.Handlers.LaunchPage/ClickTwice.Handlers.LaunchPage.dll"
 using ClickTwice.Publisher.Core;

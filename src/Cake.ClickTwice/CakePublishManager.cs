@@ -17,31 +17,35 @@ namespace Cake.ClickTwice
 {
     class CakePublishManager : Manager, IPublishManager
     {
-        public CakePublishManager(ICakeEnvironment env, IFileSystem fs, IProcessRunner runner, IGlobber globber, string projectFilePath, InformationSource source = InformationSource.AssemblyInfo, Action<CakePublishManager> buildAction = null) : base(projectFilePath)
+        public CakePublishManager(ClickTwiceManager mgr) : base(mgr.ProjectFilePath)
         {
-            Environment = env;
-            FileSystem = fs;
-            Runner = runner;
-            Globber = globber;
-            BuildAction = buildAction ?? (mgr =>
-            {
-                var builder = new MSBuildRunner(FileSystem, Environment, Runner, Globber);
-                builder.Run(ProjectFilePath, BuildSettings);
-            });
+            Environment = mgr.Environment;
+            FileSystem = mgr.FileSystem;
+            Runner = mgr.ProcessRunner;
+            Globber = mgr.Globber;
+            BuildAction = mgr.BuildAction;
+            CleanOutputOnCompletion = mgr.CleanOutput;
+            Configuration = mgr.Configuration;
+            Platform = mgr.Platform;
+            InputHandlers = mgr.InputHandlers;
+            OutputHandlers = mgr.OutputHandlers;
+            Loggers.AddRange(mgr.Loggers);
+            if (!string.IsNullOrWhiteSpace(mgr.PublishVersion))
+                AdditionalProperties.Add("ApplicationVersion", mgr.PublishVersion);
         }
 
-        internal Action<CakePublishManager> BuildAction { get; set; }
+        private Action<CakePublishManager> BuildAction { get; set; }
 
         public void Dispose()
         {
             
         }
 
-        public string Configuration { private get; set; } = "Debug";
-        public string Platform { private get; set; } = "AnyCPU";
+        public string Configuration { private get; set; }
+        public string Platform { private get; set; }
         private bool GenerateManifest { get; set; } = true;
-        public List<IInputHandler> InputHandlers { get; set; } = new List<IInputHandler>();
-        public List<IOutputHandler> OutputHandlers { get; set; } = new List<IOutputHandler>();
+        public List<IInputHandler> InputHandlers { get; set; }
+        public List<IOutputHandler> OutputHandlers { get; set; }
         public List<IBuildConfigurator> BuildConfigurators { get; set; }
         public List<IPublishLogger> Loggers { get; } = new List<IPublishLogger>();
         private ManifestManager ManifestManager { get; set; }
@@ -101,7 +105,7 @@ namespace Cake.ClickTwice
         private IFileSystem FileSystem { get; set; }
 
 
-        internal Dictionary<string, string> AdditionalProperties { get; set; } = new Dictionary<string, string>();
+        private Dictionary<string, string> AdditionalProperties { get; set; } = new Dictionary<string, string>();
 
         private MSBuildPlatform GetMSBuildPlatform(string platform)
         {
