@@ -62,6 +62,7 @@
     <Compile Include="Handlers\NuGetRestoreHandler.cs" />
     <Compile Include="Handlers\PublishPageHandler.cs" />
     <Compile Include="IManager.cs" />
+    <Compile Include="IPublishManager.cs" />
     <Compile Include="Loggers\BuildMessageLogger.cs" />
     <Compile Include="Loggers\FileLogger.cs" />
     <Compile Include="Loggers\IPublishLogger.cs" />

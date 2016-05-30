@@ -13,7 +13,7 @@ namespace ClickTwice.Publisher.Core
     public static class CoreExtensions
     {
         [DebuggerStepThrough]
-        internal static void Add<T>(this List<T> list, params T[] items)
+        public static void Add<T>(this List<T> list, params T[] items)
         {
             list.AddRange(items);
         }

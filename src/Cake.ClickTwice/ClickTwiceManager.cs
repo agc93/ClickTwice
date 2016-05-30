@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,21 +14,22 @@ namespace Cake.ClickTwice
 {
     public class ClickTwiceManager
     {
-        internal ClickTwiceManager(string projectFile, ICakeContext ctx) : this(projectFile, ctx.Log, ctx.Environment)
+        public ClickTwiceManager(FilePath projectFile, ICakeLog log, ICakeEnvironment environment, IFileSystem fs, IProcessRunner runner, IGlobber globber)
         {
-            
-        }
-
-        public ClickTwiceManager(string projectFile, ICakeLog log, ICakeEnvironment env)
-        {
-            ProjectFilePath = projectFile;
             Log = log;
-            Environment = env;
+            Environment = environment;
+            FileSystem = fs;
+            ProcessRunner = runner;
+            Globber = globber;
+            ProjectFilePath = projectFile.MakeAbsolute(Environment).FullPath;
         }
 
         private ICakeEnvironment Environment { get; set; }
 
         private ICakeLog Log { get; set; }
+        private IFileSystem FileSystem { get; set; }
+        private IProcessRunner ProcessRunner { get; set; }
+        private IGlobber Globber { get; set; }
 
         private string ProjectFilePath { get; set; }
 
@@ -43,6 +45,8 @@ namespace Cake.ClickTwice
 
         internal string PublishVersion { get; set; }
 
+        internal Action<CakePublishManager> BuildAction { private get; set; }
+
         private bool AppInfoSupported
             =>
                 InputHandlers.Any(
@@ -52,14 +56,14 @@ namespace Cake.ClickTwice
         {
             OutputHandlers.Add(new PublishPageHandler());
             Loggers.Add(new CakeLogger(Log));
-            var mgr = new PublishManager(ProjectFilePath, AppInfoSupported ? InformationSource.Both : InformationSource.AssemblyInfo)
+            var mgr = new CakePublishManager(Environment, FileSystem, ProcessRunner, Globber, ProjectFilePath, AppInfoSupported ? InformationSource.Both : InformationSource.AssemblyInfo)
             {
                 CleanOutputOnCompletion = CleanOutput,
                 Configuration = Configuration,
                 Platform = Platform,
                 InputHandlers = InputHandlers,
                 OutputHandlers = OutputHandlers,
-                Loggers = Loggers,
+                BuildAction = BuildAction
             };
             if (!string.IsNullOrWhiteSpace(PublishVersion)) mgr.AdditionalProperties.Add("ApplicationVersion", PublishVersion);
             var responses = mgr.PublishApp(outputDirectory.MakeAbsolute(Environment).FullPath, ForceBuild ? PublishBehaviour.CleanFirst : PublishBehaviour.DoNotBuild);

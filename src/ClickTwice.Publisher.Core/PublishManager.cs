@@ -20,7 +20,7 @@ using ConsoleLogger = Microsoft.Build.Logging.ConsoleLogger;
 
 namespace ClickTwice.Publisher.Core
 {
-    public class PublishManager : Manager, IDisposable
+    public class PublishManager : Manager, IPublishManager
     {
         private BuildManager Manager => BuildManager.DefaultBuildManager;
         private bool GenerateManifest { get; set; }

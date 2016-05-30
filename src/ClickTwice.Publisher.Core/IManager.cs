@@ -13,7 +13,7 @@ namespace ClickTwice.Publisher.Core
             this.ProjectFilePath = projectFilePath;
         }
 
-        protected string ProjectFilePath { get;set; }
+        public string ProjectFilePath { get; protected set; }
 
         public bool CleanOutputOnCompletion { protected get; set; } = true;
     }

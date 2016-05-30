@@ -1,3 +1,4 @@
+#tool "ILRepack"
 #tool "GitVersion.CommandLine"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -89,6 +90,22 @@ Task("Copy-Files")
 		CopyFiles(files, artifacts + "build/" + project.Name);
 	}
 });
+
+Task("Publish")
+	.IsDependentOn("Build")
+	.IsDependentOn("Copy-Files")
+	.Does(() => {
+        var mergeProjects = new[] {"ClickTwice.Handlers.LaunchPage", "ClickTwice.Handlers.AppDetailsPage"};
+        foreach (var project in mergeProjects) {
+		Information("Merging libraries");
+		var assemblyList = GetFiles("./src/" + project + "/bin/" + configuration + "/**/*.dll");
+		Information("Executing ILMerge to merge {0} assemblies", assemblyList.Count);
+		ILRepack(
+			artifacts + project + ".dll",
+			"./src/" + project + "/bin/" + configuration + "/" + project + ".dll",
+			assemblyList);
+        }
+	});
 
 ///////////////////////////////////////////////////////////////////////////////
 // TARGETS

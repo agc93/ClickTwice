@@ -1,5 +1,6 @@
 ﻿using System;
 using Cake.Core;
+using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Testing;
 using ClickTwice.Publisher.Core;
@@ -26,6 +27,13 @@ namespace Cake.ClickTwice.Tests
             var mgr =
                 fixture.Run(
                     @"C:\Users\alist\Source\ACN\myTaxFramework\FormDocuments\DocumentConversion\DocumentConversion.csproj");
+            mgr.BuildAction = manager =>
+            {
+                foreach (var logger in manager.Loggers)
+                {
+                    logger.Log("Building project...");
+                }
+            };
             mgr.SetConfiguration("Debug")
                 .ThrowOnHandlerFailure()
                 .ForceRebuild()
@@ -51,11 +59,13 @@ namespace Cake.ClickTwice.Tests
         public IFileSystem FileSystem { get; set; }
 
         public ICakeEnvironment Environment { get; set; }
+        private ICakeLog Log { get; set; } = new FakeLog();
         private IPublishLogger Logger { get; }
 
         public ClickTwiceManager Run(FilePath projectFile)
         {
-            var manager = new ClickTwiceManager(projectFile.FullPath, new FakeLog(), Environment);
+            var manager = new ClickTwiceManager(projectFile.FullPath, Log, Environment, FileSystem,
+                new ProcessRunner(Environment, Log), new Globber(FileSystem, Environment));
             manager.LogTo(Logger);
             return manager;
         }
