@@ -3,25 +3,38 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using Microsoft.Build.Framework.XamlTypes;
+using ClickTwice.Publisher.Core.Handlers;
 
 namespace ClickTwice.Publisher.Core
 {
     public static class CoreExtensions
     {
         [DebuggerStepThrough]
-        internal static void Add<T>(this List<T> list, params T[] items)
+        public static void Add<T>(this List<T> list, params T[] items)
         {
             list.AddRange(items);
+        }
+
+        [DebuggerStepThrough]
+        public static void Rename(this FileInfo file, string newName)
+        {
+            var singleOccurrence = file.FullName.IndexOf(file.Name) == file.FullName.LastIndexOf(file.Name);
+            if (singleOccurrence)
+            {
+                file.MoveTo(file.FullName.Replace(file.Name, newName));
+                return;
+            }
+            var firstPart = file.FullName.Substring(0, file.FullName.LastIndexOf(file.Name));
+            var fragment = file.FullName.Substring(file.FullName.LastIndexOf(file.Name));
+            fragment = fragment.Replace(file.Name, newName);
+            file.MoveTo(firstPart + fragment);
         }
 
 
         /// <exception cref="DirectoryNotFoundException">Source directory does not exist.</exception>
         [DebuggerStepThrough]
-        public static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs)
+        public static void Copy(this DirectoryInfo sourceDir, string destDirPath, bool copySubDirs, bool overwrite = true)
         {
             
             // Get the subdirectories for the specified directory.
@@ -45,7 +58,7 @@ namespace ClickTwice.Publisher.Core
             foreach (var file in files)
             {
                 string temppath = Path.Combine(destDirPath, file.Name);
-                file.CopyTo(temppath, false);
+                file.CopyTo(temppath, overwrite);
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -53,12 +66,12 @@ namespace ClickTwice.Publisher.Core
             foreach (DirectoryInfo subdir in dirs)
             {
                 string temppath = Path.Combine(destDirPath, subdir.Name);
-                subdir.Copy(temppath, true);
+                subdir.Copy(temppath, true, overwrite);
             }
         }
 
         [DebuggerStepThrough]
-        internal static string Property(this List<string> propList, string property)
+        public static string Property(this List<string> propList, string property)
         {
             var line = propList.FirstOrDefault(s => s.Contains(property));
             return line?.Split('"', '\'')[1] ?? string.Empty;
@@ -114,6 +127,45 @@ namespace ClickTwice.Publisher.Core
             return (match)
                 ? files.Where(f => extensions.Contains(f.Extension))
                 : files.Where(f => !extensions.Contains(f.Extension));
-        } 
+        }
+        public static List<HandlerResponse> ProcessHandlers(this IEnumerable<IInputHandler> handlers, string directoryPath,
+            Action<string> logCallback)
+        {
+            Func<KeyValuePair<IHandler, HandlerResponse>, KeyValuePair<IHandler, HandlerResponse>> selector = r =>
+            {
+                r.Value.Result = r.Value.Result == HandlerResult.NotRun ? HandlerResult.OK : r.Value.Result;
+                logCallback?.Invoke($"Handler {r.Key.Name} returned {r.Value.Result}: {r.Value.ResultMessage}");
+                return r;
+            };
+            if (string.IsNullOrWhiteSpace(directoryPath))
+            {
+                return null;
+            }
+            var handlerList = handlers as IList<IInputHandler> ?? handlers.ToList();
+            var responses = handlerList
+                .ToDictionary(k => k as IHandler, v => v.Process(directoryPath))
+                .Select(selector).Select(d => d.Value);
+            return responses.ToList();
+        }
+
+        public static List<HandlerResponse> ProcessHandlers(this IEnumerable<IOutputHandler> handlers, string directoryPath,
+            Action<string> logCallback)
+        {
+            Func<KeyValuePair<IHandler, HandlerResponse>, KeyValuePair<IHandler, HandlerResponse>> selector = r =>
+            {
+                r.Value.Result = r.Value.Result == HandlerResult.NotRun ? HandlerResult.OK : r.Value.Result;
+                logCallback?.Invoke($"Handler {r.Key.Name} returned {r.Value.Result}: {r.Value.ResultMessage}");
+                return r;
+            };
+            if (string.IsNullOrWhiteSpace(directoryPath))
+            {
+                return null;
+            }
+            var handlerList = handlers as IList<IOutputHandler> ?? handlers.ToList();
+            var responses = handlerList
+                .ToDictionary(k => k as IHandler, v => v.Process(directoryPath))
+                .Select(selector).Select(d => d.Value);
+            return responses.ToList();
+        }
     }
 }

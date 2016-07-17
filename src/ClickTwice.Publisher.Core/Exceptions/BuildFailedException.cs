@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace ClickTwice.Publisher.Core.Exceptions
 {
     [Serializable]
-    internal class BuildFailedException : Exception
+    public class BuildFailedException : Exception
     {
         public IEnumerable<Exception> TargetExceptions { get; }
         public Exception Exception { get; }

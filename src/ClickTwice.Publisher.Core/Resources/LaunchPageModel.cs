@@ -1,5 +1,4 @@
-﻿using System;
-using ClickTwice.Publisher.Core.Manifests;
+﻿using ClickTwice.Publisher.Core.Manifests;
 
 namespace ClickTwice.Publisher.Core.Resources
 {

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClickTwice.Publisher.Core.Manifests;
 
 namespace ClickTwice.Publisher.Core.Resources
@@ -43,10 +41,14 @@ namespace ClickTwice.Publisher.Core.Resources
             File.WriteAllText(Path.Combine(DeploymentDir.FullName, OutputFileName), page);
         }
 
-        public FileInfo AppLauncher { get; set; }
+        private FileInfo AppLauncher { get; set; }
 
-        public AppManifest Manifest { get; set; }
+        private AppManifest Manifest { get; set; }
 
-        public DirectoryInfo DeploymentDir { get; set; }
+        private DirectoryInfo DeploymentDir { get; set; }
+
+        private IEnumerable<string> Images => EncodedImages.Backgrounds;
+
+        internal KeyValuePair<string, string> AdditionalLink { get; set; } = new KeyValuePair<string, string>();
     }
 }

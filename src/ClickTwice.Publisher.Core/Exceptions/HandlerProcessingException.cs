@@ -6,7 +6,7 @@ using ClickTwice.Publisher.Core.Handlers;
 namespace ClickTwice.Publisher.Core.Exceptions
 {
     [Serializable]
-    internal class HandlerProcessingException : Exception
+    public class HandlerProcessingException : Exception
     {
         private List<IInputHandler> inputHandlers;
         private List<IOutputHandler> outputHandlers;

@@ -1,43 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClickTwice.Handlers.AppDetailsPage.Templating;
 using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Manifests;
-using ClickTwice.Publisher.Core.Resources;
-using RazorEngine;
-using RazorEngine.Templating;
 
 namespace ClickTwice.Handlers.AppDetailsPage
 {
     public class AppDetailsPageHandler : IOutputHandler
     {
-        private AppDetailsPageHandler()
+        
+        public AppDetailsPageHandler(string templateName, string source = "http://nuget.org/api/v2") : this(new PackageEngine(templateName, source))
         {
-            
-        }
-        public AppDetailsPageHandler(string templateName)
-        {
-            //NuGet-related template extraction goes here
-            var packageEngine = new PackageEngine(templateName);
-            TemplateDirectory = packageEngine.ExtractPackage();
-            BuildEngine();
         }
 
-        public AppDetailsPageHandler(FileInfo localPackage)
+        public AppDetailsPageHandler(FileInfo localPackage) : this(new PackageEngine(localPackage))
         {
-            var packageEngine = new PackageEngine(localPackage);
-            var extractPackage = packageEngine.ExtractPackage();
+        }
+
+        private AppDetailsPageHandler(PackageEngine engine) {
+            var extractPackage = engine.ExtractPackage();
             TemplateDirectory = extractPackage;
-            BuildEngine();
-        }
-
-        private void BuildEngine()
-        {
             Engine = new TemplateEngine(TemplateDirectory);
         }
 
@@ -63,6 +47,16 @@ namespace ClickTwice.Handlers.AppDetailsPage
             Engine.AppInfo = AppInfo;
             var contentDirectory = Engine.CreateContentDirectory(new DirectoryInfo(outputPath));
             contentDirectory.Copy(outputPath, copySubDirs: true);
+            if (FileNameMap.Any())
+            {
+                var outFiles = new DirectoryInfo(outputPath).GetFiles();
+                foreach (var file in FileNameMap)
+                {
+                    var target = outFiles.FirstOrDefault(f => f.Name == file.Key);
+                    target?.Rename(file.Value);
+                }
+            }
+            Engine.Dispose();
             return new HandlerResponse(this, true);
         }
 
@@ -85,6 +79,8 @@ namespace ClickTwice.Handlers.AppDetailsPage
             return new DirectoryInfo(outputPath).GetFiles("app.info").FirstOrDefault();
         }
 
-        public AppManifest Manifest { get; set; }
+        internal AppManifest Manifest { get; set; }
+
+        public Dictionary<string, string> FileNameMap { get; set; } = new Dictionary<string, string>();
     }
 }

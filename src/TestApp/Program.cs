@@ -6,9 +6,9 @@ using System.IO;
 using System.Linq;
 using ClickTwice.CommandLine.Packaging;
 using ClickTwice.Handlers.AppDetailsPage;
-using ClickTwice.Handlers.LaunchPage;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
+using ClickTwice.Publisher.MSBuild;
 
 namespace TestApp
 {
@@ -36,13 +36,13 @@ namespace TestApp
             var log = new ConsoleLogger();
             var file = new FileLogger();
             var info = new AppInfoManager();
-            var infoHandler = new AppInfoFileHandler();
+            var infoHandler = new AppInfoHandler();
             BuildInfo(info);
             var mgr = new PublishManager(DefaultProjectPath, InformationSource.Both)
             {
                 Platform = "AnyCPU",
                 Configuration = "Debug",
-                InputHandlers = new List<IInputHandler> {new MockInputHandler(), infoHandler},
+                InputHandlers = new List<IInputHandler> {infoHandler},
                 OutputHandlers = new List<IOutputHandler> {infoHandler, new PublishPageHandler(), new InstallPageHandler("install.htm"), handler },
                 Loggers = new List<IPublishLogger> { log, file }
             };
