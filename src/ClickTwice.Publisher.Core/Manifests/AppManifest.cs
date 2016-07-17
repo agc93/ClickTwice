@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClickTwice.Publisher.Core.Manifests
 {
@@ -21,5 +17,6 @@ namespace ClickTwice.Publisher.Core.Manifests
         public Version FrameworkVersion { get; set; } = new Version(0,0);
         public Version AppVersion { get; set; } = new Version(0,0);
         public IEnumerable<string> Prerequisites { get; set; } = new List<string>();
+        public ExtendedAppInfo AppInfo { get; set; } = new ExtendedAppInfo();
     }
 }

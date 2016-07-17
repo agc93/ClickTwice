@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClickTwice.Publisher.Core.Resources;
 
 namespace ClickTwice.Publisher.Core.Handlers
 {
     public class InstallPageHandler : IOutputHandler
     {
-        public InstallPageHandler(string fileName)
+        public InstallPageHandler(string fileName = "index.htm", string linkText = null, string linkTarget = null)
         {
             this.OutputFileName = fileName;
+            AdditionalLink = new KeyValuePair<string, string>(linkText, linkTarget);
+            UseLink = !string.IsNullOrWhiteSpace(linkTarget) && !string.IsNullOrWhiteSpace(linkText);
         }
+
+        private bool UseLink { get; set; }
+
+        private KeyValuePair<string, string> AdditionalLink { get; set; }
 
         public string OutputFileName { get; set; }
 
@@ -23,6 +26,7 @@ namespace ClickTwice.Publisher.Core.Handlers
             try
             {
                 var page = new LaunchPage(outputPath, OutputFileName);
+                if (UseLink) page.AdditionalLink = AdditionalLink;
                 page.CreatePage();
                 if (new DirectoryInfo(outputPath).GetFiles(OutputFileName).Any())
                 {

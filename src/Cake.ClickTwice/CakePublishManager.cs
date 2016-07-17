@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Cake.Common.Tools.MSBuild;
 using Cake.Core;
+using Cake.Core.Diagnostics;
 using Cake.Core.IO;
+using Cake.Core.Tooling;
 using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Exceptions;
 using ClickTwice.Publisher.Core.Handlers;
@@ -22,17 +22,20 @@ namespace Cake.ClickTwice
             Environment = mgr.Environment;
             FileSystem = mgr.FileSystem;
             Runner = mgr.ProcessRunner;
-            Globber = mgr.Globber;
-            BuildAction = mgr.BuildAction;
+            ToolLocator = mgr.ToolLocator;
+            BuildAction = mgr.BuildAction ?? DefaultBuildAction;
             CleanOutputOnCompletion = mgr.CleanOutput;
             Configuration = mgr.Configuration;
             Platform = mgr.Platform;
             InputHandlers = mgr.InputHandlers;
             OutputHandlers = mgr.OutputHandlers;
             Loggers.AddRange(mgr.Loggers);
+            ErrorAction = mgr.ErrorAction;
             if (!string.IsNullOrWhiteSpace(mgr.PublishVersion))
                 AdditionalProperties.Add("ApplicationVersion", mgr.PublishVersion);
         }
+
+        private Action<IEnumerable<HandlerResponse>> ErrorAction { get; set; }
 
         private Action<CakePublishManager> BuildAction { get; set; }
 
@@ -44,30 +47,41 @@ namespace Cake.ClickTwice
         public string Configuration { private get; set; }
         public string Platform { private get; set; }
         private bool GenerateManifest { get; set; } = true;
-        public List<IInputHandler> InputHandlers { get; set; }
+        public List<IInputHandler> InputHandlers { private get; set; }
         public List<IOutputHandler> OutputHandlers { get; set; }
         public List<IBuildConfigurator> BuildConfigurators { get; set; }
         public List<IPublishLogger> Loggers { get; } = new List<IPublishLogger>();
         private ManifestManager ManifestManager { get; set; }
-        private MSBuildSettings BuildSettings { get; set; }
+
         public List<HandlerResponse> PublishApp(string targetPath, PublishBehaviour behaviour = PublishBehaviour.CleanFirst)
         {
-            var results =
-                ProcessInputHandlers(new FilePath(ProjectFilePath).GetDirectory().MakeAbsolute(Environment).FullPath);
+            var results = InputHandlers.ProcessHandlers(
+                new FilePath(ProjectFilePath).GetDirectory().MakeAbsolute(Environment).FullPath, s => Log(s));
             Log($"Completed processing input handlers: {results.Count(r => r.Result == HandlerResult.OK)} OK, {results.Count(r => r.Result == HandlerResult.Error)} errors, {results.Count(r => r.Result == HandlerResult.NotRun)} not run");
             if (results.Any(r => r.Result == HandlerResult.Error)) throw new HandlerProcessingException(InputHandlers, results);
-            var outputPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString("N") + "\\");
+            string outputPath;
+            if (behaviour == PublishBehaviour.DoNotBuild)
+            {
+                outputPath = Path.Combine(new FileInfo(ProjectFilePath).Directory.FullName, "bin", Configuration);
+                BuildAction = null;
+            }
+            else
+            {
+                outputPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+                if (!FileSystem.Exist((DirectoryPath) outputPath)) FileSystem.GetDirectory(outputPath).Create();
+            }
             var props = new Dictionary<string, string>
             {
                 {"Configuration", Configuration},
                 {"Platform", Platform},
                 {"OutputPath", outputPath},
-                {"PublishUrl", Path.Combine(outputPath, "app.publish") }
+                {"PublishDir", Path.Combine(outputPath, "app.publish") + "\\"}
             };
             BuildSettings = new MSBuildSettings
             {
                 Configuration = Configuration,
                 MSBuildPlatform = GetMSBuildPlatform(Platform),
+                Verbosity = Verbosity.Quiet
             };
             BuildSettings.AddTargets(behaviour);
             BuildSettings.AddProperties(props, AdditionalProperties);
@@ -80,30 +94,31 @@ namespace Cake.ClickTwice
                 ManifestManager.DeployManifest(ManifestManager.CreateAppManifest());
             }
             Log("Processing output handlers");
-            var output = ProcessOutputHandlers(publishDir);
+            var output = OutputHandlers.ProcessHandlers(publishDir.FullPath, s => Log(s));
             Log(
                 $"Completed processing output handlers: {output.Count(r => r.Result == HandlerResult.OK)} OK, {output.Count(r => r.Result == HandlerResult.Error)} errors, {output.Count(r => r.Result == HandlerResult.NotRun)} not run");
-            if (output.Any(o => o.Result == HandlerResult.Error))
+            if (output.Any(o => o.Result == HandlerResult.Error) && ErrorAction != null)
             {
                 Log("Error encountered while processing output handlers. Aborting!");
-                throw new HandlerProcessingException(OutputHandlers, output);
+                ErrorAction?.Invoke(output);
+                //throw new HandlerProcessingException(OutputHandlers, output); // in case something goes real wrong
             }
-            if (!string.IsNullOrWhiteSpace(targetPath))
-            {
-                Log("Copying publish results to target directory");
-                new DirectoryInfo(publishDir.MakeAbsolute(Environment).FullPath).Copy(destDirPath: targetPath,
-                    copySubDirs: true);
-            }
+            if (string.IsNullOrWhiteSpace(targetPath)) return output;
+            Log("Copying publish results to target directory");
+            new DirectoryInfo(publishDir.MakeAbsolute(Environment).FullPath).Copy(destDirPath: targetPath,
+                copySubDirs: true);
             return output;
         }
 
-        private IGlobber Globber { get; set; }
-
+        #region Cake support properties
+        private MSBuildSettings BuildSettings { get; set; }
         private IProcessRunner Runner { get; set; }
 
         private ICakeEnvironment Environment { get; set; }
         private IFileSystem FileSystem { get; set; }
+        private IToolLocator ToolLocator { get; set; }
 
+        #endregion
 
         private Dictionary<string, string> AdditionalProperties { get; set; } = new Dictionary<string, string>();
 
@@ -112,33 +127,15 @@ namespace Cake.ClickTwice
             return platform == "AnyCPU" ? MSBuildPlatform.Automatic : platform == "x64" ? MSBuildPlatform.x64 : MSBuildPlatform.x86;
         }
 
-        private List<HandlerResponse> ProcessInputHandlers(string inputDirectoryPath)
+        private void PrepareManifestManager(DirectoryPath targetPath, InformationSource infoSource)
         {
-            var list = new List<HandlerResponse>();
-            if (string.IsNullOrWhiteSpace(inputDirectoryPath))
+            if (!string.IsNullOrWhiteSpace(targetPath.FullPath) && GenerateManifest)
             {
-                return null;
+                ManifestManager = new ManifestManager(ProjectFilePath, targetPath.FullPath, infoSource);
             }
-            foreach (var handler in InputHandlers)
-            {
-                try
-                {
-                    var result = handler.Process(inputDirectoryPath);
-                    if (result.Result == HandlerResult.NotRun)
-                    {
-                        result.Result = HandlerResult.OK;
-                    }
-                    list.Add(result);
-                    Log($"Handler {handler.Name} returned {result.Result}: {result.ResultMessage}");
-                }
-                catch (Exception ex)
-                {
-                    list.Add(new HandlerResponse(handler, false, ex.Message));
-                    Log($"Handler {handler.Name} encountered {ex.GetType().Name}: {ex.Message}");
-                }
-            }
-            return list;
         }
+
+        
 
         private void Log(string content, bool isBuildMessage = false)
         {
@@ -172,22 +169,11 @@ namespace Cake.ClickTwice
             }
         }
 
-        private void PrepareManifestManager(DirectoryPath targetPath, InformationSource infoSource)
+        private Action<CakePublishManager> DefaultBuildAction => mgr =>
         {
-            if (!string.IsNullOrWhiteSpace(targetPath.FullPath) && GenerateManifest)
-            {
-                ManifestManager = new ManifestManager(ProjectFilePath, targetPath.FullPath, infoSource);
-            }
-        }
-
-        private List<HandlerResponse> ProcessOutputHandlers(DirectoryPath outputPath)
-        {
-            var results =
-                OutputHandlers.Where(_ => !string.IsNullOrWhiteSpace(outputPath?.FullPath))
-                    .Select(handler => handler.Process(outputPath.FullPath))
-                    .ToList();
-            return results;
-        }
+            var runner = new MSBuildRunner(mgr.FileSystem, mgr.Environment, mgr.Runner, mgr.ToolLocator);
+            runner.Run(mgr.ProjectFilePath, mgr.BuildSettings);
+        };
     }
 
     internal static class CakePublishExtensions
@@ -234,3 +220,4 @@ namespace Cake.ClickTwice
         }
     }
 }
+

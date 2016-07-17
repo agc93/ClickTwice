@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ClickTwice.Publisher.Core.Handlers
+﻿namespace ClickTwice.Publisher.Core.Handlers
 {
     public class HandlerResponse
     {

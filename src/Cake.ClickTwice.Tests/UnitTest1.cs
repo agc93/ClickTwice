@@ -2,6 +2,7 @@
 using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
+using Cake.Core.Tooling;
 using Cake.Testing;
 using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Handlers;
@@ -65,7 +66,7 @@ namespace Cake.ClickTwice.Tests
         public ClickTwiceManager Run(FilePath projectFile)
         {
             var manager = new ClickTwiceManager(projectFile.FullPath, Log, Environment, FileSystem,
-                new ProcessRunner(Environment, Log), new Globber(FileSystem, Environment));
+                new ProcessRunner(Environment, Log), new ToolLocator(Environment, new ToolRepository(Environment), new ToolResolutionStrategy(FileSystem, Environment, new Globber(FileSystem, Environment), new FakeConfiguration())));
             manager.LogTo(Logger);
             return manager;
         }

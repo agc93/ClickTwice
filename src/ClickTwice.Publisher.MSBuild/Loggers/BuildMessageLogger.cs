@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ClickTwice.Publisher.Core.Loggers;
 using Microsoft.Build.Framework;
 
-namespace ClickTwice.Publisher.Core.Loggers
+namespace ClickTwice.Publisher.MSBuild.Loggers
 {
-    internal class BuildMessageLogger : ILogger
+    public class BuildMessageLogger : ILogger
     {
         public BuildMessageLogger(IList<IPublishLogger> loggers)
         {

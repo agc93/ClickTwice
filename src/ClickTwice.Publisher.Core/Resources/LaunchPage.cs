@@ -18,7 +18,7 @@ namespace ClickTwice.Publisher.Core.Resources
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+    #line 1 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class LaunchPage : LaunchPageBase
     {
@@ -28,371 +28,416 @@ namespace ClickTwice.Publisher.Core.Resources
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n<!DOCTYPE HTML>\r\n<!--\r\n    Eventually by HTML5 UP\r\n    \r\n    Free for personal " +
-                    "and commercial use under the CCA 3.0 license (html5up.net/license)\r\n-->\r\n<html>\r" +
-                    "\n<head>\r\n    <title>");
+            this.Write("\r\n<!DOCTYPE HTML>\r\n<!--\r\n\tEventually by HTML5 UP\r\n\t\r\n\tFree for personal and comme" +
+                    "rcial use under the CCA 3.0 license (html5up.net/license)\r\n-->\r\n<html>\r\n<head>\r\n" +
+                    "\t<title>");
             
-            #line 16 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 16 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.ApplicationName));
             
             #line default
             #line hidden
-            this.Write("</title>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=" +
-                    "device-width, initial-scale=1, user-scalable=no\" />\r\n    <!-- <link rel=\"stylesh" +
-                    "eet\" href=\"assets/css/main.css\"/> -->\r\n\t<link rel=\"stylesheet\" href=\"https://max" +
-                    "cdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css\" />\r\n    <style" +
-                    ">\r\n\t@import url(\"http://fonts.googleapis.com/css?family=Roboto:400,700\");\r\n\r\n/*\r" +
-                    "\n\tEventually by HTML5 UP\r\n\thtml5up.net | @n33co\r\n\tFree for personal and commerci" +
-                    "al use under the CCA 3.0 license (html5up.net/license)\r\n*/\r\n\r\n/* Reset */\r\n\r\n\tht" +
-                    "ml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquo" +
-                    "te, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd" +
-                    ", q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt," +
-                    " dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, th" +
-                    "ead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, foo" +
-                    "ter, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audi" +
-                    "o, video {\r\n\t\tmargin: 0;\r\n\t\tpadding: 0;\r\n\t\tborder: 0;\r\n\t\tfont-size: 100%;\r\n\t\tfon" +
-                    "t: inherit;\r\n\t\tvertical-align: baseline;\r\n\t}\r\n\r\n\tarticle, aside, details, figcap" +
-                    "tion, figure, footer, header, hgroup, menu, nav, section {\r\n\t\tdisplay: block;\r\n\t" +
-                    "}\r\n\r\n\tbody {\r\n\t\tline-height: 1;\r\n\t}\r\n\r\n\tol, ul {\r\n\t\tlist-style: none;\r\n\t}\r\n\r\n\tbl" +
-                    "ockquote, q {\r\n\t\tquotes: none;\r\n\t}\r\n\r\n\tblockquote:before, blockquote:after, q:be" +
-                    "fore, q:after {\r\n\t\tcontent: \'\';\r\n\t\tcontent: none;\r\n\t}\r\n\r\n\ttable {\r\n\t\tborder-coll" +
-                    "apse: collapse;\r\n\t\tborder-spacing: 0;\r\n\t}\r\n\r\n\tbody {\r\n\t\t-webkit-text-size-adjust" +
-                    ": none;\r\n\t}\r\n\r\n/* Box Model */\r\n\r\n\t*, *:before, *:after {\r\n\t\t-moz-box-sizing: bo" +
-                    "rder-box;\r\n\t\t-webkit-box-sizing: border-box;\r\n\t\tbox-sizing: border-box;\r\n\t}\r\n\r\n/" +
-                    "* Basic */\r\n\r\n\t@-ms-viewport {\r\n\t\twidth: device-width;\r\n\t}\r\n\r\n\tbody {\r\n\t\t-ms-ove" +
-                    "rflow-style: scrollbar;\r\n\t}\r\n\r\n\t@media screen and (max-width: 480px) {\r\n\r\n\t\thtml" +
-                    ", body {\r\n\t\t\tmin-width: 320px;\r\n\t\t}\r\n\r\n\t}\r\n\r\n\thtml, body {\r\n\t\theight: 100%;\r\n\t\to" +
-                    "verflow-x: hidden;\r\n\t\twidth: 100%;\r\n\t}\r\n\r\n\t\t@media screen and (max-height: 640px" +
-                    ") {\r\n\r\n\t\t\thtml, body {\r\n\t\t\t\theight: auto;\r\n\t\t\t\tmin-height: 100%;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r" +
-                    "\n\tbody {\r\n\t\tdisplay: -moz-flex;\r\n\t\tdisplay: -webkit-flex;\r\n\t\tdisplay: -ms-flex;\r" +
-                    "\n\t\tdisplay: flex;\r\n\t\t-moz-flex-direction: column;\r\n\t\t-webkit-flex-direction: col" +
-                    "umn;\r\n\t\t-ms-flex-direction: column;\r\n\t\tflex-direction: column;\r\n\t\t-moz-justify-c" +
-                    "ontent: center;\r\n\t\t-webkit-justify-content: center;\r\n\t\t-ms-justify-content: cent" +
-                    "er;\r\n\t\tjustify-content: center;\r\n\t\tbackground-color: #000;\r\n\t\tpadding: 6em 4em 4" +
-                    "em 4em;\r\n\t}\r\n\r\n\t\tbody > * {\r\n\t\t\tposition: relative;\r\n\t\t\tz-index: 2;\r\n\t\t}\r\n\r\n\t\tbo" +
-                    "dy.is-loading *, body.is-loading *:before, body.is-loading *:after {\r\n\t\t\t-moz-an" +
-                    "imation: none !important;\r\n\t\t\t-webkit-animation: none !important;\r\n\t\t\t-ms-animat" +
-                    "ion: none !important;\r\n\t\t\tanimation: none !important;\r\n\t\t\t-moz-transition: none " +
-                    "!important;\r\n\t\t\t-webkit-transition: none !important;\r\n\t\t\t-ms-transition: none !i" +
-                    "mportant;\r\n\t\t\ttransition: none !important;\r\n\t\t}\r\n\r\n\t\t@media screen and (max-widt" +
-                    "h: 1680px) {\r\n\r\n\t\t\tbody {\r\n\t\t\t\tpadding: 6em 3.5em 3.5em 3.5em;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t" +
-                    "\t@media screen and (max-width: 736px) {\r\n\r\n\t\t\tbody {\r\n\t\t\t\tpadding: 5em 2em 2em 2" +
-                    "em;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width: 360px) {\r\n\r\n\t\t\tbody {\r\n\t\t\t\tp" +
-                    "adding: 5em 1.25em 1.25em 1.25em;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n/* BG */\r\n\r\n\t#bg {\r\n\t\t-moz-tra" +
-                    "nsition: opacity 2s ease-in-out;\r\n\t\t-webkit-transition: opacity 2s ease-in-out;\r" +
-                    "\n\t\t-ms-transition: opacity 2s ease-in-out;\r\n\t\ttransition: opacity 2s ease-in-out" +
-                    ";\r\n\t\theight: 100%;\r\n\t\tleft: 0;\r\n\t\topacity: 0.25;\r\n\t\tposition: fixed;\r\n\t\ttop: 0;\r" +
-                    "\n\t\twidth: 100%;\r\n\t\tz-index: 1;\r\n\t}\r\n\r\n\t\t#bg div {\r\n\t\t\t-moz-transition: opacity 3" +
-                    "s ease, visibility 3s;\r\n\t\t\t-webkit-transition: opacity 3s ease, visibility 3s;\r\n" +
-                    "\t\t\t-ms-transition: opacity 3s ease, visibility 3s;\r\n\t\t\ttransition: opacity 3s ea" +
-                    "se, visibility 3s;\r\n\t\t\tbackground-size: cover;\r\n\t\t\theight: 100%;\r\n\t\t\tleft: 0;\r\n\t" +
-                    "\t\topacity: 0;\r\n\t\t\tposition: absolute;\r\n\t\t\ttop: 0;\r\n\t\t\tvisibility: hidden;\r\n\t\t\twi" +
-                    "dth: 150%;\r\n\t\t}\r\n\r\n\t\t\t#bg div.visible {\r\n\t\t\t\t-moz-animation: bg 45s linear infin" +
-                    "ite;\r\n\t\t\t\t-webkit-animation: bg 45s linear infinite;\r\n\t\t\t\t-ms-animation: bg 45s " +
-                    "linear infinite;\r\n\t\t\t\tanimation: bg 45s linear infinite;\r\n\t\t\t\topacity: 1;\r\n\t\t\t\tv" +
-                    "isibility: visible;\r\n\t\t\t\tz-index: 1;\r\n\t\t\t}\r\n\r\n\t\t\t\t#bg div.visible.top {\r\n\t\t\t\t\tz-" +
-                    "index: 2;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t@media screen and (max-width: 1280px) {\r\n\r\n\t\t\t\t\t#bg div." +
-                    "visible {\r\n\t\t\t\t\t\t-moz-animation: bg 29.25s linear infinite;\r\n\t\t\t\t\t\t-webkit-anima" +
-                    "tion: bg 29.25s linear infinite;\r\n\t\t\t\t\t\t-ms-animation: bg 29.25s linear infinite" +
-                    ";\r\n\t\t\t\t\t\tanimation: bg 29.25s linear infinite;\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t\t@media sc" +
-                    "reen and (max-width: 736px) {\r\n\r\n\t\t\t\t\t#bg div.visible {\r\n\t\t\t\t\t\t-moz-animation: b" +
-                    "g 18s linear infinite;\r\n\t\t\t\t\t\t-webkit-animation: bg 18s linear infinite;\r\n\t\t\t\t\t\t" +
-                    "-ms-animation: bg 18s linear infinite;\r\n\t\t\t\t\t\tanimation: bg 18s linear infinite;" +
-                    "\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t#bg div:only-child {\r\n\t\t\t\t-moz-animation-direction: alte" +
-                    "rnate !important;\r\n\t\t\t\t-webkit-animation-direction: alternate !important;\r\n\t\t\t\t-" +
-                    "ms-animation-direction: alternate !important;\r\n\t\t\t\tanimation-direction: alternat" +
-                    "e !important;\r\n\t\t\t}\r\n\r\n\t\tbody.is-loading #bg {\r\n\t\t\topacity: 0;\r\n\t\t}\r\n\r\n\t@-moz-ke" +
-                    "yframes bg {\r\n\t\t0% {\r\n\t\t\t-moz-transform: translateX(0);\r\n\t\t\t-webkit-transform: t" +
-                    "ranslateX(0);\r\n\t\t\t-ms-transform: translateX(0);\r\n\t\t\ttransform: translateX(0);\r\n\t" +
-                    "\t}\r\n\r\n\t\t100% {\r\n\t\t\t-moz-transform: translateX(-25%);\r\n\t\t\t-webkit-transform: tran" +
-                    "slateX(-25%);\r\n\t\t\t-ms-transform: translateX(-25%);\r\n\t\t\ttransform: translateX(-25" +
-                    "%);\r\n\t\t}\r\n\t}\r\n\r\n\t@-webkit-keyframes bg {\r\n\t\t0% {\r\n\t\t\t-moz-transform: translateX(" +
-                    "0);\r\n\t\t\t-webkit-transform: translateX(0);\r\n\t\t\t-ms-transform: translateX(0);\r\n\t\t\t" +
-                    "transform: translateX(0);\r\n\t\t}\r\n\r\n\t\t100% {\r\n\t\t\t-moz-transform: translateX(-25%);" +
-                    "\r\n\t\t\t-webkit-transform: translateX(-25%);\r\n\t\t\t-ms-transform: translateX(-25%);\r\n" +
-                    "\t\t\ttransform: translateX(-25%);\r\n\t\t}\r\n\t}\r\n\r\n\t@-ms-keyframes bg {\r\n\t\t0% {\r\n\t\t\t-mo" +
-                    "z-transform: translateX(0);\r\n\t\t\t-webkit-transform: translateX(0);\r\n\t\t\t-ms-transf" +
-                    "orm: translateX(0);\r\n\t\t\ttransform: translateX(0);\r\n\t\t}\r\n\r\n\t\t100% {\r\n\t\t\t-moz-tran" +
-                    "sform: translateX(-25%);\r\n\t\t\t-webkit-transform: translateX(-25%);\r\n\t\t\t-ms-transf" +
-                    "orm: translateX(-25%);\r\n\t\t\ttransform: translateX(-25%);\r\n\t\t}\r\n\t}\r\n\r\n\t@keyframes " +
-                    "bg {\r\n\t\t0% {\r\n\t\t\t-moz-transform: translateX(0);\r\n\t\t\t-webkit-transform: translate" +
-                    "X(0);\r\n\t\t\t-ms-transform: translateX(0);\r\n\t\t\ttransform: translateX(0);\r\n\t\t}\r\n\r\n\t\t" +
-                    "100% {\r\n\t\t\t-moz-transform: translateX(-25%);\r\n\t\t\t-webkit-transform: translateX(-" +
-                    "25%);\r\n\t\t\t-ms-transform: translateX(-25%);\r\n\t\t\ttransform: translateX(-25%);\r\n\t\t}" +
-                    "\r\n\t}\r\n\r\n/* Type */\r\n\r\n\tbody, input, select, textarea {\r\n\t\tcolor: rgba(255, 255, " +
-                    "255, 0.75);\r\n\t\tfont-family: \"Roboto\", sans-serif;\r\n\t\tfont-size: 16pt;\r\n\t\tfont-we" +
-                    "ight: 400;\r\n\t\tletter-spacing: -0.01em;\r\n\t\tline-height: 1.65em;\r\n\t}\r\n\r\n\t\t@media s" +
-                    "creen and (max-width: 1680px) {\r\n\r\n\t\t\tbody, input, select, textarea {\r\n\t\t\t\tfont-" +
-                    "size: 12pt;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width: 1280px) {\r\n\r\n\t\t\tbody" +
-                    ", input, select, textarea {\r\n\t\t\t\tfont-size: 11pt;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media scree" +
-                    "n and (max-width: 980px) {\r\n\r\n\t\t\tbody, input, select, textarea {\r\n\t\t\t\tfont-size:" +
-                    " 12pt;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width: 736px) {\r\n\r\n\t\t\tbody, inpu" +
-                    "t, select, textarea {\r\n\t\t\t\tfont-size: 12pt;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media screen and " +
-                    "(max-width: 480px) {\r\n\r\n\t\t\tbody, input, select, textarea {\r\n\t\t\t\tfont-size: 12pt;" +
-                    "\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\ta {\r\n\t\t-moz-transition: border-bottom-color 0.2s ease, color 0" +
-                    ".2s ease;\r\n\t\t-webkit-transition: border-bottom-color 0.2s ease, color 0.2s ease;" +
-                    "\r\n\t\t-ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;\r\n\t\ttransitio" +
-                    "n: border-bottom-color 0.2s ease, color 0.2s ease;\r\n\t\tborder-bottom: dotted 1px " +
-                    "rgba(255, 255, 255, 0.25);\r\n\t\tcolor: #1cb495;\r\n\t\ttext-decoration: none;\r\n\t}\r\n\r\n\t" +
-                    "\ta:hover {\r\n\t\t\tborder-bottom-color: transparent;\r\n\t\t\tcolor: #1cb495 !important;\r" +
-                    "\n\t\t\ttext-decoration: none;\r\n\t\t}\r\n\r\n\tstrong, b {\r\n\t\tcolor: #fff;\r\n\t\tfont-weight: " +
-                    "700;\r\n\t}\r\n\r\n\tem, i {\r\n\t\tfont-style: italic;\r\n\t}\r\n\r\n\tp {\r\n\t\tmargin: 0 0 2em 0;\r\n\t" +
-                    "}\r\n\r\n\th1, h2, h3, h4, h5, h6 {\r\n\t\tcolor: #fff;\r\n\t\tfont-weight: 700;\r\n\t\tline-heig" +
-                    "ht: 1em;\r\n\t\tmargin: 0 0 1em 0;\r\n\t}\r\n\r\n\t\th1 a, h2 a, h3 a, h4 a, h5 a, h6 a {\r\n\t\t" +
-                    "\tcolor: inherit;\r\n\t\t\ttext-decoration: none;\r\n\t\t}\r\n\r\n\th1 {\r\n\t\tfont-size: 2.5em;\r\n" +
-                    "\t\tline-height: 1.25em;\r\n\t}\r\n\r\n\th2 {\r\n\t\tfont-size: 1.75em;\r\n\t\tline-height: 1.5em;" +
-                    "\r\n\t}\r\n\r\n\th3 {\r\n\t\tfont-size: 1.35em;\r\n\t\tline-height: 1.5em;\r\n\t}\r\n\r\n\th4 {\r\n\t\tfont-" +
-                    "size: 1.1em;\r\n\t\tline-height: 1.5em;\r\n\t}\r\n\r\n\th5 {\r\n\t\tfont-size: 0.9em;\r\n\t\tline-he" +
-                    "ight: 1.5em;\r\n\t}\r\n\r\n\th6 {\r\n\t\tfont-size: 0.7em;\r\n\t\tline-height: 1.5em;\r\n\t}\r\n\r\n\tsu" +
-                    "b {\r\n\t\tfont-size: 0.8em;\r\n\t\tposition: relative;\r\n\t\ttop: 0.5em;\r\n\t}\r\n\r\n\tsup {\r\n\t\t" +
-                    "font-size: 0.8em;\r\n\t\tposition: relative;\r\n\t\ttop: -0.5em;\r\n\t}\r\n\r\n\tblockquote {\r\n\t" +
-                    "\tborder-left: solid 8px rgba(255, 255, 255, 0.35);\r\n\t\tfont-style: italic;\r\n\t\tmar" +
-                    "gin: 0 0 2em 0;\r\n\t\tpadding: 0.5em 0 0.5em 2em;\r\n\t}\r\n\r\n\tcode {\r\n\t\tbackground: rgb" +
-                    "a(255, 255, 255, 0.125);\r\n\t\tborder-radius: 6px;\r\n\t\tborder: solid 2px rgba(255, 2" +
-                    "55, 255, 0.35);\r\n\t\tfont-family: \"Courier New\", monospace;\r\n\t\tfont-size: 0.9em;\r\n" +
-                    "\t\tmargin: 0 0.25em;\r\n\t\tpadding: 0.25em 0.65em;\r\n\t}\r\n\r\n\tpre {\r\n\t\t-webkit-overflow" +
-                    "-scrolling: touch;\r\n\t\tfont-family: \"Courier New\", monospace;\r\n\t\tfont-size: 0.9em" +
-                    ";\r\n\t\tmargin: 0 0 2em 0;\r\n\t}\r\n\r\n\t\tpre code {\r\n\t\t\tdisplay: block;\r\n\t\t\tline-height:" +
-                    " 1.75em;\r\n\t\t\tpadding: 1em 1.5em;\r\n\t\t\toverflow-x: auto;\r\n\t\t}\r\n\r\n\thr {\r\n\t\tborder: " +
-                    "0;\r\n\t\tborder-bottom: solid 2px rgba(255, 255, 255, 0.35);\r\n\t\tmargin: 2em 0;\r\n\t}\r" +
-                    "\n\r\n\t\thr.major {\r\n\t\t\tmargin: 3em 0;\r\n\t\t}\r\n\r\n/* Section/Article */\r\n\r\n\tsection.spe" +
-                    "cial, article.special {\r\n\t\ttext-align: center;\r\n\t}\r\n\r\n\theader p {\r\n\t\tcolor: rgba" +
-                    "(255, 255, 255, 0.5);\r\n\t\tposition: relative;\r\n\t\tmargin: 0 0 1.5em 0;\r\n\t}\r\n\r\n\thea" +
-                    "der h2 + p {\r\n\t\tfont-size: 1.25em;\r\n\t\tmargin-top: -1em;\r\n\t\tline-height: 1.5em;\r\n" +
-                    "\t}\r\n\r\n\theader h3 + p {\r\n\t\tfont-size: 1.1em;\r\n\t\tmargin-top: -0.8em;\r\n\t\tline-heigh" +
-                    "t: 1.5em;\r\n\t}\r\n\r\n\theader h4 + p,\r\n\theader h5 + p,\r\n\theader h6 + p {\r\n\t\tfont-size" +
-                    ": 0.9em;\r\n\t\tmargin-top: -0.6em;\r\n\t\tline-height: 1.5em;\r\n\t}\r\n\r\n\t@media screen and" +
-                    " (max-width: 980px) {\r\n\r\n\t\theader br {\r\n\t\t\tdisplay: none;\r\n\t\t}\r\n\r\n\t}\r\n\r\n\t@media " +
-                    "screen and (max-width: 736px) {\r\n\r\n\t\theader br {\r\n\t\t\tdisplay: inline;\r\n\t\t}\r\n\r\n\t}" +
-                    "\r\n\r\n\t@media screen and (max-width: 480px) {\r\n\r\n\t\theader br {\r\n\t\t\tdisplay: none;\r" +
-                    "\n\t\t}\r\n\r\n\t}\r\n\r\n/* Icon */\r\n\r\n\t.icon {\r\n\t\ttext-decoration: none;\r\n\t\tborder-bottom:" +
-                    " none;\r\n\t\tposition: relative;\r\n\t}\r\n\r\n\t\t.icon:before {\r\n\t\t\t-moz-osx-font-smoothin" +
-                    "g: grayscale;\r\n\t\t\t-webkit-font-smoothing: antialiased;\r\n\t\t\tfont-family: FontAwes" +
-                    "ome;\r\n\t\t\tfont-style: normal;\r\n\t\t\tfont-weight: normal;\r\n\t\t\ttext-transform: none !" +
-                    "important;\r\n\t\t}\r\n\r\n\t\t.icon > .label {\r\n\t\t\tdisplay: none;\r\n\t\t}\r\n\r\n/* List */\r\n\r\n\t" +
-                    "ol {\r\n\t\tlist-style: decimal;\r\n\t\tmargin: 0 0 2em 0;\r\n\t\tpadding-left: 1.25em;\r\n\t}\r" +
-                    "\n\r\n\t\tol li {\r\n\t\t\tpadding-left: 0.25em;\r\n\t\t}\r\n\r\n\tul {\r\n\t\tlist-style: disc;\r\n\t\tmar" +
-                    "gin: 0 0 2em 0;\r\n\t\tpadding-left: 1em;\r\n\t}\r\n\r\n\t\tul li {\r\n\t\t\tpadding-left: 0.5em;\r" +
-                    "\n\t\t}\r\n\r\n\t\tul.icons {\r\n\t\t\tcursor: default;\r\n\t\t\tlist-style: none;\r\n\t\t\tpadding-left" +
-                    ": 0;\r\n\t\t}\r\n\r\n\t\t\tul.icons li {\r\n\t\t\t\tdisplay: inline-block;\r\n\t\t\t\tpadding: 0 1em 0 " +
-                    "0;\r\n\t\t\t}\r\n\r\n\t\t\t\tul.icons li:last-child {\r\n\t\t\t\t\tpadding-right: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\tu" +
-                    "l.icons li .icon:before {\r\n\t\t\t\t\tfont-size: 1.25em;\r\n\t\t\t\t}\r\n\r\n\t\t\t\tul.icons li a {" +
-                    "\r\n\t\t\t\t\tcolor: inherit;\r\n\t\t\t\t}\r\n\r\n/* Form */\r\n\r\n\tform {\r\n\t\tmargin: 0 0 2em 0;\r\n\t}" +
-                    "\r\n\r\n\t\tform .message {\r\n\t\t\ttext-decoration: none;\r\n\t\t\t-moz-transition: opacity 0." +
-                    "2s ease-in-out, -moz-transform 0.2s ease-in-out;\r\n\t\t\t-webkit-transition: opacity" +
-                    " 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;\r\n\t\t\t-ms-transition: opaci" +
-                    "ty 0.2s ease-in-out, -ms-transform 0.2s ease-in-out;\r\n\t\t\ttransition: opacity 0.2" +
-                    "s ease-in-out, transform 0.2s ease-in-out;\r\n\t\t\t-moz-transform: scale(1.05);\r\n\t\t\t" +
-                    "-webkit-transform: scale(1.05);\r\n\t\t\t-ms-transform: scale(1.05);\r\n\t\t\ttransform: s" +
-                    "cale(1.05);\r\n\t\t\theight: 2.75em;\r\n\t\t\tline-height: 2.75em;\r\n\t\t\topacity: 0;\r\n\t\t}\r\n\r" +
-                    "\n\t\t\tform .message:before {\r\n\t\t\t\t-moz-osx-font-smoothing: grayscale;\r\n\t\t\t\t-webkit" +
-                    "-font-smoothing: antialiased;\r\n\t\t\t\tfont-family: FontAwesome;\r\n\t\t\t\tfont-style: no" +
-                    "rmal;\r\n\t\t\t\tfont-weight: normal;\r\n\t\t\t\ttext-transform: none !important;\r\n\t\t\t}\r\n\r\n\t" +
-                    "\t\tform .message:before {\r\n\t\t\t\tmargin-right: 0.5em;\r\n\t\t\t}\r\n\r\n\t\t\tform .message.vis" +
-                    "ible {\r\n\t\t\t\t-moz-transform: scale(1);\r\n\t\t\t\t-webkit-transform: scale(1);\r\n\t\t\t\t-ms" +
-                    "-transform: scale(1);\r\n\t\t\t\ttransform: scale(1);\r\n\t\t\t\topacity: 1;\r\n\t\t\t}\r\n\r\n\t\t\tfor" +
-                    "m .message.success {\r\n\t\t\t\tcolor: #1cb495;\r\n\t\t\t}\r\n\r\n\t\t\t\tform .message.success:bef" +
-                    "ore {\r\n\t\t\t\t\tcontent: \'\\f00c\';\r\n\t\t\t\t}\r\n\r\n\t\t\tform .message.failure {\r\n\t\t\t\tcolor: #" +
-                    "ff2361;\r\n\t\t\t}\r\n\r\n\t\t\t\tform .message.failure:before {\r\n\t\t\t\t\tcontent: \'\\f119\';\r\n\t\t\t" +
-                    "\t}\r\n\r\n\tlabel {\r\n\t\tcolor: #fff;\r\n\t\tdisplay: block;\r\n\t\tfont-size: 0.9em;\r\n\t\tfont-w" +
-                    "eight: 700;\r\n\t\tmargin: 0 0 1em 0;\r\n\t}\r\n\r\n\t@-moz-keyframes focus {\r\n\t\t0% {\r\n\t\t\t-m" +
-                    "oz-transform: scale(1);\r\n\t\t\t-webkit-transform: scale(1);\r\n\t\t\t-ms-transform: scal" +
-                    "e(1);\r\n\t\t\ttransform: scale(1);\r\n\t\t}\r\n\r\n\t\t50% {\r\n\t\t\t-moz-transform: scale(1.025);" +
-                    "\r\n\t\t\t-webkit-transform: scale(1.025);\r\n\t\t\t-ms-transform: scale(1.025);\r\n\t\t\ttrans" +
-                    "form: scale(1.025);\r\n\t\t}\r\n\r\n\t\t100% {\r\n\t\t\t-moz-transform: scale(1);\r\n\t\t\t-webkit-t" +
-                    "ransform: scale(1);\r\n\t\t\t-ms-transform: scale(1);\r\n\t\t\ttransform: scale(1);\r\n\t\t}\r\n" +
-                    "\t}\r\n\r\n\t@-webkit-keyframes focus {\r\n\t\t0% {\r\n\t\t\t-moz-transform: scale(1);\r\n\t\t\t-web" +
-                    "kit-transform: scale(1);\r\n\t\t\t-ms-transform: scale(1);\r\n\t\t\ttransform: scale(1);\r\n" +
-                    "\t\t}\r\n\r\n\t\t50% {\r\n\t\t\t-moz-transform: scale(1.025);\r\n\t\t\t-webkit-transform: scale(1." +
-                    "025);\r\n\t\t\t-ms-transform: scale(1.025);\r\n\t\t\ttransform: scale(1.025);\r\n\t\t}\r\n\r\n\t\t10" +
-                    "0% {\r\n\t\t\t-moz-transform: scale(1);\r\n\t\t\t-webkit-transform: scale(1);\r\n\t\t\t-ms-tran" +
-                    "sform: scale(1);\r\n\t\t\ttransform: scale(1);\r\n\t\t}\r\n\t}\r\n\r\n\t@-ms-keyframes focus {\r\n\t" +
-                    "\t0% {\r\n\t\t\t-moz-transform: scale(1);\r\n\t\t\t-webkit-transform: scale(1);\r\n\t\t\t-ms-tra" +
-                    "nsform: scale(1);\r\n\t\t\ttransform: scale(1);\r\n\t\t}\r\n\r\n\t\t50% {\r\n\t\t\t-moz-transform: s" +
-                    "cale(1.025);\r\n\t\t\t-webkit-transform: scale(1.025);\r\n\t\t\t-ms-transform: scale(1.025" +
-                    ");\r\n\t\t\ttransform: scale(1.025);\r\n\t\t}\r\n\r\n\t\t100% {\r\n\t\t\t-moz-transform: scale(1);\r\n" +
-                    "\t\t\t-webkit-transform: scale(1);\r\n\t\t\t-ms-transform: scale(1);\r\n\t\t\ttransform: scal" +
-                    "e(1);\r\n\t\t}\r\n\t}\r\n\r\n\t@keyframes focus {\r\n\t\t0% {\r\n\t\t\t-moz-transform: scale(1);\r\n\t\t\t" +
-                    "-webkit-transform: scale(1);\r\n\t\t\t-ms-transform: scale(1);\r\n\t\t\ttransform: scale(1" +
-                    ");\r\n\t\t}\r\n\r\n\t\t50% {\r\n\t\t\t-moz-transform: scale(1.025);\r\n\t\t\t-webkit-transform: scal" +
-                    "e(1.025);\r\n\t\t\t-ms-transform: scale(1.025);\r\n\t\t\ttransform: scale(1.025);\r\n\t\t}\r\n\r\n" +
-                    "\t\t100% {\r\n\t\t\t-moz-transform: scale(1);\r\n\t\t\t-webkit-transform: scale(1);\r\n\t\t\t-ms-" +
-                    "transform: scale(1);\r\n\t\t\ttransform: scale(1);\r\n\t\t}\r\n\t}\r\n\r\n\tinput[type=\"text\"],\r\n" +
-                    "\tinput[type=\"password\"],\r\n\tinput[type=\"email\"],\r\n\tselect,\r\n\ttextarea {\r\n\t\t-moz-a" +
-                    "ppearance: none;\r\n\t\t-webkit-appearance: none;\r\n\t\t-ms-appearance: none;\r\n\t\tappear" +
-                    "ance: none;\r\n\t\t-moz-transform: scale(1);\r\n\t\t-webkit-transform: scale(1);\r\n\t\t-ms-" +
-                    "transform: scale(1);\r\n\t\ttransform: scale(1);\r\n\t\t-moz-transition: border-color 0." +
-                    "2s ease, background-color 0.2s ease;\r\n\t\t-webkit-transition: border-color 0.2s ea" +
-                    "se, background-color 0.2s ease;\r\n\t\t-ms-transition: border-color 0.2s ease, backg" +
-                    "round-color 0.2s ease;\r\n\t\ttransition: border-color 0.2s ease, background-color 0" +
-                    ".2s ease;\r\n\t\tbackground-color: transparent;\r\n\t\tborder-radius: 6px;\r\n\t\tborder: no" +
-                    "ne;\r\n\t\tborder: solid 2px rgba(255, 255, 255, 0.35);\r\n\t\tcolor: inherit;\r\n\t\tdispla" +
-                    "y: block;\r\n\t\toutline: 0;\r\n\t\tpadding: 0 1em;\r\n\t\ttext-decoration: none;\r\n\t\twidth: " +
-                    "100%;\r\n\t}\r\n\r\n\t\tinput[type=\"text\"]:invalid,\r\n\t\tinput[type=\"password\"]:invalid,\r\n\t" +
-                    "\tinput[type=\"email\"]:invalid,\r\n\t\tselect:invalid,\r\n\t\ttextarea:invalid {\r\n\t\t\tbox-s" +
-                    "hadow: none;\r\n\t\t}\r\n\r\n\t\tinput[type=\"text\"]:focus,\r\n\t\tinput[type=\"password\"]:focus" +
-                    ",\r\n\t\tinput[type=\"email\"]:focus,\r\n\t\tselect:focus,\r\n\t\ttextarea:focus {\r\n\t\t\t-moz-an" +
-                    "imation: focus 0.1s;\r\n\t\t\t-webkit-animation: focus 0.1s;\r\n\t\t\t-ms-animation: focus" +
-                    " 0.1s;\r\n\t\t\tanimation: focus 0.1s;\r\n\t\t\tbackground-color: rgba(255, 255, 255, 0.12" +
-                    "5);\r\n\t\t\tborder-color: #1cb495;\r\n\t\t}\r\n\r\n\t.select-wrapper {\r\n\t\ttext-decoration: no" +
-                    "ne;\r\n\t\tdisplay: block;\r\n\t\tposition: relative;\r\n\t}\r\n\r\n\t\t.select-wrapper:before {\r" +
-                    "\n\t\t\t-moz-osx-font-smoothing: grayscale;\r\n\t\t\t-webkit-font-smoothing: antialiased;" +
-                    "\r\n\t\t\tfont-family: FontAwesome;\r\n\t\t\tfont-style: normal;\r\n\t\t\tfont-weight: normal;\r" +
-                    "\n\t\t\ttext-transform: none !important;\r\n\t\t}\r\n\r\n\t\t.select-wrapper:before {\r\n\t\t\tcolo" +
-                    "r: rgba(255, 255, 255, 0.35);\r\n\t\t\tcontent: \'\\f078\';\r\n\t\t\tdisplay: block;\r\n\t\t\theig" +
-                    "ht: 2.75em;\r\n\t\t\tline-height: 2.75em;\r\n\t\t\tpointer-events: none;\r\n\t\t\tposition: abs" +
-                    "olute;\r\n\t\t\tright: 0;\r\n\t\t\ttext-align: center;\r\n\t\t\ttop: 0;\r\n\t\t\twidth: 2.75em;\r\n\t\t}" +
-                    "\r\n\r\n\t\t.select-wrapper select::-ms-expand {\r\n\t\t\tdisplay: none;\r\n\t\t}\r\n\r\n\tinput[typ" +
-                    "e=\"text\"],\r\n\tinput[type=\"password\"],\r\n\tinput[type=\"email\"],\r\n\tselect {\r\n\t\theight" +
-                    ": 2.75em;\r\n\t}\r\n\r\n\ttextarea {\r\n\t\tpadding: 0.75em 1em;\r\n\t}\r\n\r\n\tinput[type=\"checkbo" +
-                    "x\"],\r\n\tinput[type=\"radio\"] {\r\n\t\t-moz-appearance: none;\r\n\t\t-webkit-appearance: no" +
-                    "ne;\r\n\t\t-ms-appearance: none;\r\n\t\tappearance: none;\r\n\t\tdisplay: block;\r\n\t\tfloat: l" +
-                    "eft;\r\n\t\tmargin-right: -2em;\r\n\t\topacity: 0;\r\n\t\twidth: 1em;\r\n\t\tz-index: -1;\r\n\t}\r\n\r" +
-                    "\n\t\tinput[type=\"checkbox\"] + label,\r\n\t\tinput[type=\"radio\"] + label {\r\n\t\t\ttext-dec" +
-                    "oration: none;\r\n\t\t\tcolor: rgba(255, 255, 255, 0.75);\r\n\t\t\tcursor: pointer;\r\n\t\t\tdi" +
-                    "splay: inline-block;\r\n\t\t\tfont-size: 1em;\r\n\t\t\tfont-weight: 400;\r\n\t\t\tpadding-left:" +
-                    " 2.4em;\r\n\t\t\tpadding-right: 0.75em;\r\n\t\t\tposition: relative;\r\n\t\t}\r\n\r\n\t\t\tinput[type" +
-                    "=\"checkbox\"] + label:before,\r\n\t\t\tinput[type=\"radio\"] + label:before {\r\n\t\t\t\t-moz-" +
-                    "osx-font-smoothing: grayscale;\r\n\t\t\t\t-webkit-font-smoothing: antialiased;\r\n\t\t\t\tfo" +
-                    "nt-family: FontAwesome;\r\n\t\t\t\tfont-style: normal;\r\n\t\t\t\tfont-weight: normal;\r\n\t\t\t\t" +
-                    "text-transform: none !important;\r\n\t\t\t}\r\n\r\n\t\t\tinput[type=\"checkbox\"] + label:befo" +
-                    "re,\r\n\t\t\tinput[type=\"radio\"] + label:before {\r\n\t\t\t\tbackground: rgba(255, 255, 255" +
-                    ", 0.125);\r\n\t\t\t\tborder-radius: 6px;\r\n\t\t\t\tborder: solid 2px rgba(255, 255, 255, 0." +
-                    "35);\r\n\t\t\t\tcontent: \'\';\r\n\t\t\t\tdisplay: inline-block;\r\n\t\t\t\theight: 1.65em;\r\n\t\t\t\tlef" +
-                    "t: 0;\r\n\t\t\t\tline-height: 1.58125em;\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\ttext-align: cen" +
-                    "ter;\r\n\t\t\t\ttop: 0;\r\n\t\t\t\twidth: 1.65em;\r\n\t\t\t}\r\n\r\n\t\tinput[type=\"checkbox\"]:checked " +
-                    "+ label:before,\r\n\t\tinput[type=\"radio\"]:checked + label:before {\r\n\t\t\tbackground: " +
-                    "#1cb495;\r\n\t\t\tborder-color: #1cb495;\r\n\t\t\tcolor: #ffffff;\r\n\t\t\tcontent: \'\\f00c\';\r\n\t" +
-                    "\t}\r\n\r\n\t\tinput[type=\"checkbox\"]:focus + label:before,\r\n\t\tinput[type=\"radio\"]:focu" +
-                    "s + label:before {\r\n\t\t\tborder-color: #1cb495;\r\n\t\t\tbox-shadow: 0 0 0 2px #1cb495;" +
-                    "\r\n\t\t}\r\n\r\n\tinput[type=\"checkbox\"] + label:before {\r\n\t\tborder-radius: 6px;\r\n\t}\r\n\r\n" +
-                    "\tinput[type=\"radio\"] + label:before {\r\n\t\tborder-radius: 100%;\r\n\t}\r\n\r\n\t::-webkit-" +
-                    "input-placeholder {\r\n\t\tcolor: rgba(255, 255, 255, 0.5) !important;\r\n\t\topacity: 1" +
-                    ".0;\r\n\t}\r\n\r\n\t:-moz-placeholder {\r\n\t\tcolor: rgba(255, 255, 255, 0.5) !important;\r\n" +
-                    "\t\topacity: 1.0;\r\n\t}\r\n\r\n\t::-moz-placeholder {\r\n\t\tcolor: rgba(255, 255, 255, 0.5) " +
-                    "!important;\r\n\t\topacity: 1.0;\r\n\t}\r\n\r\n\t:-ms-input-placeholder {\r\n\t\tcolor: rgba(255" +
-                    ", 255, 255, 0.5) !important;\r\n\t\topacity: 1.0;\r\n\t}\r\n\r\n\t.formerize-placeholder {\r\n" +
-                    "\t\tcolor: rgba(255, 255, 255, 0.5) !important;\r\n\t\topacity: 1.0;\r\n\t}\r\n\r\n/* Button " +
-                    "*/\r\n\r\n\tinput[type=\"submit\"],\r\n\tinput[type=\"reset\"],\r\n\tinput[type=\"button\"],\r\n\tbu" +
-                    "tton,\r\n\t.button {\r\n\t\t-moz-appearance: none;\r\n\t\t-webkit-appearance: none;\r\n\t\t-ms-" +
-                    "appearance: none;\r\n\t\tappearance: none;\r\n\t\t-moz-transition: background-color 0.2s" +
-                    " ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;\r\n\t\t-webkit-trans" +
-                    "ition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s e" +
-                    "ase-in-out;\r\n\t\t-ms-transition: background-color 0.2s ease-in-out, color 0.2s eas" +
-                    "e-in-out, opacity 0.2s ease-in-out;\r\n\t\ttransition: background-color 0.2s ease-in" +
-                    "-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;\r\n\t\tbackground-color: #1c" +
-                    "b495;\r\n\t\tborder-radius: 6px;\r\n\t\tborder: 0;\r\n\t\tcolor: #ffffff !important;\r\n\t\tcurs" +
-                    "or: pointer;\r\n\t\tdisplay: inline-block;\r\n\t\tfont-weight: 700;\r\n\t\theight: 2.75em;\r\n" +
-                    "\t\tline-height: 2.75em;\r\n\t\tpadding: 0 1.125em;\r\n\t\ttext-align: center;\r\n\t\ttext-dec" +
-                    "oration: none;\r\n\t\twhite-space: nowrap;\r\n\t}\r\n\r\n\t\tinput[type=\"submit\"]:hover,\r\n\t\ti" +
-                    "nput[type=\"reset\"]:hover,\r\n\t\tinput[type=\"button\"]:hover,\r\n\t\tbutton:hover,\r\n\t\t.bu" +
-                    "tton:hover {\r\n\t\t\tbackground-color: #1fcaa7;\r\n\t\t}\r\n\r\n\t\tinput[type=\"submit\"]:activ" +
-                    "e,\r\n\t\tinput[type=\"reset\"]:active,\r\n\t\tinput[type=\"button\"]:active,\r\n\t\tbutton:acti" +
-                    "ve,\r\n\t\t.button:active {\r\n\t\t\tbackground-color: #199e83;\r\n\t\t}\r\n\r\n\t\tinput[type=\"sub" +
-                    "mit\"].disabled, input[type=\"submit\"]:disabled,\r\n\t\tinput[type=\"reset\"].disabled,\r" +
-                    "\n\t\tinput[type=\"reset\"]:disabled,\r\n\t\tinput[type=\"button\"].disabled,\r\n\t\tinput[type" +
-                    "=\"button\"]:disabled,\r\n\t\tbutton.disabled,\r\n\t\tbutton:disabled,\r\n\t\t.button.disabled" +
-                    ",\r\n\t\t.button:disabled {\r\n\t\t\topacity: 0.5;\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width" +
-                    ": 480px) {\r\n\r\n\t\t\tinput[type=\"submit\"],\r\n\t\t\tinput[type=\"reset\"],\r\n\t\t\tinput[type=\"" +
-                    "button\"],\r\n\t\t\tbutton,\r\n\t\t\t.button {\r\n\t\t\t\tpadding: 0;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n/* Header *" +
-                    "/\r\n\r\n\t#header h1 {\r\n\t\tfont-size: 3.25em;\r\n\t\tmargin: 0 0 0.55em 0;\r\n\t}\r\n\r\n\t#heade" +
-                    "r p {\r\n\t\tfont-size: 1.35em;\r\n\t\tline-height: 1.65em;\r\n\t}\r\n\r\n\t#header a {\r\n\t\tcolor" +
-                    ": inherit;\r\n\t}\r\n\r\n\t@media screen and (max-width: 736px) {\r\n\r\n\t\t#header h1 {\r\n\t\t\t" +
-                    "font-size: 2em;\r\n\t\t}\r\n\r\n\t\t#header p {\r\n\t\t\tfont-size: 1em;\r\n\t\t}\r\n\r\n\t}\r\n\r\n\t@media " +
-                    "screen and (max-width: 480px) {\r\n\r\n\t\t#header {\r\n\t\t\tmargin: 0 0 1em 0;\r\n\t\t}\r\n\r\n\t}" +
-                    "\r\n\r\n/* Signup Form */\r\n\r\n\t#signup-form {\r\n\t\tdisplay: -moz-flex;\r\n\t\tdisplay: -web" +
-                    "kit-flex;\r\n\t\tdisplay: -ms-flex;\r\n\t\tdisplay: flex;\r\n\t\tposition: relative;\r\n\t}\r\n\r\n" +
-                    "\t\t#signup-form input[type=\"text\"],\r\n\t\t#signup-form input[type=\"password\"],\r\n\t\t#s" +
-                    "ignup-form input[type=\"email\"] {\r\n\t\t\twidth: 18em;\r\n\t\t}\r\n\r\n\t\t#signup-form > * {\r\n" +
-                    "\t\t\tmargin: 0 0 0 1em;\r\n\t\t}\r\n\r\n\t\t#signup-form > :first-child {\r\n\t\t\tmargin: 0 0 0 " +
-                    "0;\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width: 480px) {\r\n\r\n\t\t\t#signup-form {\r\n\t\t\t\t-m" +
-                    "oz-flex-direction: column;\r\n\t\t\t\t-webkit-flex-direction: column;\r\n\t\t\t\t-ms-flex-di" +
-                    "rection: column;\r\n\t\t\t\tflex-direction: column;\r\n\t\t\t}\r\n\r\n\t\t\t\t#signup-form input[ty" +
-                    "pe=\"type\"],\r\n\t\t\t\t#signup-form input[type=\"password\"],\r\n\t\t\t\t#signup-form input[ty" +
-                    "pe=\"email\"] {\r\n\t\t\t\t\twidth: 100%;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t#signup-form > * {\r\n\t\t\t\t\tmargin: " +
-                    "1.25em 0 0 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t#signup-form .message {\r\n\t\t\t\t\tbottom: -1.5em;\r\n\t\t\t\t\t" +
-                    "font-size: 0.9em;\r\n\t\t\t\t\theight: 1em;\r\n\t\t\t\t\tleft: 0;\r\n\t\t\t\t\tline-height: inherit;\r" +
-                    "\n\t\t\t\t\tmargin-top: 0;\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t}\r\n\r\n\t\t}\r\n\r\n/* Footer */\r\n\r\n" +
-                    "\t#footer {\r\n\t\t-moz-transition: opacity 0.5s ease-in-out;\r\n\t\t-webkit-transition: " +
-                    "opacity 0.5s ease-in-out;\r\n\t\t-ms-transition: opacity 0.5s ease-in-out;\r\n\t\ttransi" +
-                    "tion: opacity 0.5s ease-in-out;\r\n\t\tbottom: 4em;\r\n\t\tcolor: rgba(255, 255, 255, 0." +
-                    "5);\r\n\t\tleft: 4em;\r\n\t\topacity: 0.5;\r\n\t\tposition: absolute;\r\n\t}\r\n\r\n\t\t#footer .icon" +
-                    "s {\r\n\t\t\tmargin: 0 0 0.5em 0;\r\n\t\t}\r\n\r\n\t\t#footer .copyright {\r\n\t\t\tfont-size: 0.8em" +
-                    ";\r\n\t\t\tlist-style: none;\r\n\t\t\tpadding: 0;\r\n\t\t}\r\n\r\n\t\t\t#footer .copyright li {\r\n\t\t\t\t" +
-                    "border-left: solid 1px rgba(255, 255, 255, 0.25);\r\n\t\t\t\tdisplay: inline-block;\r\n\t" +
-                    "\t\t\tline-height: 1em;\r\n\t\t\t\tmargin: 0 0 0 0.75em;\r\n\t\t\t\tpadding: 0 0 0 0.75em;\r\n\t\t\t" +
-                    "}\r\n\r\n\t\t\t\t#footer .copyright li:first-child {\r\n\t\t\t\t\tborder-left: 0;\r\n\t\t\t\t\tmargin-" +
-                    "left: 0;\r\n\t\t\t\t\tpadding-left: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t#footer .copyright a {\r\n\t\t\t\tcolor: " +
-                    "inherit;\r\n\t\t\t}\r\n\r\n\t\t#footer:hover {\r\n\t\t\topacity: 1;\r\n\t\t}\r\n\r\n\t\t#footer > :last-ch" +
-                    "ild {\r\n\t\t\tmargin-bottom: 0;\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width: 1680px) {\r\n\r" +
-                    "\n\t\t\t#footer {\r\n\t\t\t\tbottom: 3.5em;\r\n\t\t\t\tleft: 3.5em;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media scr" +
-                    "een and (max-width: 736px) {\r\n\r\n\t\t\t#footer {\r\n\t\t\t\tbottom: 2em;\r\n\t\t\t\tleft: 2em;\r\n" +
-                    "\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media screen and (max-width: 360px) {\r\n\r\n\t\t\t#footer {\r\n\t\t\t\tbot" +
-                    "tom: 1.25em;\r\n\t\t\t\tleft: 1.25em;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t@media screen and (max-height:" +
-                    " 640px) {\r\n\r\n\t\t\t#footer {\r\n\t\t\t\tbottom: auto;\r\n\t\t\t\tleft: auto;\r\n\t\t\t\tmargin: 1em 0" +
-                    " 0 0;\r\n\t\t\t\tposition: relative;\r\n\t\t\t}\r\n\r\n\t\t}\r\n\t\t</style>\r\n</head>\r\n<body>\r\n\r\n    " +
-                    "<!-- Header -->\r\n    <header id=\"header\">\r\n        <h1>");
+            this.Write("</title>\r\n\t<meta charset=\"utf-8\" />\r\n\t<meta name=\"viewport\" content=\"width=device" +
+                    "-width, initial-scale=1, user-scalable=no\" />\r\n\t<!-- <link rel=\"stylesheet\" href" +
+                    "=\"assets/css/main.css\"/> -->\r\n\t<link rel=\"stylesheet\" href=\"https://maxcdn.boots" +
+                    "trapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css\" />\r\n\t<style>\r\n\t@import " +
+                    "url(\"http://fonts.googleapis.com/css?family=Roboto:400,700\");\r\n\r\n/*\r\n\tEventually" +
+                    " by HTML5 UP\r\n\thtml5up.net | @n33co\r\n\tFree for personal and commercial use under" +
+                    " the CCA 3.0 license (html5up.net/license)\r\n*/\r\n\r\n\r\n/* Reset */\r\n\r\nhtml,\r\nbody,\r" +
+                    "\ndiv,\r\nspan,\r\napplet,\r\nobject,\r\niframe,\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6,\r\np,\r\nblock" +
+                    "quote,\r\npre,\r\na,\r\nabbr,\r\nacronym,\r\naddress,\r\nbig,\r\ncite,\r\ncode,\r\ndel,\r\ndfn,\r\nem," +
+                    "\r\nimg,\r\nins,\r\nkbd,\r\nq,\r\ns,\r\nsamp,\r\nsmall,\r\nstrike,\r\nstrong,\r\nsub,\r\nsup,\r\ntt,\r\nva" +
+                    "r,\r\nb,\r\nu,\r\ni,\r\ncenter,\r\ndl,\r\ndt,\r\ndd,\r\nol,\r\nul,\r\nli,\r\nfieldset,\r\nform,\r\nlabel,\r" +
+                    "\nlegend,\r\ntable,\r\ncaption,\r\ntbody,\r\ntfoot,\r\nthead,\r\ntr,\r\nth,\r\ntd,\r\narticle,\r\nasi" +
+                    "de,\r\ncanvas,\r\ndetails,\r\nembed,\r\nfigure,\r\nfigcaption,\r\nfooter,\r\nheader,\r\nhgroup,\r" +
+                    "\nmenu,\r\nnav,\r\noutput,\r\nruby,\r\nsection,\r\nsummary,\r\ntime,\r\nmark,\r\naudio,\r\nvideo {\r" +
+                    "\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    font-size: 100%;\r\n    font" +
+                    ": inherit;\r\n    vertical-align: baseline;\r\n}\r\n\r\narticle,\r\naside,\r\ndetails,\r\nfigc" +
+                    "aption,\r\nfigure,\r\nfooter,\r\nheader,\r\nhgroup,\r\nmenu,\r\nnav,\r\nsection {\r\n    display" +
+                    ": block;\r\n}\r\n\r\nbody {\r\n    line-height: 1;\r\n}\r\n\r\nol,\r\nul {\r\n    list-style: none" +
+                    ";\r\n}\r\n\r\nblockquote,\r\nq {\r\n    quotes: none;\r\n}\r\n\r\nblockquote:before,\r\nblockquote" +
+                    ":after,\r\nq:before,\r\nq:after {\r\n    content: \'\';\r\n    content: none;\r\n}\r\n\r\ntable " +
+                    "{\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\n\r\nbody {\r\n    -web" +
+                    "kit-text-size-adjust: none;\r\n}\r\n\r\n\r\n/* Box Model */\r\n\r\n*,\r\n*:before,\r\n*:after {\r" +
+                    "\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n    box-" +
+                    "sizing: border-box;\r\n}\r\n\r\n\r\n/* Basic */\r\n\r\n@-ms-viewport {\r\n    width: device-wi" +
+                    "dth;\r\n}\r\n\r\nbody {\r\n    -ms-overflow-style: scrollbar;\r\n}\r\n\r\n@media screen and (m" +
+                    "ax-width: 480px) {\r\n    html,\r\n    body {\r\n        min-width: 320px;\r\n    }\r\n}\r\n" +
+                    "\r\nhtml,\r\nbody {\r\n    height: 100%;\r\n    overflow-x: hidden;\r\n    width: 100%;\r\n}" +
+                    "\r\n\r\n@media screen and (max-height: 640px) {\r\n    html,\r\n    body {\r\n        heig" +
+                    "ht: auto;\r\n        min-height: 100%;\r\n    }\r\n}\r\n\r\nbody {\r\n    display: -moz-flex" +
+                    ";\r\n    display: -webkit-flex;\r\n    display: -ms-flex;\r\n    display: flex;\r\n    -" +
+                    "moz-flex-direction: column;\r\n    -webkit-flex-direction: column;\r\n    -ms-flex-d" +
+                    "irection: column;\r\n    flex-direction: column;\r\n    -moz-justify-content: center" +
+                    ";\r\n    -webkit-justify-content: center;\r\n    -ms-justify-content: center;\r\n    j" +
+                    "ustify-content: center;\r\n    background-color: #000;\r\n    padding: 6em 4em 4em 4" +
+                    "em;\r\n}\r\n\r\nbody > * {\r\n    position: relative;\r\n    z-index: 2;\r\n}\r\n\r\nbody.is-loa" +
+                    "ding *,\r\nbody.is-loading *:before,\r\nbody.is-loading *:after {\r\n    -moz-animatio" +
+                    "n: none !important;\r\n    -webkit-animation: none !important;\r\n    -ms-animation:" +
+                    " none !important;\r\n    animation: none !important;\r\n    -moz-transition: none !i" +
+                    "mportant;\r\n    -webkit-transition: none !important;\r\n    -ms-transition: none !i" +
+                    "mportant;\r\n    transition: none !important;\r\n}\r\n\r\n@media screen and (max-width: " +
+                    "1680px) {\r\n    body {\r\n        padding: 6em 3.5em 3.5em 3.5em;\r\n    }\r\n}\r\n\r\n@med" +
+                    "ia screen and (max-width: 736px) {\r\n    body {\r\n        padding: 5em 2em 2em 2em" +
+                    ";\r\n    }\r\n}\r\n\r\n@media screen and (max-width: 360px) {\r\n    body {\r\n        paddi" +
+                    "ng: 5em 1.25em 1.25em 1.25em;\r\n    }\r\n}\r\n\r\n\r\n/* BG */\r\n\r\n#bg {\r\n    -moz-transit" +
+                    "ion: opacity 2s ease-in-out;\r\n    -webkit-transition: opacity 2s ease-in-out;\r\n " +
+                    "   -ms-transition: opacity 2s ease-in-out;\r\n    transition: opacity 2s ease-in-o" +
+                    "ut;\r\n    height: 100%;\r\n    left: 0;\r\n    opacity: 0.25;\r\n    position: fixed;\r\n" +
+                    "    top: 0;\r\n    width: 100%;\r\n    z-index: 1;\r\n}\r\n\r\n#bg div {\r\n    -moz-transit" +
+                    "ion: opacity 3s ease, visibility 3s;\r\n    -webkit-transition: opacity 3s ease, v" +
+                    "isibility 3s;\r\n    -ms-transition: opacity 3s ease, visibility 3s;\r\n    transiti" +
+                    "on: opacity 3s ease, visibility 3s;\r\n    background-size: cover;\r\n    height: 10" +
+                    "0%;\r\n    left: 0;\r\n    opacity: 0;\r\n    position: absolute;\r\n    top: 0;\r\n    vi" +
+                    "sibility: hidden;\r\n    width: 150%;\r\n}\r\n\r\n#bg div.visible {\r\n    -moz-animation:" +
+                    " bg 45s linear infinite;\r\n    -webkit-animation: bg 45s linear infinite;\r\n    -m" +
+                    "s-animation: bg 45s linear infinite;\r\n    animation: bg 45s linear infinite;\r\n  " +
+                    "  opacity: 1;\r\n    visibility: visible;\r\n    z-index: 1;\r\n}\r\n\r\n#bg div.visible.t" +
+                    "op {\r\n    z-index: 2;\r\n}\r\n\r\n@media screen and (max-width: 1280px) {\r\n    #bg div" +
+                    ".visible {\r\n        -moz-animation: bg 29.25s linear infinite;\r\n        -webkit-" +
+                    "animation: bg 29.25s linear infinite;\r\n        -ms-animation: bg 29.25s linear i" +
+                    "nfinite;\r\n        animation: bg 29.25s linear infinite;\r\n    }\r\n}\r\n\r\n@media scre" +
+                    "en and (max-width: 736px) {\r\n    #bg div.visible {\r\n        -moz-animation: bg 1" +
+                    "8s linear infinite;\r\n        -webkit-animation: bg 18s linear infinite;\r\n       " +
+                    " -ms-animation: bg 18s linear infinite;\r\n        animation: bg 18s linear infini" +
+                    "te;\r\n    }\r\n}\r\n\r\n#bg div:only-child {\r\n    -moz-animation-direction: alternate !" +
+                    "important;\r\n    -webkit-animation-direction: alternate !important;\r\n    -ms-anim" +
+                    "ation-direction: alternate !important;\r\n    animation-direction: alternate !impo" +
+                    "rtant;\r\n}\r\n\r\nbody.is-loading #bg {\r\n    opacity: 0;\r\n}\r\n\r\n@-moz-keyframes bg {\r\n" +
+                    "    0% {\r\n        -moz-transform: translateX(0);\r\n        -webkit-transform: tra" +
+                    "nslateX(0);\r\n        -ms-transform: translateX(0);\r\n        transform: translate" +
+                    "X(0);\r\n    }\r\n    100% {\r\n        -moz-transform: translateX(-25%);\r\n        -we" +
+                    "bkit-transform: translateX(-25%);\r\n        -ms-transform: translateX(-25%);\r\n   " +
+                    "     transform: translateX(-25%);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes bg {\r\n    0% {" +
+                    "\r\n        -moz-transform: translateX(0);\r\n        -webkit-transform: translateX(" +
+                    "0);\r\n        -ms-transform: translateX(0);\r\n        transform: translateX(0);\r\n " +
+                    "   }\r\n    100% {\r\n        -moz-transform: translateX(-25%);\r\n        -webkit-tra" +
+                    "nsform: translateX(-25%);\r\n        -ms-transform: translateX(-25%);\r\n        tra" +
+                    "nsform: translateX(-25%);\r\n    }\r\n}\r\n\r\n@-ms-keyframes bg {\r\n    0% {\r\n        -m" +
+                    "oz-transform: translateX(0);\r\n        -webkit-transform: translateX(0);\r\n       " +
+                    " -ms-transform: translateX(0);\r\n        transform: translateX(0);\r\n    }\r\n    10" +
+                    "0% {\r\n        -moz-transform: translateX(-25%);\r\n        -webkit-transform: tran" +
+                    "slateX(-25%);\r\n        -ms-transform: translateX(-25%);\r\n        transform: tran" +
+                    "slateX(-25%);\r\n    }\r\n}\r\n\r\n@keyframes bg {\r\n    0% {\r\n        -moz-transform: tr" +
+                    "anslateX(0);\r\n        -webkit-transform: translateX(0);\r\n        -ms-transform: " +
+                    "translateX(0);\r\n        transform: translateX(0);\r\n    }\r\n    100% {\r\n        -m" +
+                    "oz-transform: translateX(-25%);\r\n        -webkit-transform: translateX(-25%);\r\n " +
+                    "       -ms-transform: translateX(-25%);\r\n        transform: translateX(-25%);\r\n " +
+                    "   }\r\n}\r\n\r\n\r\n/* Type */\r\n\r\nbody,\r\ninput,\r\nselect,\r\ntextarea {\r\n    color: rgba(2" +
+                    "55, 255, 255, 0.75);\r\n    font-family: \"Roboto\", sans-serif;\r\n    font-size: 16p" +
+                    "t;\r\n    font-weight: 400;\r\n    letter-spacing: -0.01em;\r\n    line-height: 1.65em" +
+                    ";\r\n}\r\n\r\n@media screen and (max-width: 1680px) {\r\n    body,\r\n    input,\r\n    sele" +
+                    "ct,\r\n    textarea {\r\n        font-size: 12pt;\r\n    }\r\n}\r\n\r\n@media screen and (ma" +
+                    "x-width: 1280px) {\r\n    body,\r\n    input,\r\n    select,\r\n    textarea {\r\n        " +
+                    "font-size: 11pt;\r\n    }\r\n}\r\n\r\n@media screen and (max-width: 980px) {\r\n    body,\r" +
+                    "\n    input,\r\n    select,\r\n    textarea {\r\n        font-size: 12pt;\r\n    }\r\n}\r\n\r\n" +
+                    "@media screen and (max-width: 736px) {\r\n    body,\r\n    input,\r\n    select,\r\n    " +
+                    "textarea {\r\n        font-size: 12pt;\r\n    }\r\n}\r\n\r\n@media screen and (max-width: " +
+                    "480px) {\r\n    body,\r\n    input,\r\n    select,\r\n    textarea {\r\n        font-size:" +
+                    " 12pt;\r\n    }\r\n}\r\n\r\na {\r\n    -moz-transition: border-bottom-color 0.2s ease, col" +
+                    "or 0.2s ease;\r\n    -webkit-transition: border-bottom-color 0.2s ease, color 0.2s" +
+                    " ease;\r\n    -ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;\r\n   " +
+                    " transition: border-bottom-color 0.2s ease, color 0.2s ease;\r\n    border-bottom:" +
+                    " dotted 1px rgba(255, 255, 255, 0.25);\r\n    color: #74B3CE;\r\n    text-decoration" +
+                    ": none;\r\n}\r\n\r\na.install {\r\n    background-color: #413C58;\r\n}\r\n\r\na:hover {\r\n    b" +
+                    "order-bottom-color: transparent;\r\n    color: #413C58 !important;\r\n    text-decor" +
+                    "ation: none;\r\n}\r\n\r\nstrong,\r\nb {\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\ne" +
+                    "m,\r\ni {\r\n    font-style: italic;\r\n}\r\n\r\np {\r\n    margin: 0 0 2em 0;\r\n}\r\n\r\nh1,\r\nh2" +
+                    ",\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    color: #fff;\r\n    font-weight: 700;\r\n    line-height" +
+                    ": 1em;\r\n    margin: 0 0 1em 0;\r\n}\r\n\r\nh1 a,\r\nh2 a,\r\nh3 a,\r\nh4 a,\r\nh5 a,\r\nh6 a {\r\n" +
+                    "    color: inherit;\r\n    text-decoration: none;\r\n}\r\n\r\nh1 {\r\n    font-size: 2.5em" +
+                    ";\r\n    line-height: 1.25em;\r\n}\r\n\r\nh2 {\r\n    font-size: 1.75em;\r\n    line-height:" +
+                    " 1.5em;\r\n}\r\n\r\nh3 {\r\n    font-size: 1.35em;\r\n    line-height: 1.5em;\r\n}\r\n\r\nh4 {\r\n" +
+                    "    font-size: 1.1em;\r\n    line-height: 1.5em;\r\n}\r\n\r\nh5 {\r\n    font-size: 0.9em;" +
+                    "\r\n    line-height: 1.5em;\r\n}\r\n\r\nh6 {\r\n    font-size: 0.7em;\r\n    line-height: 1." +
+                    "5em;\r\n}\r\n\r\nsub {\r\n    font-size: 0.8em;\r\n    position: relative;\r\n    top: 0.5em" +
+                    ";\r\n}\r\n\r\nsup {\r\n    font-size: 0.8em;\r\n    position: relative;\r\n    top: -0.5em;\r" +
+                    "\n}\r\n\r\nblockquote {\r\n    border-left: solid 8px rgba(255, 255, 255, 0.35);\r\n    f" +
+                    "ont-style: italic;\r\n    margin: 0 0 2em 0;\r\n    padding: 0.5em 0 0.5em 2em;\r\n}\r\n" +
+                    "\r\ncode {\r\n    background: rgba(255, 255, 255, 0.125);\r\n    border-radius: 6px;\r\n" +
+                    "    border: solid 2px rgba(255, 255, 255, 0.35);\r\n    font-family: \"Courier New\"" +
+                    ", monospace;\r\n    font-size: 0.9em;\r\n    margin: 0 0.25em;\r\n    padding: 0.25em " +
+                    "0.65em;\r\n}\r\n\r\npre {\r\n    -webkit-overflow-scrolling: touch;\r\n    font-family: \"C" +
+                    "ourier New\", monospace;\r\n    font-size: 0.9em;\r\n    margin: 0 0 2em 0;\r\n}\r\n\r\npre" +
+                    " code {\r\n    display: block;\r\n    line-height: 1.75em;\r\n    padding: 1em 1.5em;\r" +
+                    "\n    overflow-x: auto;\r\n}\r\n\r\nhr {\r\n    border: 0;\r\n    border-bottom: solid 2px " +
+                    "rgba(255, 255, 255, 0.35);\r\n    margin: 2em 0;\r\n}\r\n\r\nhr.major {\r\n    margin: 3em" +
+                    " 0;\r\n}\r\n\r\n\r\n/* Section/Article */\r\n\r\nsection.special,\r\narticle.special {\r\n    te" +
+                    "xt-align: center;\r\n}\r\n\r\nheader p {\r\n    color: rgba(255, 255, 255, 0.5);\r\n    po" +
+                    "sition: relative;\r\n    margin: 0 0 1.5em 0;\r\n}\r\n\r\nheader h2 + p {\r\n    font-size" +
+                    ": 1.25em;\r\n    margin-top: -1em;\r\n    line-height: 1.5em;\r\n}\r\n\r\nheader h3 + p {\r" +
+                    "\n    font-size: 1.1em;\r\n    margin-top: -0.8em;\r\n    line-height: 1.5em;\r\n}\r\n\r\nh" +
+                    "eader h4 + p,\r\nheader h5 + p,\r\nheader h6 + p {\r\n    font-size: 0.9em;\r\n    margi" +
+                    "n-top: -0.6em;\r\n    line-height: 1.5em;\r\n}\r\n\r\n@media screen and (max-width: 980p" +
+                    "x) {\r\n    header br {\r\n        display: none;\r\n    }\r\n}\r\n\r\n@media screen and (ma" +
+                    "x-width: 736px) {\r\n    header br {\r\n        display: inline;\r\n    }\r\n}\r\n\r\n@media" +
+                    " screen and (max-width: 480px) {\r\n    header br {\r\n        display: none;\r\n    }" +
+                    "\r\n}\r\n\r\n\r\n/* Icon */\r\n\r\n.icon {\r\n    text-decoration: none;\r\n    border-bottom: n" +
+                    "one;\r\n    position: relative;\r\n}\r\n\r\n.icon:before {\r\n    -moz-osx-font-smoothing:" +
+                    " grayscale;\r\n    -webkit-font-smoothing: antialiased;\r\n    font-family: FontAwes" +
+                    "ome;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-transform: non" +
+                    "e !important;\r\n}\r\n\r\n.icon > .label {\r\n    display: none;\r\n}\r\n\r\n\r\n/* List */\r\n\r\no" +
+                    "l {\r\n    list-style: decimal;\r\n    margin: 0 0 2em 0;\r\n    padding-left: 1.25em;" +
+                    "\r\n}\r\n\r\nol li {\r\n    padding-left: 0.25em;\r\n}\r\n\r\nul {\r\n    list-style: disc;\r\n   " +
+                    " margin: 0 0 2em 0;\r\n    padding-left: 1em;\r\n}\r\n\r\nul li {\r\n    padding-left: 0.5" +
+                    "em;\r\n}\r\n\r\nul.icons {\r\n    cursor: default;\r\n    list-style: none;\r\n    padding-l" +
+                    "eft: 0;\r\n}\r\n\r\nul.icons li {\r\n    display: inline-block;\r\n    padding: 0 1em 0 0;" +
+                    "\r\n}\r\n\r\nul.icons li:last-child {\r\n    padding-right: 0;\r\n}\r\n\r\nul.icons li .icon:b" +
+                    "efore {\r\n    font-size: 1.25em;\r\n}\r\n\r\nul.icons li a {\r\n    color: inherit;\r\n}\r\n\r" +
+                    "\n\r\n/* Form */\r\n\r\nform {\r\n    margin: 0 0 2em 0;\r\n}\r\n\r\nform .message {\r\n    text-" +
+                    "decoration: none;\r\n    -moz-transition: opacity 0.2s ease-in-out, -moz-transform" +
+                    " 0.2s ease-in-out;\r\n    -webkit-transition: opacity 0.2s ease-in-out, -webkit-tr" +
+                    "ansform 0.2s ease-in-out;\r\n    -ms-transition: opacity 0.2s ease-in-out, -ms-tra" +
+                    "nsform 0.2s ease-in-out;\r\n    transition: opacity 0.2s ease-in-out, transform 0." +
+                    "2s ease-in-out;\r\n    -moz-transform: scale(1.05);\r\n    -webkit-transform: scale(" +
+                    "1.05);\r\n    -ms-transform: scale(1.05);\r\n    transform: scale(1.05);\r\n    height" +
+                    ": 2.75em;\r\n    line-height: 2.75em;\r\n    opacity: 0;\r\n}\r\n\r\nform .message:before " +
+                    "{\r\n    -moz-osx-font-smoothing: grayscale;\r\n    -webkit-font-smoothing: antialia" +
+                    "sed;\r\n    font-family: FontAwesome;\r\n    font-style: normal;\r\n    font-weight: n" +
+                    "ormal;\r\n    text-transform: none !important;\r\n}\r\n\r\nform .message:before {\r\n    m" +
+                    "argin-right: 0.5em;\r\n}\r\n\r\nform .message.visible {\r\n    -moz-transform: scale(1);" +
+                    "\r\n    -webkit-transform: scale(1);\r\n    -ms-transform: scale(1);\r\n    transform:" +
+                    " scale(1);\r\n    opacity: 1;\r\n}\r\n\r\nform .message.success {\r\n    color: #74B3CE;\r\n" +
+                    "}\r\n\r\nform .message.success:before {\r\n    content: \'\\f00c\';\r\n}\r\n\r\nform .message.f" +
+                    "ailure {\r\n    color: #ff2361;\r\n}\r\n\r\nform .message.failure:before {\r\n    content:" +
+                    " \'\\f119\';\r\n}\r\n\r\nlabel {\r\n    color: #fff;\r\n    display: block;\r\n    font-size: 0" +
+                    ".9em;\r\n    font-weight: 700;\r\n    margin: 0 0 1em 0;\r\n}\r\n\r\n@-moz-keyframes focus" +
+                    " {\r\n    0% {\r\n        -moz-transform: scale(1);\r\n        -webkit-transform: scal" +
+                    "e(1);\r\n        -ms-transform: scale(1);\r\n        transform: scale(1);\r\n    }\r\n  " +
+                    "  50% {\r\n        -moz-transform: scale(1.025);\r\n        -webkit-transform: scale" +
+                    "(1.025);\r\n        -ms-transform: scale(1.025);\r\n        transform: scale(1.025);" +
+                    "\r\n    }\r\n    100% {\r\n        -moz-transform: scale(1);\r\n        -webkit-transfor" +
+                    "m: scale(1);\r\n        -ms-transform: scale(1);\r\n        transform: scale(1);\r\n  " +
+                    "  }\r\n}\r\n\r\n@-webkit-keyframes focus {\r\n    0% {\r\n        -moz-transform: scale(1)" +
+                    ";\r\n        -webkit-transform: scale(1);\r\n        -ms-transform: scale(1);\r\n     " +
+                    "   transform: scale(1);\r\n    }\r\n    50% {\r\n        -moz-transform: scale(1.025);" +
+                    "\r\n        -webkit-transform: scale(1.025);\r\n        -ms-transform: scale(1.025);" +
+                    "\r\n        transform: scale(1.025);\r\n    }\r\n    100% {\r\n        -moz-transform: s" +
+                    "cale(1);\r\n        -webkit-transform: scale(1);\r\n        -ms-transform: scale(1);" +
+                    "\r\n        transform: scale(1);\r\n    }\r\n}\r\n\r\n@-ms-keyframes focus {\r\n    0% {\r\n  " +
+                    "      -moz-transform: scale(1);\r\n        -webkit-transform: scale(1);\r\n        -" +
+                    "ms-transform: scale(1);\r\n        transform: scale(1);\r\n    }\r\n    50% {\r\n       " +
+                    " -moz-transform: scale(1.025);\r\n        -webkit-transform: scale(1.025);\r\n      " +
+                    "  -ms-transform: scale(1.025);\r\n        transform: scale(1.025);\r\n    }\r\n    100" +
+                    "% {\r\n        -moz-transform: scale(1);\r\n        -webkit-transform: scale(1);\r\n  " +
+                    "      -ms-transform: scale(1);\r\n        transform: scale(1);\r\n    }\r\n}\r\n\r\n@keyfr" +
+                    "ames focus {\r\n    0% {\r\n        -moz-transform: scale(1);\r\n        -webkit-trans" +
+                    "form: scale(1);\r\n        -ms-transform: scale(1);\r\n        transform: scale(1);\r" +
+                    "\n    }\r\n    50% {\r\n        -moz-transform: scale(1.025);\r\n        -webkit-transf" +
+                    "orm: scale(1.025);\r\n        -ms-transform: scale(1.025);\r\n        transform: sca" +
+                    "le(1.025);\r\n    }\r\n    100% {\r\n        -moz-transform: scale(1);\r\n        -webki" +
+                    "t-transform: scale(1);\r\n        -ms-transform: scale(1);\r\n        transform: sca" +
+                    "le(1);\r\n    }\r\n}\r\n\r\ninput[type=\"text\"],\r\ninput[type=\"password\"],\r\ninput[type=\"em" +
+                    "ail\"],\r\nselect,\r\ntextarea {\r\n    -moz-appearance: none;\r\n    -webkit-appearance:" +
+                    " none;\r\n    -ms-appearance: none;\r\n    appearance: none;\r\n    -moz-transform: sc" +
+                    "ale(1);\r\n    -webkit-transform: scale(1);\r\n    -ms-transform: scale(1);\r\n    tra" +
+                    "nsform: scale(1);\r\n    -moz-transition: border-color 0.2s ease, background-color" +
+                    " 0.2s ease;\r\n    -webkit-transition: border-color 0.2s ease, background-color 0." +
+                    "2s ease;\r\n    -ms-transition: border-color 0.2s ease, background-color 0.2s ease" +
+                    ";\r\n    transition: border-color 0.2s ease, background-color 0.2s ease;\r\n    back" +
+                    "ground-color: transparent;\r\n    border-radius: 6px;\r\n    border: none;\r\n    bord" +
+                    "er: solid 2px rgba(255, 255, 255, 0.35);\r\n    color: inherit;\r\n    display: bloc" +
+                    "k;\r\n    outline: 0;\r\n    padding: 0 1em;\r\n    text-decoration: none;\r\n    width:" +
+                    " 100%;\r\n}\r\n\r\ninput[type=\"text\"]:invalid,\r\ninput[type=\"password\"]:invalid,\r\ninput" +
+                    "[type=\"email\"]:invalid,\r\nselect:invalid,\r\ntextarea:invalid {\r\n    box-shadow: no" +
+                    "ne;\r\n}\r\n\r\ninput[type=\"text\"]:focus,\r\ninput[type=\"password\"]:focus,\r\ninput[type=\"" +
+                    "email\"]:focus,\r\nselect:focus,\r\ntextarea:focus {\r\n    -moz-animation: focus 0.1s;" +
+                    "\r\n    -webkit-animation: focus 0.1s;\r\n    -ms-animation: focus 0.1s;\r\n    animat" +
+                    "ion: focus 0.1s;\r\n    background-color: rgba(255, 255, 255, 0.125);\r\n    border-" +
+                    "color: #74B3CE;\r\n}\r\n\r\n.select-wrapper {\r\n    text-decoration: none;\r\n    display" +
+                    ": block;\r\n    position: relative;\r\n}\r\n\r\n.select-wrapper:before {\r\n    -moz-osx-f" +
+                    "ont-smoothing: grayscale;\r\n    -webkit-font-smoothing: antialiased;\r\n    font-fa" +
+                    "mily: FontAwesome;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-" +
+                    "transform: none !important;\r\n}\r\n\r\n.select-wrapper:before {\r\n    color: rgba(255," +
+                    " 255, 255, 0.35);\r\n    content: \'\\f078\';\r\n    display: block;\r\n    height: 2.75e" +
+                    "m;\r\n    line-height: 2.75em;\r\n    pointer-events: none;\r\n    position: absolute;" +
+                    "\r\n    right: 0;\r\n    text-align: center;\r\n    top: 0;\r\n    width: 2.75em;\r\n}\r\n\r\n" +
+                    ".select-wrapper select::-ms-expand {\r\n    display: none;\r\n}\r\n\r\ninput[type=\"text\"" +
+                    "],\r\ninput[type=\"password\"],\r\ninput[type=\"email\"],\r\nselect {\r\n    height: 2.75em;" +
+                    "\r\n}\r\n\r\ntextarea {\r\n    padding: 0.75em 1em;\r\n}\r\n\r\ninput[type=\"checkbox\"],\r\ninput" +
+                    "[type=\"radio\"] {\r\n    -moz-appearance: none;\r\n    -webkit-appearance: none;\r\n   " +
+                    " -ms-appearance: none;\r\n    appearance: none;\r\n    display: block;\r\n    float: l" +
+                    "eft;\r\n    margin-right: -2em;\r\n    opacity: 0;\r\n    width: 1em;\r\n    z-index: -1" +
+                    ";\r\n}\r\n\r\ninput[type=\"checkbox\"] + label,\r\ninput[type=\"radio\"] + label {\r\n    text" +
+                    "-decoration: none;\r\n    color: rgba(255, 255, 255, 0.75);\r\n    cursor: pointer;\r" +
+                    "\n    display: inline-block;\r\n    font-size: 1em;\r\n    font-weight: 400;\r\n    pad" +
+                    "ding-left: 2.4em;\r\n    padding-right: 0.75em;\r\n    position: relative;\r\n}\r\n\r\ninp" +
+                    "ut[type=\"checkbox\"] + label:before,\r\ninput[type=\"radio\"] + label:before {\r\n    -" +
+                    "moz-osx-font-smoothing: grayscale;\r\n    -webkit-font-smoothing: antialiased;\r\n  " +
+                    "  font-family: FontAwesome;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n" +
+                    "    text-transform: none !important;\r\n}\r\n\r\ninput[type=\"checkbox\"] + label:before" +
+                    ",\r\ninput[type=\"radio\"] + label:before {\r\n    background: rgba(255, 255, 255, 0.1" +
+                    "25);\r\n    border-radius: 6px;\r\n    border: solid 2px rgba(255, 255, 255, 0.35);\r" +
+                    "\n    content: \'\';\r\n    display: inline-block;\r\n    height: 1.65em;\r\n    left: 0;" +
+                    "\r\n    line-height: 1.58125em;\r\n    position: absolute;\r\n    text-align: center;\r" +
+                    "\n    top: 0;\r\n    width: 1.65em;\r\n}\r\n\r\ninput[type=\"checkbox\"]:checked + label:be" +
+                    "fore,\r\ninput[type=\"radio\"]:checked + label:before {\r\n    background: #74B3CE;\r\n " +
+                    "   border-color: #74B3CE;\r\n    color: #ffffff;\r\n    content: \'\\f00c\';\r\n}\r\n\r\ninpu" +
+                    "t[type=\"checkbox\"]:focus + label:before,\r\ninput[type=\"radio\"]:focus + label:befo" +
+                    "re {\r\n    border-color: #74B3CE;\r\n    box-shadow: 0 0 0 2px #74B3CE;\r\n}\r\n\r\ninput" +
+                    "[type=\"checkbox\"] + label:before {\r\n    border-radius: 6px;\r\n}\r\n\r\ninput[type=\"ra" +
+                    "dio\"] + label:before {\r\n    border-radius: 100%;\r\n}\r\n\r\n::-webkit-input-placehold" +
+                    "er {\r\n    color: rgba(255, 255, 255, 0.5) !important;\r\n    opacity: 1.0;\r\n}\r\n\r\n:" +
+                    "-moz-placeholder {\r\n    color: rgba(255, 255, 255, 0.5) !important;\r\n    opacity" +
+                    ": 1.0;\r\n}\r\n\r\n::-moz-placeholder {\r\n    color: rgba(255, 255, 255, 0.5) !importan" +
+                    "t;\r\n    opacity: 1.0;\r\n}\r\n\r\n:-ms-input-placeholder {\r\n    color: rgba(255, 255, " +
+                    "255, 0.5) !important;\r\n    opacity: 1.0;\r\n}\r\n\r\n.formerize-placeholder {\r\n    col" +
+                    "or: rgba(255, 255, 255, 0.5) !important;\r\n    opacity: 1.0;\r\n}\r\n\r\n\r\n/* Button */" +
+                    "\r\n\r\ninput[type=\"submit\"],\r\ninput[type=\"reset\"],\r\ninput[type=\"button\"],\r\nbutton,\r" +
+                    "\n.button {\r\n    -moz-appearance: none;\r\n    -webkit-appearance: none;\r\n    -ms-a" +
+                    "ppearance: none;\r\n    appearance: none;\r\n    -moz-transition: background-color 0" +
+                    ".2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;\r\n    -webkit-" +
+                    "transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0" +
+                    ".2s ease-in-out;\r\n    -ms-transition: background-color 0.2s ease-in-out, color 0" +
+                    ".2s ease-in-out, opacity 0.2s ease-in-out;\r\n    transition: background-color 0.2" +
+                    "s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;\r\n    background" +
+                    "-color: #74B3CE;\r\n    border-radius: 6px;\r\n    border: 0;\r\n    color: #ffffff !i" +
+                    "mportant;\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    font-weight: 70" +
+                    "0;\r\n    height: 2.75em;\r\n    line-height: 2.75em;\r\n    padding: 0 1.125em;\r\n    " +
+                    "text-align: center;\r\n    text-decoration: none;\r\n    white-space: nowrap;\r\n}\r\n\r\n" +
+                    "input[type=\"submit\"]:hover,\r\ninput[type=\"reset\"]:hover,\r\ninput[type=\"button\"]:ho" +
+                    "ver,\r\nbutton:hover,\r\n.button:hover {\r\n    background-color: white;\r\n}\r\n\r\ninput[t" +
+                    "ype=\"submit\"]:active,\r\ninput[type=\"reset\"]:active,\r\ninput[type=\"button\"]:active," +
+                    "\r\nbutton:active,\r\n.button:active {\r\n    background-color: #232621;\r\n}\r\n\r\ninput[t" +
+                    "ype=\"submit\"].disabled,\r\ninput[type=\"submit\"]:disabled,\r\ninput[type=\"reset\"].dis" +
+                    "abled,\r\ninput[type=\"reset\"]:disabled,\r\ninput[type=\"button\"].disabled,\r\ninput[typ" +
+                    "e=\"button\"]:disabled,\r\nbutton.disabled,\r\nbutton:disabled,\r\n.button.disabled,\r\n.b" +
+                    "utton:disabled {\r\n    opacity: 0.5;\r\n}\r\n\r\n@media screen and (max-width: 480px) {" +
+                    "\r\n    input[type=\"submit\"],\r\n    input[type=\"reset\"],\r\n    input[type=\"button\"]," +
+                    "\r\n    button,\r\n    .button {\r\n        padding: 0;\r\n    }\r\n}\r\n\r\n\r\n/* Header */\r\n\r" +
+                    "\n#header h1 {\r\n    font-size: 3.25em;\r\n    margin: 0 0 0.55em 0;\r\n}\r\n\r\n#header p" +
+                    " {\r\n    font-size: 1.35em;\r\n    line-height: 1.65em;\r\n}\r\n\r\n#header a {\r\n    colo" +
+                    "r: inherit;\r\n}\r\n\r\n@media screen and (max-width: 736px) {\r\n    #header h1 {\r\n    " +
+                    "    font-size: 2em;\r\n    }\r\n    #header p {\r\n        font-size: 1em;\r\n    }\r\n}\r\n" +
+                    "\r\n@media screen and (max-width: 480px) {\r\n    #header {\r\n        margin: 0 0 1em" +
+                    " 0;\r\n    }\r\n}\r\n\r\n\r\n/* Signup Form */\r\n\r\n#signup-form {\r\n    display: -moz-flex;\r" +
+                    "\n    display: -webkit-flex;\r\n    display: -ms-flex;\r\n    display: flex;\r\n    pos" +
+                    "ition: relative;\r\n}\r\n\r\n#signup-form input[type=\"text\"],\r\n#signup-form input[type" +
+                    "=\"password\"],\r\n#signup-form input[type=\"email\"] {\r\n    width: 18em;\r\n}\r\n\r\n#signu" +
+                    "p-form > * {\r\n    margin: 0 0 0 1em;\r\n}\r\n\r\n#signup-form >:first-child {\r\n    mar" +
+                    "gin: 0 0 0 0;\r\n}\r\n\r\n@media screen and (max-width: 480px) {\r\n    #signup-form {\r\n" +
+                    "        -moz-flex-direction: column;\r\n        -webkit-flex-direction: column;\r\n " +
+                    "       -ms-flex-direction: column;\r\n        flex-direction: column;\r\n    }\r\n    " +
+                    "#signup-form input[type=\"type\"],\r\n    #signup-form input[type=\"password\"],\r\n    " +
+                    "#signup-form input[type=\"email\"] {\r\n        width: 100%;\r\n    }\r\n    #signup-for" +
+                    "m > * {\r\n        margin: 1.25em 0 0 0;\r\n    }\r\n    #signup-form .message {\r\n    " +
+                    "    bottom: -1.5em;\r\n        font-size: 0.9em;\r\n        height: 1em;\r\n        le" +
+                    "ft: 0;\r\n        line-height: inherit;\r\n        margin-top: 0;\r\n        position:" +
+                    " absolute;\r\n    }\r\n}\r\n\r\n\r\n/* Footer */\r\n\r\n#footer {\r\n    -moz-transition: opacit" +
+                    "y 0.5s ease-in-out;\r\n    -webkit-transition: opacity 0.5s ease-in-out;\r\n    -ms-" +
+                    "transition: opacity 0.5s ease-in-out;\r\n    transition: opacity 0.5s ease-in-out;" +
+                    "\r\n    bottom: 4em;\r\n    color: rgba(255, 255, 255, 0.5);\r\n    left: 4em;\r\n    op" +
+                    "acity: 0.5;\r\n    position: absolute;\r\n}\r\n\r\n#footer .icons {\r\n    margin: 0 0 0.5" +
+                    "em 0;\r\n}\r\n\r\n#footer .copyright {\r\n    font-size: 0.8em;\r\n    list-style: none;\r\n" +
+                    "    padding: 0;\r\n}\r\n\r\n#footer .copyright li {\r\n    border-left: solid 1px rgba(2" +
+                    "55, 255, 255, 0.25);\r\n    display: inline-block;\r\n    line-height: 1em;\r\n    mar" +
+                    "gin: 0 0 0 0.75em;\r\n    padding: 0 0 0 0.75em;\r\n}\r\n\r\n#footer .copyright li:first" +
+                    "-child {\r\n    border-left: 0;\r\n    margin-left: 0;\r\n    padding-left: 0;\r\n}\r\n\r\n#" +
+                    "footer .copyright a {\r\n    color: inherit;\r\n}\r\n\r\n#footer:hover {\r\n    opacity: 1" +
+                    ";\r\n}\r\n\r\n#footer >:last-child {\r\n    margin-bottom: 0;\r\n}\r\n\r\np.small {\r\n    displ" +
+                    "ay: inline-block;\r\n    font-size: 75%;\r\n    color: slategray;\r\n}\r\n\r\n@media scree" +
+                    "n and (max-width: 1680px) {\r\n    #footer {\r\n        bottom: 3.5em;\r\n        left" +
+                    ": 3.5em;\r\n    }\r\n    p.small {\r\n        padding-left: 400px;\r\n    }\r\n}\r\n\r\n@media" +
+                    " screen and (max-width: 736px) {\r\n    #footer {\r\n        bottom: 2em;\r\n        l" +
+                    "eft: 2em;\r\n    }\r\n    p.small {\r\n        padding-left: 0px;\r\n    }\r\n}\r\n\r\n@media " +
+                    "screen and (max-width: 360px) {\r\n    #footer {\r\n        bottom: 1.25em;\r\n       " +
+                    " left: 1.25em;\r\n    }\r\n}\r\n\r\n@media screen and (max-height: 640px) {\r\n    #footer" +
+                    " {\r\n        bottom: auto;\r\n        left: auto;\r\n        margin: 1em 0 0 0;\r\n    " +
+                    "    position: relative;\r\n    }\r\n}\r\n\t\t</style>\r\n</head>\r\n<body>\r\n\r\n\t<!-- Header -" +
+                    "->\r\n\t<header id=\"header\">\r\n\t\t<h1>");
             
-            #line 1214 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1315 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.ApplicationName));
             
             #line default
             #line hidden
-            this.Write("</h1>\r\n        <h2>");
+            this.Write("</h1>\r\n\t\t<h2>");
             
-            #line 1215 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1316 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.AuthorName));
             
             #line default
             #line hidden
-            this.Write("</h2>\r\n        <h3>");
+            this.Write("</h2>\r\n\t\t<h3>");
             
-            #line 1216 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1317 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.PublisherName));
             
             #line default
             #line hidden
-            this.Write("</h3>\r\n        <p>\r\n            ");
+            this.Write("</h3>\r\n\t\t<p>\r\n\t\t\t");
             
-            #line 1218 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1319 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.SuiteName));
             
             #line default
             #line hidden
-            this.Write("\r\n        </p>\r\n        <p>\r\n            ");
+            this.Write("\r\n\t\t</p>\r\n\t\t<p>\r\n\t\t\t");
             
-            #line 1221 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1322 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.Summary));
             
             #line default
             #line hidden
-            this.Write("\r\n        </p>\r\n    </header>\r\n    <p>");
+            this.Write("\r\n\t\t</p>\r\n\t</header>\r\n\t<p>");
             
-            #line 1224 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1325 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.Description));
             
             #line default
             #line hidden
-            this.Write("</p>\r\n    <!-- Signup Form -->\r\n    <form id=\"signup-form\" method=\"post\" action=\"" +
-                    "#\">\r\n        <input type=\"text\" disabled placeholder=\"Requires .NET Framework ");
+            this.Write("</p>\r\n\t<!-- Signup Form -->\r\n\t<form id=\"signup-form\" method=\"post\" action=\"#\">\r\n\t" +
+                    "\t<input type=\"text\" disabled placeholder=\"Requires .NET Framework ");
             
-            #line 1227 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1328 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.FrameworkVersion));
             
             #line default
             #line hidden
-            this.Write("\" ></input>\r\n        <a class=\"button btn-lg\" href=\"");
+            this.Write("\" ></input>\r\n\t\t<a class=\"button btn-lg\" href=\"");
             
-            #line 1228 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1329 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(AppLauncher.Name));
             
             #line default
             #line hidden
-            this.Write("\">Launch</a>\r\n        <a class=\"button btn-lg\" href=\"setup.exe\">Install</a>\r\n    " +
-                    "</form>\r\n    <!-- Footer -->\r\n    <footer id=\"footer\">\r\n        <ul class=\"copyr" +
-                    "ight\">\r\n            <li>\r\n\t\t\t");
+            this.Write("\">Launch</a>\r\n\t\t");
             
-            #line 1235 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1330 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+
+		if (!string.IsNullOrWhiteSpace(AdditionalLink.Key))
+		{
+		
+            
+            #line default
+            #line hidden
+            this.Write("\t\t<a class=\"button btn-lg\" href=\"");
+            
+            #line 1334 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(AdditionalLink.Value));
+            
+            #line default
+            #line hidden
+            this.Write("\">");
+            
+            #line 1334 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(AdditionalLink.Key));
+            
+            #line default
+            #line hidden
+            this.Write("</a>\r\n\t\t");
+            
+            #line 1335 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+
+		}
+		
+            
+            #line default
+            #line hidden
+            this.Write("\t\t<a class=\"button btn-lg install\" href=\"setup.exe\">Install</a>\r\n\t</form>\r\n\t<!-- " +
+                    "Footer -->\r\n\t<footer id=\"footer\">\r\n\t\t<ul class=\"copyright\">\r\n\t\t\t\r\n\t\t\t");
+            
+            #line 1344 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
  
 				if(!string.IsNullOrWhiteSpace(Model.Manifest.Copyright))
 				{
@@ -400,94 +445,138 @@ namespace ClickTwice.Publisher.Core.Resources
             
             #line default
             #line hidden
-            this.Write("\t\t\t\t© ");
+            this.Write("\t\t\t\t<li>\r\n\t\t\t\t© ");
             
-            #line 1239 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1349 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Manifest.Copyright));
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t\t\t");
+            this.Write("\r\n\t\t\t\t</li>\r\n\t\t\t\t");
             
-            #line 1240 "C:\Users\ucrm4\Source\Repos\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            #line 1351 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
 
 				}
 				
             
             #line default
             #line hidden
-            this.Write("\r\n\t\t\t</li>\r\n            <li><a href=\"http://html5up.net\">HTML5 UP</a></li>\r\n     " +
-                    "       <li><a href=\"https://bitbucket.org/agc93/clicktwice\" target=\"_blank\">Clic" +
-                    "kTwice</a></li>\r\n        </ul>\r\n    </footer>\r\n\r\n    <!-- Scripts -->\r\n    <!--[" +
-                    "if lte IE 8]><script src=\"assets/js/ie/respond.min.js\"></script><![endif]-->\r\n<!" +
-                    "-- <script src=\"assets/js/main.js\"></script> -->\r\n<script type=\"text/javascript\"" +
-                    ">\r\n/*\r\n\tEventually by HTML5 UP\r\n\thtml5up.net | @n33co\r\n\tFree for personal and co" +
-                    "mmercial use under the CCA 3.0 license (html5up.net/license)\r\n*/\r\n\r\n(function() " +
-                    "{\r\n\r\n\t\"use strict\";\r\n\r\n\t// Methods/polyfills.\r\n\r\n\t\t// classList | (c) @remy | gi" +
-                    "thub.com/remy/polyfills | rem.mit-license.org\r\n\t\t\t!function(){function t(t){this" +
-                    ".el=t;for(var n=t.className.replace(/^\\s+|\\s+$/g,\"\").split(/\\s+/),i=0;i<n.length" +
-                    ";i++)e.call(this,n[i])}function n(t,n,i){Object.defineProperty?Object.defineProp" +
-                    "erty(t,n,{get:i}):t.__defineGetter__(n,i)}if(!(\"undefined\"==typeof window.Elemen" +
-                    "t||\"classList\"in document.documentElement)){var i=Array.prototype,e=i.push,s=i.s" +
-                    "plice,o=i.join;t.prototype={add:function(t){this.contains(t)||(e.call(this,t),th" +
-                    "is.el.className=this.toString())},contains:function(t){return-1!=this.el.classNa" +
-                    "me.indexOf(t)},item:function(t){return this[t]||null},remove:function(t){if(this" +
-                    ".contains(t)){for(var n=0;n<this.length&&this[n]!=t;n++);s.call(this,n,1),this.e" +
-                    "l.className=this.toString()}},toString:function(){return o.call(this,\" \")},toggl" +
-                    "e:function(t){return this.contains(t)?this.remove(t):this.add(t),this.contains(t" +
-                    ")}},window.DOMTokenList=t,n(Element.prototype,\"classList\",function(){return new " +
-                    "t(this)})}}();\r\n\r\n\t\t// canUse\r\n\t\t\twindow.canUse=function(p){if(!window._canUse)w" +
-                    "indow._canUse=document.createElement(\"div\");var e=window._canUse.style,up=p.char" +
-                    "At(0).toUpperCase()+p.slice(1);return p in e||\"Moz\"+up in e||\"Webkit\"+up in e||\"" +
-                    "O\"+up in e||\"ms\"+up in e};\r\n\r\n\t\t// window.addEventListener\r\n\t\t\t(function(){if(\"a" +
-                    "ddEventListener\"in window)return;window.addEventListener=function(type,f){window" +
-                    ".attachEvent(\"on\"+type,f)}})();\r\n\r\n\t// Vars.\r\n\t\tvar\t$body = document.querySelect" +
-                    "or(\'body\');\r\n\r\n\t// Disable animations/transitions until everything\'s loaded.\r\n\t\t" +
-                    "$body.classList.add(\'is-loading\');\r\n\r\n\t\twindow.addEventListener(\'load\', function" +
-                    "() {\r\n\t\t\twindow.setTimeout(function() {\r\n\t\t\t\t$body.classList.remove(\'is-loading\'" +
-                    ");\r\n\t\t\t}, 100);\r\n\t\t});\r\n\r\n\t// Slideshow Background.\r\n\t\t(function() {\r\n\r\n\t\t\t// Se" +
-                    "ttings.\r\n\t\t\t\tvar settings = {\r\n\r\n\t\t\t\t\t// Images (in the format of \'url\': \'alignm" +
-                    "ent\').\r\n\t\t\t\t\t\timages: {\r\n\t\t\t\t\t\t\t\'http://i.imgur.com/bfesoBp.jpg\': \'center\',\r\n\t\t\t" +
-                    "\t\t\t\t\'http://i.imgur.com/bfesoBp.jpg\': \'center\'\r\n\t\t\t\t\t\t},\r\n\r\n\t\t\t\t\t// Delay.\r\n\t\t\t\t" +
-                    "\t\tdelay: 6000\r\n\r\n\t\t\t\t};\r\n\r\n\t\t\t// Vars.\r\n\t\t\t\tvar\tpos = 0, lastPos = 0,\r\n\t\t\t\t\t$wra" +
-                    "pper, $bgs = [], $bg,\r\n\t\t\t\t\tk, v;\r\n\r\n\t\t\t// Create BG wrapper, BGs.\r\n\t\t\t\t$wrapper" +
-                    " = document.createElement(\'div\');\r\n\t\t\t\t\t$wrapper.id = \'bg\';\r\n\t\t\t\t\t$body.appendCh" +
-                    "ild($wrapper);\r\n\r\n\t\t\t\tfor (k in settings.images) {\r\n\r\n\t\t\t\t\t// Create BG.\r\n\t\t\t\t\t\t" +
-                    "$bg = document.createElement(\'div\');\r\n\t\t\t\t\t\t\t$bg.style.backgroundImage = \'url(\"\'" +
-                    " + k + \'\")\';\r\n\t\t\t\t\t\t\t$bg.style.backgroundPosition = settings.images[k];\r\n\t\t\t\t\t\t\t" +
-                    "$wrapper.appendChild($bg);\r\n\r\n\t\t\t\t\t// Add it to array.\r\n\t\t\t\t\t\t$bgs.push($bg);\r\n\r" +
-                    "\n\t\t\t\t}\r\n\r\n\t\t\t// Main loop.\r\n\t\t\t\t$bgs[pos].classList.add(\'visible\');\r\n\t\t\t\t$bgs[po" +
-                    "s].classList.add(\'top\');\r\n\r\n\t\t\t\t// Bail if we only have a single BG or the clien" +
-                    "t doesn\'t support transitions.\r\n\t\t\t\t\tif ($bgs.length == 1\r\n\t\t\t\t\t||\t!canUse(\'tran" +
-                    "sition\'))\r\n\t\t\t\t\t\treturn;\r\n\r\n\t\t\t\twindow.setInterval(function() {\r\n\r\n\t\t\t\t\tlastPos " +
-                    "= pos;\r\n\t\t\t\t\tpos++;\r\n\r\n\t\t\t\t\t// Wrap to beginning if necessary.\r\n\t\t\t\t\t\tif (pos >=" +
-                    " $bgs.length)\r\n\t\t\t\t\t\t\tpos = 0;\r\n\r\n\t\t\t\t\t// Swap top images.\r\n\t\t\t\t\t\t$bgs[lastPos]." +
-                    "classList.remove(\'top\');\r\n\t\t\t\t\t\t$bgs[pos].classList.add(\'visible\');\r\n\t\t\t\t\t\t$bgs[" +
-                    "pos].classList.add(\'top\');\r\n\r\n\t\t\t\t\t// Hide last image after a short delay.\r\n\t\t\t\t" +
-                    "\t\twindow.setTimeout(function() {\r\n\t\t\t\t\t\t\t$bgs[lastPos].classList.remove(\'visible" +
-                    "\');\r\n\t\t\t\t\t\t}, settings.delay / 2);\r\n\r\n\t\t\t\t}, settings.delay);\r\n\r\n\t\t})();\r\n\r\n\t// " +
-                    "Signup Form.\r\n\t\t(function() {\r\n\r\n\t\t\t// Vars.\r\n\t\t\t\tvar $form = document.querySele" +
-                    "ctorAll(\'#signup-form\')[0],\r\n\t\t\t\t\t$submit = document.querySelectorAll(\'#signup-f" +
-                    "orm input[type=\"submit\"]\')[0],\r\n\t\t\t\t\t$message;\r\n\r\n\t\t\t// Bail if addEventListener" +
-                    " isn\'t supported.\r\n\t\t\t\tif (!(\'addEventListener\' in $form))\r\n\t\t\t\t\treturn;\r\n\r\n\t\t\t/" +
-                    "/ Message.\r\n\t\t\t\t$message = document.createElement(\'span\');\r\n\t\t\t\t\t$message.classL" +
-                    "ist.add(\'message\');\r\n\t\t\t\t\t$form.appendChild($message);\r\n\r\n\t\t\t\t$message._show = f" +
-                    "unction(type, text) {\r\n\r\n\t\t\t\t\t$message.innerHTML = text;\r\n\t\t\t\t\t$message.classLis" +
-                    "t.add(type);\r\n\t\t\t\t\t$message.classList.add(\'visible\');\r\n\r\n\t\t\t\t\twindow.setTimeout(" +
-                    "function() {\r\n\t\t\t\t\t\t$message._hide();\r\n\t\t\t\t\t}, 3000);\r\n\r\n\t\t\t\t};\r\n\r\n\t\t\t\t$message." +
-                    "_hide = function() {\r\n\t\t\t\t\t$message.classList.remove(\'visible\');\r\n\t\t\t\t};\r\n\r\n\t\t\t/" +
-                    "/ Events.\r\n\t\t\t// Note: If you\'re *not* using AJAX, get rid of this event listene" +
-                    "r.\r\n\t\t\t\t$form.addEventListener(\'submit\', function(event) {\r\n\r\n\t\t\t\t\tevent.stopPro" +
-                    "pagation();\r\n\t\t\t\t\tevent.preventDefault();\r\n\r\n\t\t\t\t\t// Hide message.\r\n\t\t\t\t\t\t$messa" +
-                    "ge._hide();\r\n\r\n\t\t\t\t\t// Disable submit.\r\n\t\t\t\t\t\t$submit.disabled = true;\r\n\r\n\t\t\t\t\t/" +
-                    "/ Process form.\r\n\t\t\t\t\t// Note: Doesn\'t actually do anything yet (other than repo" +
-                    "rt back with a \"thank you\"),\r\n\t\t\t\t\t// but there\'s enough here to piece together " +
-                    "a working AJAX submission call that does.\r\n\t\t\t\t\t\twindow.setTimeout(function() {\r" +
-                    "\n\r\n\t\t\t\t\t\t\t// Reset form.\r\n\t\t\t\t\t\t\t\t$form.reset();\r\n\r\n\t\t\t\t\t\t\t// Enable submit.\r\n\t\t" +
-                    "\t\t\t\t\t\t$submit.disabled = false;\r\n\r\n\t\t\t\t\t\t\t// Show message.\r\n\t\t\t\t\t\t\t\t$message._sh" +
-                    "ow(\'success\', \'Thank you!\');\r\n\t\t\t\t\t\t\t\t//$message._show(\'failure\', \'Something wen" +
-                    "t wrong. Please try again.\');\r\n\r\n\t\t\t\t\t\t}, 750);\r\n\r\n\t\t\t\t});\r\n\r\n\t\t})();\r\n\r\n})();\r\n" +
-                    "</script>\r\n\r\n</body>\r\n</html>\r\n");
+            this.Write("\r\n\t\t\t\r\n\t\t\t<li><a href=\"http://html5up.net\">HTML5 UP</a></li>\r\n\t\t\t<li><a href=\"htt" +
+                    "ps://bitbucket.org/agc93/clicktwice\" target=\"_blank\">ClickTwice</a></li>\r\n\t\t</ul" +
+                    ">\r\n\t</footer>\r\n\r\n\t<!-- Scripts -->\r\n\t<!--[if lte IE 8]><script src=\"assets/js/ie" +
+                    "/respond.min.js\"></script><![endif]-->\r\n<!-- <script src=\"assets/js/main.js\"></s" +
+                    "cript> -->\r\n<script type=\"text/javascript\">\r\n/*\r\n\tEventually by HTML5 UP\r\n\thtml5" +
+                    "up.net | @n33co\r\n\tFree for personal and commercial use under the CCA 3.0 license" +
+                    " (html5up.net/license)\r\n*/\r\n\r\n(function() {\r\n\r\n\t\"use strict\";\r\n\r\n\t// Methods/pol" +
+                    "yfills.\r\n\r\n\t\t// classList | (c) @remy | github.com/remy/polyfills | rem.mit-lice" +
+                    "nse.org\r\n\t\t\t!function(){function t(t){this.el=t;for(var n=t.className.replace(/^" +
+                    "\\s+|\\s+$/g,\"\").split(/\\s+/),i=0;i<n.length;i++)e.call(this,n[i])}function n(t,n," +
+                    "i){Object.defineProperty?Object.defineProperty(t,n,{get:i}):t.__defineGetter__(n" +
+                    ",i)}if(!(\"undefined\"==typeof window.Element||\"classList\"in document.documentElem" +
+                    "ent)){var i=Array.prototype,e=i.push,s=i.splice,o=i.join;t.prototype={add:functi" +
+                    "on(t){this.contains(t)||(e.call(this,t),this.el.className=this.toString())},cont" +
+                    "ains:function(t){return-1!=this.el.className.indexOf(t)},item:function(t){return" +
+                    " this[t]||null},remove:function(t){if(this.contains(t)){for(var n=0;n<this.lengt" +
+                    "h&&this[n]!=t;n++);s.call(this,n,1),this.el.className=this.toString()}},toString" +
+                    ":function(){return o.call(this,\" \")},toggle:function(t){return this.contains(t)?" +
+                    "this.remove(t):this.add(t),this.contains(t)}},window.DOMTokenList=t,n(Element.pr" +
+                    "ototype,\"classList\",function(){return new t(this)})}}();\r\n\r\n\t\t// canUse\r\n\t\t\twind" +
+                    "ow.canUse=function(p){if(!window._canUse)window._canUse=document.createElement(\"" +
+                    "div\");var e=window._canUse.style,up=p.charAt(0).toUpperCase()+p.slice(1);return " +
+                    "p in e||\"Moz\"+up in e||\"Webkit\"+up in e||\"O\"+up in e||\"ms\"+up in e};\r\n\r\n\t\t// win" +
+                    "dow.addEventListener\r\n\t\t\t(function(){if(\"addEventListener\"in window)return;windo" +
+                    "w.addEventListener=function(type,f){window.attachEvent(\"on\"+type,f)}})();\r\n\r\n\t//" +
+                    " Vars.\r\n\t\tvar\t$body = document.querySelector(\'body\');\r\n\r\n\t// Disable animations/" +
+                    "transitions until everything\'s loaded.\r\n\t\t$body.classList.add(\'is-loading\');\r\n\r\n" +
+                    "\t\twindow.addEventListener(\'load\', function() {\r\n\t\t\twindow.setTimeout(function() " +
+                    "{\r\n\t\t\t\t$body.classList.remove(\'is-loading\');\r\n\t\t\t}, 100);\r\n\t\t});\r\n\r\n\t// Slidesho" +
+                    "w Background.\r\n\t\t(function() {\r\n\t\t\t// Settings.\r\n\t\t\t\tvar settings = {\r\n\r\n\t\t\t\t\t//" +
+                    " Images (in the format of \'url\': \'alignment\').\r\n\t\t\t\t\t\timages: {\r\n\t\t\t\t\t\t");
+            
+            #line 1405 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+
+						foreach (var img in Images)
+						{
+							if (img == Images.Last())
+							{
+							
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\t\t\'");
+            
+            #line 1411 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(img));
+            
+            #line default
+            #line hidden
+            this.Write("\' : \'center\'\r\n\t\t\t\t\t\t");
+            
+            #line 1412 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+
+						}
+						else 
+						{
+						
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\t\t\'");
+            
+            #line 1417 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(img));
+            
+            #line default
+            #line hidden
+            this.Write("\' : \'center\',\r\n\t\t\t\t\t\t");
+            
+            #line 1418 "C:\Users\alist\Source\ClickTwice\src\ClickTwice.Publisher.Core\Resources\LaunchPage.tt"
+
+						}
+					}
+					
+            
+            #line default
+            #line hidden
+            this.Write("\t\t\t\t\t\t},\r\n\r\n\t\t\t\t\t// Delay.\r\n\t\t\t\t\t\tdelay: 6000\r\n\r\n\t\t\t\t};\r\n\r\n\t\t\t// Vars.\r\n\t\t\t\tvar\tp" +
+                    "os = 0, lastPos = 0,\r\n\t\t\t\t\t$wrapper, $bgs = [], $bg,\r\n\t\t\t\t\tk, v;\r\n\r\n\t\t\t// Create" +
+                    " BG wrapper, BGs.\r\n\t\t\t\t$wrapper = document.createElement(\'div\');\r\n\t\t\t\t\t$wrapper." +
+                    "id = \'bg\';\r\n\t\t\t\t\t$body.appendChild($wrapper);\r\n\r\n\t\t\t\tfor (k in settings.images) " +
+                    "{\r\n\r\n\t\t\t\t\t// Create BG.\r\n\t\t\t\t\t\t$bg = document.createElement(\'div\');\r\n\t\t\t\t\t\t\t$bg." +
+                    "style.backgroundImage = \'url(\"\' + k + \'\")\';\r\n\t\t\t\t\t\t\t$bg.style.backgroundPosition" +
+                    " = settings.images[k];\r\n\t\t\t\t\t\t\t$wrapper.appendChild($bg);\r\n\r\n\t\t\t\t\t// Add it to a" +
+                    "rray.\r\n\t\t\t\t\t\t$bgs.push($bg);\r\n\r\n\t\t\t\t}\r\n\r\n\t\t\t// Main loop.\r\n\t\t\t\t$bgs[pos].classLi" +
+                    "st.add(\'visible\');\r\n\t\t\t\t$bgs[pos].classList.add(\'top\');\r\n\r\n\t\t\t\t// Bail if we onl" +
+                    "y have a single BG or the client doesn\'t support transitions.\r\n\t\t\t\t\tif ($bgs.len" +
+                    "gth == 1\r\n\t\t\t\t\t||\t!canUse(\'transition\'))\r\n\t\t\t\t\t\treturn;\r\n\r\n\t\t\t\twindow.setInterva" +
+                    "l(function() {\r\n\r\n\t\t\t\t\tlastPos = pos;\r\n\t\t\t\t\tpos++;\r\n\r\n\t\t\t\t\t// Wrap to beginning " +
+                    "if necessary.\r\n\t\t\t\t\t\tif (pos >= $bgs.length)\r\n\t\t\t\t\t\t\tpos = 0;\r\n\r\n\t\t\t\t\t// Swap to" +
+                    "p images.\r\n\t\t\t\t\t\t$bgs[lastPos].classList.remove(\'top\');\r\n\t\t\t\t\t\t$bgs[pos].classLi" +
+                    "st.add(\'visible\');\r\n\t\t\t\t\t\t$bgs[pos].classList.add(\'top\');\r\n\r\n\t\t\t\t\t// Hide last i" +
+                    "mage after a short delay.\r\n\t\t\t\t\t\twindow.setTimeout(function() {\r\n\t\t\t\t\t\t\t$bgs[las" +
+                    "tPos].classList.remove(\'visible\');\r\n\t\t\t\t\t\t}, settings.delay / 2);\r\n\r\n\t\t\t\t}, sett" +
+                    "ings.delay);\r\n\r\n\t\t})();\r\n\r\n\t// Signup Form.\r\n\t\t(function() {\r\n\r\n\t\t\t// Vars.\r\n\t\t\t" +
+                    "\tvar $form = document.querySelectorAll(\'#signup-form\')[0],\r\n\t\t\t\t\t$submit = docum" +
+                    "ent.querySelectorAll(\'#signup-form input[type=\"submit\"]\')[0],\r\n\t\t\t\t\t$message;\r\n\r" +
+                    "\n\t\t\t// Bail if addEventListener isn\'t supported.\r\n\t\t\t\tif (!(\'addEventListener\' i" +
+                    "n $form))\r\n\t\t\t\t\treturn;\r\n\r\n\t\t\t// Message.\r\n\t\t\t\t$message = document.createElement" +
+                    "(\'span\');\r\n\t\t\t\t\t$message.classList.add(\'message\');\r\n\t\t\t\t\t$form.appendChild($mess" +
+                    "age);\r\n\r\n\t\t\t\t$message._show = function(type, text) {\r\n\r\n\t\t\t\t\t$message.innerHTML " +
+                    "= text;\r\n\t\t\t\t\t$message.classList.add(type);\r\n\t\t\t\t\t$message.classList.add(\'visibl" +
+                    "e\');\r\n\r\n\t\t\t\t\twindow.setTimeout(function() {\r\n\t\t\t\t\t\t$message._hide();\r\n\t\t\t\t\t}, 30" +
+                    "00);\r\n\r\n\t\t\t\t};\r\n\r\n\t\t\t\t$message._hide = function() {\r\n\t\t\t\t\t$message.classList.rem" +
+                    "ove(\'visible\');\r\n\t\t\t\t};\r\n\r\n\t\t\t// Events.\r\n\t\t\t// Note: If you\'re *not* using AJAX" +
+                    ", get rid of this event listener.\r\n\t\t\t\t$form.addEventListener(\'submit\', function" +
+                    "(event) {\r\n\r\n\t\t\t\t\tevent.stopPropagation();\r\n\t\t\t\t\tevent.preventDefault();\r\n\r\n\t\t\t\t" +
+                    "\t// Hide message.\r\n\t\t\t\t\t\t$message._hide();\r\n\r\n\t\t\t\t\t// Disable submit.\r\n\t\t\t\t\t\t$su" +
+                    "bmit.disabled = true;\r\n\r\n\t\t\t\t\t// Process form.\r\n\t\t\t\t\t// Note: Doesn\'t actually d" +
+                    "o anything yet (other than report back with a \"thank you\"),\r\n\t\t\t\t\t// but there\'s" +
+                    " enough here to piece together a working AJAX submission call that does.\r\n\t\t\t\t\t\t" +
+                    "window.setTimeout(function() {\r\n\r\n\t\t\t\t\t\t\t// Reset form.\r\n\t\t\t\t\t\t\t\t$form.reset();\r" +
+                    "\n\r\n\t\t\t\t\t\t\t// Enable submit.\r\n\t\t\t\t\t\t\t\t$submit.disabled = false;\r\n\r\n\t\t\t\t\t\t\t// Show" +
+                    " message.\r\n\t\t\t\t\t\t\t\t$message._show(\'success\', \'Thank you!\');\r\n\t\t\t\t\t\t\t\t//$message." +
+                    "_show(\'failure\', \'Something went wrong. Please try again.\');\r\n\r\n\t\t\t\t\t\t}, 750);\r\n" +
+                    "\r\n\t\t\t\t});\r\n\r\n\t\t})();\r\n\r\n})();\r\n</script>\r\n\r\n</body>\r\n</html>\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

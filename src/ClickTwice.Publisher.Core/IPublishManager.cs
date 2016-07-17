@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using ClickTwice.Publisher.Core.Exceptions;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
@@ -28,5 +25,20 @@ namespace ClickTwice.Publisher.Core
         /// <exception cref="BuildFailedException">Thrown when the build fails.</exception>
         List<HandlerResponse> PublishApp(string targetPath,
             PublishBehaviour behaviour = PublishBehaviour.CleanFirst);
+    }
+
+    public enum OperationType
+    {
+        Clean,
+        Build,
+        Publish,
+        Deploy
+    }
+
+    public enum PublishBehaviour
+    {
+        None,
+        CleanFirst,
+        DoNotBuild
     }
 }

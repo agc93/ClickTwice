@@ -15,7 +15,8 @@ namespace ClickTwice.Handlers.AppDetailsPage.Templating
         {
             var config = new RazorEngine.Configuration.TemplateServiceConfiguration
             {
-                TemplateManager = new PackageTemplateManager(directory)
+                TemplateManager = new PackageTemplateManager(directory),
+                CachingProvider = new DefaultCachingProvider(t => { })
             };
             Engine = RazorEngineService.Create(config);
             SourceDirectory = directory;
@@ -32,7 +33,6 @@ namespace ClickTwice.Handlers.AppDetailsPage.Templating
 
         internal DirectoryInfo CreateContentDirectory(DirectoryInfo outputPath)
         {
-            
             var model = new LaunchPageModel(Manifest, AppInfo)
             {
                 ContentDirectory = "./Web Files",
@@ -61,17 +61,26 @@ namespace ClickTwice.Handlers.AppDetailsPage.Templating
                 File.WriteAllText(compile, fullPath);
             }
             var indexFile = SourceDirectory.GetFiles("index.cshtml").FirstOrDefault();
-            if (indexFile == null) throw new FileNotFoundException("Could not location 'index.cshtml' which is a required file");
-            var indexDestPath = Path.Combine(WorkingDirectory.FullName,
-                indexFile.FullName.Replace(indexFile.Extension, ".html").Replace(SourceDirectory.FullName, string.Empty).Substring(1));
-            
-            var indexOutput = Engine.RunCompile(indexFile.Name, typeof (LaunchPageModel), model);
-            File.WriteAllText(indexDestPath, indexOutput);
+            if (indexFile != null)
+            {
+                var indexDestPath = Path.Combine(WorkingDirectory.FullName,
+                    indexFile.FullName.Replace(indexFile.Extension, ".html")
+                        .Replace(SourceDirectory.FullName, string.Empty)
+                        .Substring(1));
+
+                var indexOutput = Engine.RunCompile(indexFile.Name, typeof(LaunchPageModel), model);
+                File.WriteAllText(indexDestPath, indexOutput);
+            }
+            foreach (var file in WorkingDirectory.EnumerateFiles("*.cshtml", SearchOption.AllDirectories))
+            {
+                file.Delete();
+            }
             return WorkingDirectory;
         }
 
         public void Dispose()
         {
+            Engine.Dispose();
             WorkingDirectory.Delete(recursive: true);
         }
     }

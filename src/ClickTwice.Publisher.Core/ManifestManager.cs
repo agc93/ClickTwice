@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using ClickTwice.Publisher.Core.Manifests;
@@ -60,8 +57,9 @@ namespace ClickTwice.Publisher.Core
             return manifest;
         }
 
-        private AppManifest CreateFromDeployManifest(AppManifest manifest)
+        private AppManifest CreateFromDeployManifest(AppManifest manifest = null)
         {
+            manifest = manifest ?? new AppManifest();
             var xdoc = XDocument.Load(ApplicationManifestLocation);
             var descEl = xdoc.XPathSelectElement("//*[local-name()='description']");
             manifest.ApplicationName = descEl.FindAttribute("product");
@@ -75,13 +73,9 @@ namespace ClickTwice.Publisher.Core
             return manifest;
         }
 
-        private AppManifest CreateFromDeployManifest()
+        private AppManifest CreateFromAssemblyInfo(AppManifest manifest = null)
         {
-            return CreateFromDeployManifest(new AppManifest());
-        }
-
-        private AppManifest CreateFromAssemblyInfo(AppManifest manifest)
-        {
+            manifest = manifest ?? new AppManifest();
             var projectFolder = new FileInfo(ProjectFilePath).Directory;
             var infoFilePath = Path.Combine(projectFolder.FullName, "Properties", "AssemblyInfo.cs");
             if (File.Exists(infoFilePath))
@@ -96,11 +90,6 @@ namespace ClickTwice.Publisher.Core
                 return manifest;
             }
             return null;
-        }
-
-        private AppManifest CreateFromAssemblyInfo()
-        {
-            return CreateFromAssemblyInfo(new AppManifest());
         }
 
         public FileInfo DeployManifest(AppManifest manifest)

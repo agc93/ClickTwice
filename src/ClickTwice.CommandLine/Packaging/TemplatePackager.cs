@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.Linq;
 using ClickTwice.Publisher.Core;
 using NuGet;
 
@@ -34,24 +30,11 @@ namespace ClickTwice.CommandLine.Packaging
             NuSpec = manifest;
         }
 
-        public TemplatePackager(string pathToNuspec)
-        {
-            
-        }
-
         private void SetContentFiles(List<string> contentFiles)
         {
             NuSpec.Files = new List<ManifestFile>();
             contentFiles = contentFiles.Select(f => f.Contains("\\") ? f.Replace("\\", "/") : f).ToList();
             NuSpec.Files.AddRange(contentFiles.Select(f => new ManifestFile() {Source = f, Target = $"content/{f}"}));
-            //foreach (var file in contentFiles)
-            //{
-            //    NuSpec.Files.Add(new ManifestFile()
-            //    {
-            //        Source = file,
-            //        Target = file
-            //    });
-            //}
         }
         private IPackager Packager { get; set; }
         public FileInfo Package(string templateProjectDirectory, PackagingMode mode)

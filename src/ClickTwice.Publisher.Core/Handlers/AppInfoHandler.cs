@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClickTwice.Publisher.Core.Manifests;
 
 namespace ClickTwice.Publisher.Core.Handlers
@@ -27,7 +23,6 @@ namespace ClickTwice.Publisher.Core.Handlers
                 Manager = new AppInfoManager(AppInfo);
                 //there wasn't a manifest when we started
                 // so we clearly just created this
-                
             }
             //This will either create one using the passed in Manager or the discovered app.info
             Manager?.DeployAppInformation(outputPath);
@@ -39,7 +34,6 @@ namespace ClickTwice.Publisher.Core.Handlers
             var files = new DirectoryInfo(inputPath).EnumerateFiles("app.info", SearchOption.AllDirectories);
             if (files.Any())
             {
-                //return new HandlerResponse(this, HandlerResult.NotRun, $"No app.info file found in '{inputPath}'");
                 AppInfo = AppInfoManager.ReadFromFile(files.First().FullName);
             }
             return new HandlerResponse(this, true);

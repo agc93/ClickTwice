@@ -12,4 +12,10 @@
     <copyright>Copyright 2016</copyright>
     <tags>ClickTwice</tags>
   </metadata>
+  <files>
+    <file src="js/site.js" target="content/js/site.js" />
+    <file src="index.cshtml" target="content/index.cshtml" />
+    <file src="js/app.js" target="content/js/app.js" />
+    <file src="site.css" target="content/site.css" />
+  </files>
 </package>

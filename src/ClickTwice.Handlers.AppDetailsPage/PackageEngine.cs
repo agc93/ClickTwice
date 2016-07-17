@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using NuGet;
 
 namespace ClickTwice.Handlers.AppDetailsPage
@@ -17,9 +12,9 @@ namespace ClickTwice.Handlers.AppDetailsPage
             Resolver = new DefaultPackagePathResolver(Path.Combine(Path.GetTempPath(), "TemplatePackages"));
             FileSystem = new PhysicalFileSystem(Path.Combine(Path.GetTempPath(), "Templates"));
         }
-        internal PackageEngine(string packageId) : this()
+        internal PackageEngine(string packageId, string repoSource) : this()
         {
-            Repository = PackageRepositoryFactory.Default.CreateRepository("http://nudev.azurewebsites.net");
+            Repository = PackageRepositoryFactory.Default.CreateRepository(repoSource);
             Manager = new PackageManager(Repository, Resolver, FileSystem);
             Package = Repository.FindPackage(packageId, new VersionSpec() {MinVersion = new SemanticVersion(0, 0, 0, 0)},
                 true, true);

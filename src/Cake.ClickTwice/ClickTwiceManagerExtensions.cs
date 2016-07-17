@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cake.Common.Tools.MSBuild;
+using System.Linq;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
 
@@ -57,7 +58,10 @@ namespace Cake.ClickTwice
 
         public static ClickTwiceManager ThrowOnHandlerFailure(this ClickTwiceManager manager)
         {
-            manager.ThrowOnHandlerFailure = true;
+            manager.ErrorAction = resp =>
+            {
+                throw new PublishException(resp.Where(r => r.Result == HandlerResult.Error));
+            };
             return manager;
         }
 
@@ -72,5 +76,12 @@ namespace Cake.ClickTwice
             manager.PublishVersion = s;
             return manager;
         }
+
+        //public static ClickTwiceManager UseBuildAction(this ClickTwiceManager manager,
+        //    Action<CakePublishManager> buildAction)
+        //{
+        //    manager.BuildAction = buildAction;
+        //    return manager;
+        //}
     }
 }

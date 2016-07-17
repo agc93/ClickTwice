@@ -6,9 +6,9 @@ using System.IO;
 using System.Linq;
 using ClickTwice.CommandLine.Packaging;
 using ClickTwice.Handlers.AppDetailsPage;
-using ClickTwice.Handlers.LaunchPage;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
+using ClickTwice.Publisher.MSBuild;
 
 namespace TestApp
 {
@@ -42,7 +42,7 @@ namespace TestApp
             {
                 Platform = "AnyCPU",
                 Configuration = "Debug",
-                InputHandlers = new List<IInputHandler> {new MockInputHandler(), infoHandler},
+                InputHandlers = new List<IInputHandler> {infoHandler},
                 OutputHandlers = new List<IOutputHandler> {infoHandler, new PublishPageHandler(), new InstallPageHandler("install.htm"), handler },
                 Loggers = new List<IPublishLogger> { log, file }
             };

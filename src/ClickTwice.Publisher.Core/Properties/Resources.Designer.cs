@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClickTwice.Handlers.LaunchPage {
+namespace ClickTwice.Publisher.Core.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ClickTwice.Handlers.LaunchPage {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Templates {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Templates() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ClickTwice.Handlers.LaunchPage {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClickTwice.Handlers.LaunchPage.Templates", typeof(Templates).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClickTwice.Publisher.Core.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,24 +61,11 @@ namespace ClickTwice.Handlers.LaunchPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML&gt;
-        ///&lt;!--
-        ///    Eventually by HTML5 UP
-        ///    html5up.net | @n33co
-        ///    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-        ///--&gt;
-        ///&lt;html&gt;
-        ///&lt;head&gt;
-        ///    &lt;title&gt;Eventually by HTML5 UP&lt;/title&gt;
-        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
-        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, user-scalable=no&quot; /&gt;
-        ///    &lt;!--[if lte IE 8]&gt;&lt;script src=&quot;assets/js/ie/html5shiv.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;
-        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/main.css&quot; /&gt;
-        ///    &lt;!--[if lt [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUEBAQEBAUEBAUHBQQFBwkHBQUHCQoICAkICAoNCgsLCwsKDQwMDA0MDAwPDxERDw8XFhYWFxkZGRkZGRkZGRn/2wBDAQYGBgoJChQNDRQWEQ4RFhkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRn/wAARCAOEB4ADAREAAhEBAxEB/8QAGwABAQEBAQEBAQAAAAAAAAAAAgEAAwUEBgf/xAA0EAACAgEDAwIFBQACAwEBAAMBEQAhMQJBURJhcYGRIqGxwfAyQtHh8VJiAxNygpKiI7L/xAAaAQEBAQEBAQEAAAAAAAAAAAAAAQIDBAUG/8QAFxEBAQEBAAAAAAAAAAAAAAAAABEBIf/aAAwDAQACEQMRAD8A/mQD1fEPhz+Ofo34hQQH0rpKR+zgTVuBRJH5zCqbJe5GfzmBQfYGy [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Eventually {
+        internal static string BackgroundOne {
             get {
-                return ResourceManager.GetString("Eventually", resourceCulture);
+                return ResourceManager.GetString("BackgroundOne", resourceCulture);
             }
         }
     }

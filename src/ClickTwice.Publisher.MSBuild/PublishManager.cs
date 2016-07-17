@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Exceptions;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
+using ClickTwice.Publisher.MSBuild.Loggers;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
-using Microsoft.Build.Logging;
-using Microsoft.Build.Tasks;
-using ConsoleLogger = Microsoft.Build.Logging.ConsoleLogger;
 
-namespace ClickTwice.Publisher.Core
+namespace ClickTwice.Publisher.MSBuild
 {
     public class PublishManager : Manager, IPublishManager
     {
@@ -302,34 +298,12 @@ namespace ClickTwice.Publisher.Core
             doc.Save(ProjectFilePath);
         }
 
-        private string ReadVersionFromAssemblyInfo()
-        {
-            var projectFolder = new FileInfo(ProjectFilePath).Directory;
-            var infoFilePath = Path.Combine(projectFolder.FullName, "Properties", "AssemblyInfo.cs");
-            var props = File.ReadAllLines(infoFilePath).Where(l => l.StartsWith("[assembly: ")).ToList();
-            var v = props.Property("Version");
-            return v;
-        }
+        
 
         public void Dispose()
         {
             Manager.EndBuild();
             Manager.Dispose();
         }
-    }
-
-    public enum OperationType
-    {
-        Clean,
-        Build,
-        Publish,
-        Deploy
-    }
-
-    public enum PublishBehaviour
-    {
-        None,
-        CleanFirst,
-        DoNotBuild
     }
 }
