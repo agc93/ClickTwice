@@ -110,7 +110,7 @@ Task("Copy-Scripts")
         var scriptDir = artifacts + "/scripts/";
         CreateDirectory(scriptDir);
         CreateDirectory(scriptDir + "/bin/");
-        var files = GetFiles(artifacts + "lib/ScriptCs.ClickTwice/*.dll");
+        var files = GetFiles(artifacts + "lib/ScriptCs.ClickTwice/*ClickTwice*.dll");
         CopyFiles(files, scriptDir + "/bin/");
         CopyFiles(GetFiles("./*.csx"), artifacts + "/scripts/");
     });

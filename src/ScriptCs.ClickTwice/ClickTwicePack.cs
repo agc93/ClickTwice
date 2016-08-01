@@ -1,20 +1,40 @@
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ClickTwice.Publisher.Core;
+using ClickTwice.Publisher.MSBuild;
 using ScriptCs.Contracts;
 
 namespace ScriptCs.ClickTwice
 {
-    public class ClickTwicePack : ScriptPack<ClickTwiceContext>
+    public class ClickTwicePack : IScriptPackContext
     {
-
-        public override void Initialize(IScriptPackSession session)
+        public ClickTwicePack()
         {
-            session.ImportNamespace("ScriptCs.ClickTwice");
-            session.AddReference("ClickTwice.Publisher.Core");
-            base.Initialize(session);
+            
         }
 
-        public override IScriptPackContext GetContext()
+        public Publisher PublishApp(string projectFilePath)
         {
-            return new ClickTwiceContext();
+            var mgr = new PublishManager(projectFilePath, InformationSource.Both)
+            {
+                Configuration = Settings.Configuration,
+                Platform = Settings.Platform,
+                CleanOutputOnCompletion = Settings.OutputClean,
+                InputHandlers = Settings.InputHandlers,
+                OutputHandlers =  Settings.OutputHandlers,
+                Loggers = Settings.Loggers
+            };
+            return new Publisher(mgr);
         }
+
+        public void Configure(Action<ClickTwicePackSettings> configure)
+        {
+            configure.Invoke(Settings);
+        }
+
+        private ClickTwicePackSettings Settings { get; set; } = new ClickTwicePackSettings();
     }
 }

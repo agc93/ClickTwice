@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ScriptCs.ClickTwice</RootNamespace>
     <AssemblyName>ScriptCs.ClickTwice</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -47,11 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClickTwiceContext.cs" />
+    <Compile Include="ClickTwicePack.cs" />
     <Compile Include="ClickTwicePackSettings.cs" />
+    <Compile Include="MSBuild\MSBuildResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publisher.cs" />
-    <Compile Include="ClickTwicePack.cs" />
+    <Compile Include="ScriptPack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
