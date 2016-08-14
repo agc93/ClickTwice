@@ -6,11 +6,30 @@
 using System;
 using System.IO;
 
-namespace ScriptCs.ClickTwice.MSBuild
+namespace ClickTwice.Publisher.MSBuild
 {
-    internal static class MSBuildResolver
+    public static class MSBuildResolver
     {
-        public static string GetMSBuildPath(string assemblyName, MSBuildPlatform platform = MSBuildPlatform.Automatic, MSBuildToolVersion version = MSBuildToolVersion.Default)
+        public static string GetBuildAssemblyPath(string assemblyName, MSBuildPlatform platform = MSBuildPlatform.Automatic, MSBuildToolVersion version = MSBuildToolVersion.Default, Action<string> logCallback = null)
+        {
+            logCallback = logCallback ?? Console.WriteLine;
+            var binPath = version == MSBuildToolVersion.Default
+                ? GetHighestAvailableMSBuildVersion(platform)
+                : GetMSBuildPath((MSBuildVersion)version, platform);
+            // Get the MSBuild path.
+            if (binPath == null || !File.Exists(Path.Combine(binPath, $"{assemblyName}.dll")))
+            {
+                logCallback?.Invoke($"Could not locate assembly {assemblyName}");
+                return null;
+            }
+            else
+            {
+                logCallback?.Invoke($"Found {assemblyName} at {binPath}");
+                return Path.Combine(binPath, $"{assemblyName}.dll");
+            }
+        }
+
+        public static string GetMSBuildPath(MSBuildPlatform platform = MSBuildPlatform.Automatic, MSBuildToolVersion version = MSBuildToolVersion.Default)
         {
             var binPath = version == MSBuildToolVersion.Default
                 ? GetHighestAvailableMSBuildVersion(platform)
@@ -22,7 +41,7 @@ namespace ScriptCs.ClickTwice.MSBuild
             }
 
             // Get the MSBuild path.
-            return Path.Combine(binPath, $"{assemblyName}.dll");
+            return Path.Combine(binPath, "msbuild.exe");
         }
 
         private static string GetHighestAvailableMSBuildVersion(MSBuildPlatform buildPlatform)
@@ -39,7 +58,7 @@ namespace ScriptCs.ClickTwice.MSBuild
             foreach (var version in versions)
             {
                 var path = GetMSBuildPath(version, buildPlatform);
-                if (File.Exists(path))
+                if (Directory.Exists(path))
                 {
                     return path;
                 }
@@ -70,7 +89,7 @@ namespace ScriptCs.ClickTwice.MSBuild
         {
             // Get the bin path.
             var programFilesPath = Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFilesX86);
-            var binPath = Path.Combine(programFilesPath, string.Concat("MSBuild/", version, "/Bin"));
+            var binPath = Path.Combine(programFilesPath, "MSBuild", version, "Bin");
             if (buildPlatform == MSBuildPlatform.Automatic)
             {
                 if (System.Environment.Is64BitOperatingSystem)
@@ -118,7 +137,7 @@ namespace ScriptCs.ClickTwice.MSBuild
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace ScriptCs.ClickTwice.MSBuild
+namespace ClickTwice.Publisher.MSBuild
 {
     /// <summary>
     /// Represents an MSBuild exe platform.
@@ -148,7 +167,7 @@ namespace ScriptCs.ClickTwice.MSBuild
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace ScriptCs.ClickTwice.MSBuild
+namespace ClickTwice.Publisher.MSBuild
 {
     /// <summary>
     /// Represents a MSBuild tool version.
@@ -241,7 +260,7 @@ namespace ScriptCs.ClickTwice.MSBuild
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace ScriptCs.ClickTwice.MSBuild
+namespace ClickTwice.Publisher.MSBuild
 {
     internal enum MSBuildVersion
     {
@@ -257,7 +276,7 @@ namespace ScriptCs.ClickTwice.MSBuild
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace ScriptCs.ClickTwice.MSBuild
+namespace ClickTwice.Publisher.MSBuild
 {
     /// <summary>
     /// Represents a MSBuild platform target.

@@ -6,15 +6,18 @@ namespace ScriptCs.ClickTwice
 {
     public class ClickTwicePackSettings
     {
-        public ClickTwicePackSettings WithHandler(IInputHandler handler)
+        public ClickTwicePackSettings WithHandler(IHandler handler)
         {
-            InputHandlers.Add(handler);
-            return this;
-        }
-
-        public ClickTwicePackSettings WithHandler(IOutputHandler handler)
-        {
-            OutputHandlers.Add(handler);
+            var input = handler as IInputHandler;
+            var output = handler as IOutputHandler;
+            if (input != null)
+            {
+                InputHandlers.Add(input);
+            }
+            if (output != null)
+            {
+                OutputHandlers.Add(output);
+            }
             return this;
         }
 
@@ -23,12 +26,6 @@ namespace ScriptCs.ClickTwice
             Loggers.Add(logger);
             return this;
         }
-
-        internal List<IPublishLogger> Loggers { get; set; } = new List<IPublishLogger>();
-
-        internal List<IOutputHandler> OutputHandlers { get; set; } = new List<IOutputHandler>();
-
-        internal List<IInputHandler> InputHandlers { get; set; } = new List<IInputHandler>();
 
         public ClickTwicePackSettings SetConfiguration(string configuration)
         {
@@ -42,24 +39,54 @@ namespace ScriptCs.ClickTwice
             return this;
         }
 
-        public ClickTwicePackSettings EnableCleanFirst()
+        public ClickTwicePackSettings PreserveBuildOutput()
         {
-            CleanFirst = true;
+            OutputClean = false;
             return this;
         }
 
-        public ClickTwicePackSettings CleanOutputDirectory()
+        public ClickTwicePackSettings EnableBuildMessages()
         {
-            OutputClean = true;
+            LogBuildMessages = true;
             return this;
         }
 
-        internal bool OutputClean { get; set; }
+        public ClickTwicePackSettings UseLocalMsBuild()
+        {
+            UseDirectPublish = true;
+            return this;
+        }
 
-        internal bool CleanFirst { get; set; }
+        public ClickTwicePackSettings UseAssemblyInfoMetadata(bool useAssemblyInfo = true)
+        {
+            UseAssemblyInfo = useAssemblyInfo;
+            return this;
+        }
+
+        public ClickTwicePackSettings UseAppManifestMetadata(bool useMetadata = true)
+        {
+            UseAppManifest = useMetadata;
+            return this;
+        }
+
+        internal bool LogBuildMessages { get; set; }
+
+        internal bool OutputClean { get; set; } = true;
 
         internal string Platform { get; set; } = "AnyCPU";
 
         internal string Configuration { get; set; } = "Release";
+
+        internal bool UseDirectPublish { get; set; }
+
+        internal bool UseAssemblyInfo { get; set; }
+
+        internal bool UseAppManifest { get; set; } = true;
+
+        internal List<IPublishLogger> Loggers { get; set; } = new List<IPublishLogger>();
+
+        internal List<IOutputHandler> OutputHandlers { get; set; } = new List<IOutputHandler>();
+
+        internal List<IInputHandler> InputHandlers { get; set; } = new List<IInputHandler>();
     }
 }

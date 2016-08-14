@@ -167,5 +167,25 @@ namespace ClickTwice.Publisher.Core
                 .Select(selector).Select(d => d.Value);
             return responses.ToList();
         }
+
+        public static List<string> ToTargets(this PublishBehaviour behaviour)
+        {
+            var targets = new List<string>() { "PrepareForBuild" };
+            switch (behaviour)
+            {
+                case PublishBehaviour.None:
+                    targets.Add("Build", "Publish");
+                    break;
+                case PublishBehaviour.CleanFirst:
+                    targets.Add("Clean", "Build", "Publish");
+                    break;
+                case PublishBehaviour.DoNotBuild:
+                    targets.Add("Publish");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(behaviour), behaviour, null);
+            }
+            return targets;
+        }
     }
 }

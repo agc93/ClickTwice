@@ -111,7 +111,9 @@ Task("Copy-Scripts")
         CreateDirectory(scriptDir);
         CreateDirectory(scriptDir + "/bin/");
         var files = GetFiles(artifacts + "lib/ScriptCs.ClickTwice/*ClickTwice*.dll");
+		var csFiles = GetFiles(artifacts + "lib/ScriptCs.ClickTwice/*ScriptCs*.dll");
         CopyFiles(files, scriptDir + "/bin/");
+		CopyFiles(csFiles, scriptDir + "/bin/");
         CopyFiles(GetFiles("./*.csx"), artifacts + "/scripts/");
     });
 
@@ -155,8 +157,7 @@ Task("Publish")
 
     Task("Post-Build")
     .IsDependentOn("Build")
-    .IsDependentOn("Copy-Files")
-    .IsDependentOn("Merge");
+    .IsDependentOn("Copy-Files");	
 
     Task("NuGet")
     .IsDependentOn("Post-Build")

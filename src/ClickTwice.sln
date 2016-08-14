@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickTwice.UpdateManager", "ClickTwice.UpdateManager\ClickTwice.UpdateManager.csproj", "{27FECEED-7288-46CD-B2F2-A40936EFA312}"
 EndProject
@@ -22,6 +22,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickTwice.Publisher.MSBuild", "ClickTwice.Publisher.MSBuild\ClickTwice.Publisher.MSBuild.csproj", "{A0A4508D-C0B8-4F18-A61F-7D5B98E0AEF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptCs.ClickTwice", "ScriptCs.ClickTwice\ScriptCs.ClickTwice.csproj", "{BB0E350D-E8F5-4DEB-BAA9-14EDA2C8D6DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F3E8334-9574-42FB-8E26-DDD54482FF34}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.cake = ..\build.cake
+		..\build.ps1 = ..\build.ps1
+		..\ReleaseNotes.md = ..\ReleaseNotes.md
+		..\usage.cake = ..\usage.cake
+		..\usage.csx = ..\usage.csx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

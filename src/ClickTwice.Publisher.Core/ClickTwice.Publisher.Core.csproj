@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInfoManager.cs" />
+    <Compile Include="BasePublishManager.cs" />
     <Compile Include="CoreExtensions.cs" />
     <Compile Include="Exceptions\BuildFailedException.cs" />
     <Compile Include="Exceptions\HandlerProcessingException.cs" />

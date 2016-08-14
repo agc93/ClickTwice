@@ -35,9 +35,9 @@ namespace ClickTwice.Publisher.Core.Handlers
                 return new HandlerResponse(this, false,
                     $"Launch page was not generated. Check to ensure a ClickTwice manifest has been deployed in the target directory");
             }
-            catch
+            catch (System.Exception ex)
             {
-                return new HandlerResponse(this, false, $"Error encountered while generating launch page in {outputPath}. Check your deployment files and try again.");
+                return new HandlerResponse(this, false, $"{ex.GetType()} error encountered while generating launch page in {outputPath}. Check your deployment files and try again. {System.Environment.NewLine} {ex.Message}");
             }
         }
     }

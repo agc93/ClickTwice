@@ -42,7 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgBuilder.cs" />
+    <Compile Include="BuildDomain.cs" />
+    <Compile Include="DirectPublisher.cs" />
     <Compile Include="Loggers\BuildMessageLogger.cs" />
+    <Compile Include="MSBuildResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishManager.cs" />
   </ItemGroup>
