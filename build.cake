@@ -82,6 +82,7 @@ Task("Build")
 Task("Copy-Files")
     .IsDependentOn("Build")
     .IsDependentOn("Copy-Libs")
+    .IsDependentOn("Copy-Scripts")
     .Does(() =>
 {
     CreateDirectory(artifacts + "build");
@@ -101,6 +102,19 @@ Task("Copy-Libs")
 		    var files = GetFiles(project.Path.GetDirectory() +"/bin/" +configuration +"/*.dll");
 		    CopyFiles(files, artifacts + "lib/" + project.Name);
 	    }
+    });
+
+Task("Copy-Scripts")
+    .IsDependentOn("Copy-Libs")
+    .Does(() => {
+        var scriptDir = artifacts + "/scripts/";
+        CreateDirectory(scriptDir);
+        CreateDirectory(scriptDir + "/bin/");
+        var files = GetFiles(artifacts + "lib/ScriptCs.ClickTwice/*ClickTwice*.dll");
+		var csFiles = GetFiles(artifacts + "lib/ScriptCs.ClickTwice/*ScriptCs*.dll");
+        CopyFiles(files, scriptDir + "/bin/");
+		CopyFiles(csFiles, scriptDir + "/bin/");
+        CopyFiles(GetFiles("./*.csx"), artifacts + "/scripts/");
     });
 
 Task("Publish")
@@ -143,8 +157,7 @@ Task("Publish")
 
     Task("Post-Build")
     .IsDependentOn("Build")
-    .IsDependentOn("Copy-Files")
-    .IsDependentOn("Merge");
+    .IsDependentOn("Copy-Files");	
 
     Task("NuGet")
     .IsDependentOn("Post-Build")

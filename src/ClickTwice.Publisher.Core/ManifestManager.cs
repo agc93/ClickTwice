@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using ClickTwice.Publisher.Core.Manifests;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ClickTwice.Publisher.Core
 {
@@ -107,7 +108,7 @@ namespace ClickTwice.Publisher.Core
 
         public static AppManifest ReadFromFile(string manifestFilePath)
         {
-            return JsonConvert.DeserializeObject<AppManifest>(File.ReadAllText(manifestFilePath));
+            return JsonConvert.DeserializeObject<AppManifest>(File.ReadAllText(manifestFilePath), new VersionConverter());
         }
     }
 
