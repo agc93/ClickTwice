@@ -82,8 +82,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ClickTwiceFixture.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
