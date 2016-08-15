@@ -40,4 +40,4 @@ You can also use these events and commands to control updates from within your a
 
 ## Full API Reference
 
-Click API reference above to check the full API for `UpdateManagerViewModel` and take back control of your ClickOnce updates the easy way!
+Click API reference above to check the [full API](/api/ClickTwice.UpdateManager.UpdateManagerViewModel.html) for `UpdateManagerViewModel` and take back control of your ClickOnce updates the easy way!
