@@ -27,6 +27,12 @@ namespace ScriptCs.ClickTwice
             return this;
         }
 
+        public ClickTwicePackSettings LogTo(IPublishLogger logger)
+        {
+            WithLogger(logger);
+            return this;
+        }
+
         public ClickTwicePackSettings SetConfiguration(string configuration)
         {
             this.Configuration = configuration;

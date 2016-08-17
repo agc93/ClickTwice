@@ -10,7 +10,8 @@
             "**/obj/**",
             "**/bin/**",
             "docfx/**",
-            "**/ClickTwice.Templates.*/**"
+            "**/ClickTwice.Templates.*/**",
+            "**/*.Tests/**"
           ],
           "cwd": "../"
         }
