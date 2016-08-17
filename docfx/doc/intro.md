@@ -1,5 +1,6 @@
 
-# ClickTwice - The ultimate WPF build toolchain
+# ClickTwice
+# The ultimate WPF build toolchain
 
 ## Introduction
 

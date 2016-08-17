@@ -4,3 +4,15 @@
   href: updatemgr.md
 - name: Handlers
   href: handlers.md
+- name: Manifests
+  href: manifests.md
+- name: Logging
+  href: logging.md
+- name: Built-In Types
+  href: builtins.md
+- name: Hosts
+  href: hosts.md
+- name: Cake
+  href: cakeintro.md
+- name: ScriptCs
+  href: scriptcsintro.md

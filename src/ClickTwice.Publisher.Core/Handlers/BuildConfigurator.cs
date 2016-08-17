@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace ClickTwice.Publisher.Core.Handlers
 {
-    public class BuildConfigurator : IBuildConfigurator
+    public abstract class BuildConfigurator : IBuildConfigurator
     {
-        public virtual string Name => "Base class for build configurators";
+        public abstract string Name { get; }
         public virtual Dictionary<string, string> ProcessConfiguration(Dictionary<string, string> configuration)
         {
             return null;

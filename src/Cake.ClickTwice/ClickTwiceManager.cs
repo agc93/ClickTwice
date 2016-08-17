@@ -64,6 +64,10 @@ namespace Cake.ClickTwice
             }
         }
 
+        public void To(DirectoryPath outputDirectory) {
+            PublishTo(outputDirectory);
+        }
+
         internal Action<IEnumerable<HandlerResponse>> ErrorAction { get; set; } 
 
         public void GenerateManifest(DirectoryPath publishDirectoryPath, InformationSource source = InformationSource.Both)
