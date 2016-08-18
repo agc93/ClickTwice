@@ -217,3 +217,5 @@ ModelManifest.xml
 ![Tt]ools/packages.config
 
 artifacts/**
+
+src/**/*ClickTwice*xml
