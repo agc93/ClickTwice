@@ -99,8 +99,11 @@ Task("Copy-Libs")
         CreateDirectory(artifacts + "lib");
 	    foreach (var project in projects) {
 		    CreateDirectory(artifacts + "lib/" + project.Name);
-		    var files = GetFiles(project.Path.GetDirectory() +"/bin/" +configuration +"/*.dll");
+            var binBase = project.Path.GetDirectory() +"/bin/" +configuration + "/";
+		    var files = GetFiles(binBase + "*.dll");
+            var xmldoc = GetFiles(binBase + "*.xml");
 		    CopyFiles(files, artifacts + "lib/" + project.Name);
+            CopyFiles(xmldoc, artifacts + "lib/" + project.Name);
 	    }
     });
 

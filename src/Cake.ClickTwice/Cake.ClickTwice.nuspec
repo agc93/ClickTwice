@@ -15,6 +15,7 @@
   </metadata>
   <files>
   	<file src="lib\Cake.ClickTwice\Cake.ClickTwice.dll" target="lib\net45" />
+	<file src="lib\Cake.ClickTwice\Cake.ClickTwice.xml" target="lib\net45" />
   	<file src="lib\Cake.ClickTwice\ClickTwice.Handlers.AppDetailsPage.dll" target="lib\net45" />
   	<file src="lib\Cake.ClickTwice\ClickTwice.Publisher.Core.dll" target="lib\net45" />
 	<!-- Dependency libraries since Cake can't handle dependencies properly -->

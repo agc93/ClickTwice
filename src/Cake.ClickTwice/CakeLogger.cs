@@ -4,6 +4,9 @@ using ClickTwice.Publisher.Core.Loggers;
 
 namespace Cake.ClickTwice
 {
+    /// <summary>
+    /// ClickTwice logger for writing messages to the Cake log
+    /// </summary>
     public class CakeLogger : IPublishLogger
     {
         public CakeLogger(ICakeLog log)

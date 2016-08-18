@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Cake.ClickTwice.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Cake.ClickTwice.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cake.Common, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -53,11 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CakeLogger.cs" />
+    <Compile Include="CakePublishExtensions.cs" />
     <Compile Include="CakePublishManager.cs" />
     <Compile Include="ClickTwiceAliases.cs" />
     <Compile Include="ClickTwiceManager.cs" />
     <Compile Include="ClickTwiceManagerExtensions.cs" />
-    <Compile Include="PackageHandler.cs" />
+    <Compile Include="ClickTwiceRunner.cs" />
+    <Compile Include="ManifestPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishException.cs" />
   </ItemGroup>

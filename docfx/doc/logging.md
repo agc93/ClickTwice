@@ -19,4 +19,4 @@ bool IncludeBuildMessages { get; }
 string Close(string outputPath);
 ```
 
-`IncludeBuildMessages` controls whether the logger should be given full build logs or not, while the `Close` method is called at the end of the publish operation for any cleanup operations (writing to file etc).
+`IncludeBuildMessages` controls whether the logger should be given full build logs or not, while the `Close` method is called at the end of the publish operation for any cleanup operations (writing to file etc). You can return null or throw a new `NotImplementedException` if your logger has no clean up to do.
