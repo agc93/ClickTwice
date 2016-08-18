@@ -15,7 +15,10 @@ using Path = System.IO.Path;
 
 namespace Cake.ClickTwice
 {
-    class CakePublishManager : Manager, IPublishManager
+    /// <summary>
+    /// ClickTwice publish host for Cake
+    /// </summary>
+    internal class CakePublishManager : Manager, IPublishManager
     {
         public CakePublishManager(ClickTwiceManager mgr) : base(mgr.ProjectFilePath)
         {
@@ -41,24 +44,57 @@ namespace Cake.ClickTwice
 
         public void Dispose()
         {
-            
         }
 
+        /// <summary>
+        /// Build configuration to use
+        /// </summary>
         public string Configuration { private get; set; }
+
+        /// <summary>
+        /// Build platform to use
+        /// </summary>
         public string Platform { private get; set; }
+
         private bool GenerateManifest { get; set; } = true;
+
+        /// <summary>
+        /// Collection of ClickTwice input handlers to run before publishing
+        /// </summary>
         public List<IInputHandler> InputHandlers { private get; set; }
+
+        /// <summary>
+        /// Collection of ClickTwice output handlers to run after publishing
+        /// </summary>
         public List<IOutputHandler> OutputHandlers { get; set; }
+
+        /// <summary>
+        /// Collection of build configurators to update the build configuration
+        /// </summary>
         public List<IBuildConfigurator> BuildConfigurators { get; set; }
+
+        /// <summary>
+        /// Collection of ClickTwice loggers to log messages to
+        /// </summary>
         public List<IPublishLogger> Loggers { get; } = new List<IPublishLogger>();
+
         private ManifestManager ManifestManager { get; set; }
 
-        public List<HandlerResponse> PublishApp(string targetPath, PublishBehaviour behaviour = PublishBehaviour.CleanFirst)
+        /// <summary>
+        /// Publishes the app to the given folder
+        /// </summary>
+        /// <param name="targetPath">Folder to publsh the project too</param>
+        /// <param name="behaviour">Preferred treatment of previous builds</param>
+        /// <returns>The collection of results from the output handlers</returns>
+        public List<HandlerResponse> PublishApp(string targetPath,
+            PublishBehaviour behaviour = PublishBehaviour.CleanFirst)
         {
             var results = InputHandlers.ProcessHandlers(
                 new FilePath(ProjectFilePath).GetDirectory().MakeAbsolute(Environment).FullPath, s => Log(s));
-            Log($"Completed processing input handlers: {results.Count(r => r.Result == HandlerResult.OK)} OK, {results.Count(r => r.Result == HandlerResult.Error)} errors, {results.Count(r => r.Result == HandlerResult.NotRun)} not run");
-            if (results.Any(r => r.Result == HandlerResult.Error)) throw new HandlerProcessingException(InputHandlers, results);
+            Log(
+                $"Completed processing input handlers: {results.Count(r => r.Result == HandlerResult.OK)} OK, {results.Count(r => r.Result == HandlerResult.Error)} errors, {results.Count(r => r.Result == HandlerResult.NotRun)} not run");
+            if (results.Any(r => r.Result == HandlerResult.Error))
+                throw new HandlerProcessingException(InputHandlers, results);
             string outputPath;
             if (behaviour == PublishBehaviour.DoNotBuild)
             {
@@ -87,7 +123,10 @@ namespace Cake.ClickTwice
             BuildSettings.AddProperties(props, AdditionalProperties);
             BuildAction?.Invoke(this);
             var publishDir =
-                new DirectoryPath(new DirectoryInfo(props["OutputPath"]).GetDirectories().FirstOrDefault(d => d.Name == "app.publish").FullName);
+                new DirectoryPath(
+                    new DirectoryInfo(props["OutputPath"]).GetDirectories()
+                        .FirstOrDefault(d => d.Name == "app.publish")
+                        .FullName);
             if (GenerateManifest)
             {
                 PrepareManifestManager(publishDir, InformationSource.Both);
@@ -111,6 +150,7 @@ namespace Cake.ClickTwice
         }
 
         #region Cake support properties
+
         private MSBuildSettings BuildSettings { get; set; }
         private IProcessRunner Runner { get; set; }
 
@@ -124,7 +164,11 @@ namespace Cake.ClickTwice
 
         private MSBuildPlatform GetMSBuildPlatform(string platform)
         {
-            return platform == "AnyCPU" ? MSBuildPlatform.Automatic : platform == "x64" ? MSBuildPlatform.x64 : MSBuildPlatform.x86;
+            return platform == "AnyCPU"
+                ? MSBuildPlatform.Automatic
+                : platform == "x64"
+                    ? MSBuildPlatform.x64
+                    : MSBuildPlatform.x86;
         }
 
         private void PrepareManifestManager(DirectoryPath targetPath, InformationSource infoSource)
@@ -135,7 +179,6 @@ namespace Cake.ClickTwice
             }
         }
 
-        
 
         private void Log(string content, bool isBuildMessage = false)
         {
@@ -175,49 +218,4 @@ namespace Cake.ClickTwice
             runner.Run(mgr.ProjectFilePath, mgr.BuildSettings);
         };
     }
-
-    internal static class CakePublishExtensions
-    {
-        internal static void AddTargets(this MSBuildSettings settings, PublishBehaviour behaviour)
-        {
-            foreach (var target in GetTargets(behaviour))
-            {
-                settings.WithTarget(target);
-            }
-        }
-        private static List<string> GetTargets(PublishBehaviour behaviour)
-        {
-            var targets = new List<string> { "PrepareForBuild" };
-            switch (behaviour)
-            {
-                case PublishBehaviour.None:
-                    targets.Add("Build", "Publish");
-                    break;
-                case PublishBehaviour.CleanFirst:
-                    targets.Add("Clean", "Build", "Publish");
-                    break;
-                case PublishBehaviour.DoNotBuild:
-                    targets.Add("Publish");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(behaviour), behaviour, null);
-            }
-            return targets;
-        }
-
-        internal static void AddProperties(this MSBuildSettings settings, params Dictionary<string, string>[] dicts)
-        {
-            var props = dicts.First();
-            foreach (var dict in dicts.Skip(1))
-            {
-                props = props.Concat(dict.Where(p => !props.ContainsKey(p.Key)))
-                .ToDictionary(k => k.Key, v => v.Value);
-            }
-            foreach (var prop in props)
-            {
-                settings.WithProperty(prop.Key, prop.Value);
-            }
-        }
-    }
 }
-

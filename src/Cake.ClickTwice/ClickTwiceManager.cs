@@ -11,9 +11,13 @@ using ClickTwice.Publisher.Core.Loggers;
 
 namespace Cake.ClickTwice
 {
+    /// <summary>
+    /// Manager for publishing ClickOnce applications from Cake scripts
+    /// </summary>
     public class ClickTwiceManager
     {
-        public ClickTwiceManager(FilePath projectFile, ICakeLog log, ICakeEnvironment environment, IFileSystem fs, IProcessRunner runner, IToolLocator toolLocator)
+        internal ClickTwiceManager(FilePath projectFile, ICakeLog log, ICakeEnvironment environment, IFileSystem fs,
+            IProcessRunner runner, IToolLocator toolLocator)
         {
             Log = log;
             Environment = environment;
@@ -51,6 +55,10 @@ namespace Cake.ClickTwice
 
         internal IToolLocator ToolLocator { get; set; }
 
+        /// <summary>
+        /// Publishes the app to the given directory using the current settings
+        /// </summary>
+        /// <param name="outputDirectory">Output path for the final published artifacts</param>
         public void PublishTo(DirectoryPath outputDirectory)
         {
             OutputHandlers.Add(new PublishPageHandler());
@@ -64,13 +72,25 @@ namespace Cake.ClickTwice
             }
         }
 
-        public void To(DirectoryPath outputDirectory) {
+        /// <summary>
+        /// Publishes the app to the given directory using the current settings
+        /// </summary>
+        /// <param name="outputDirectory">Output path for the final published artifacts</param>
+        /// <remarks>Convenience method. Equivalent to <see cref="PublishTo"/></remarks>
+        public void To(DirectoryPath outputDirectory)
+        {
             PublishTo(outputDirectory);
         }
 
-        internal Action<IEnumerable<HandlerResponse>> ErrorAction { get; set; } 
+        internal Action<IEnumerable<HandlerResponse>> ErrorAction { get; set; }
 
-        public void GenerateManifest(DirectoryPath publishDirectoryPath, InformationSource source = InformationSource.Both)
+        /// <summary>
+        /// Generates an app manifest without publishing the whole application
+        /// </summary>
+        /// <param name="publishDirectoryPath">Directory to publish to</param>
+        /// <param name="source">Metadata source to use in generating the manifest</param>
+        public void GenerateManifest(DirectoryPath publishDirectoryPath,
+            InformationSource source = InformationSource.Both)
         {
             var mgr = new ManifestManager(new FilePath(ProjectFilePath).MakeAbsolute(Environment).FullPath,
                 publishDirectoryPath.MakeAbsolute(Environment).FullPath,
