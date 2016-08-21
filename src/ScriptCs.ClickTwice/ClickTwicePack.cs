@@ -40,6 +40,11 @@ namespace ScriptCs.ClickTwice
             configure.Invoke(Settings);
         }
 
+        public TemplatePublisher PublishTemplate(string templateDirectory)
+        {
+            
+        }
+
         private ClickTwicePackSettings Settings { get; set; } = new ClickTwicePackSettings();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "ConvertIfStatementToReturnStatement")]

@@ -6,11 +6,8 @@ using System.Xml;
 using ClickTwice.Publisher.Core;
 using NuGet;
 
-namespace ClickTwice.CommandLine.Packaging
+namespace ClickTwice.Templating
 {
-    /// <summary>
-    /// This should be made internal when testing is complete
-    /// </summary>
     public class TemplatePackager
     {
         public Uri PublishDestination { get; set; } = new Uri("http://nudev.azurewebsites.net");
@@ -28,6 +25,10 @@ namespace ClickTwice.CommandLine.Packaging
                 }
             };
             NuSpec = manifest;
+        }
+
+        public TemplatePackager(TemplatePackageSettings settings) : this(settings.Id, settings.Version, string.Join(", ", settings.Authors), settings.Description)
+        {
         }
 
         private void SetContentFiles(List<string> contentFiles)
@@ -66,15 +67,6 @@ namespace ClickTwice.CommandLine.Packaging
             var builder = new PackageBuilder();
             builder.Populate(NuSpec.Metadata);
             builder.PopulateFiles(outputDirectory, NuSpec.Files);
-            //foreach (ManifestFile value in NuSpec.Files)
-            //{
-                
-            //    //builder.Files.Add(new PhysicalPackageFile()
-            //    //{
-            //    //    SourcePath = value.Source,
-            //    //    TargetPath = value.Target
-            //    //});
-            //}
             var path = Path.Combine(outputDirectory, $"{NuSpec.Metadata.Id}.nupkg");
             using (
                 FileStream stream = new FileStream(path, FileMode.Create))

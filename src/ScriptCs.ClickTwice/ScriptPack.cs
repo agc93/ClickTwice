@@ -64,10 +64,12 @@ namespace ScriptCs.ClickTwice
         {
             session.AddReference("ClickTwice.Publisher.Core");
             //session.AddReference("ClickTwice.Handlers.AppDetailsPage");
+            session.AddReference("ClickTwice.Templating");
 
             session.ImportNamespace("ClickTwice.Publisher.Core");
             session.ImportNamespace("ClickTwice.Publisher.Core.Resources");
             session.ImportNamespace("ClickTwice.Publisher.Core.Handlers");
+            session.ImportNamespace("ClickTwice.Templating");
             //session.ImportNamespace("ClickTwice.Handlers.AppDetailsPage");
             //TODO reenable
         }

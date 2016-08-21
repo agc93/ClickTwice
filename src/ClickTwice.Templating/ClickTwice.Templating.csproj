@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BB0E350D-E8F5-4DEB-BAA9-14EDA2C8D6DF}</ProjectGuid>
+    <ProjectGuid>{F34D7CE7-5BE7-4393-9F0C-8F23B8DBC05D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScriptCs.ClickTwice</RootNamespace>
-    <AssemblyName>ScriptCs.ClickTwice</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>ClickTwice.Templating</RootNamespace>
+    <AssemblyName>ClickTwice.Templating</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,13 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="ScriptCs.Contracts, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ScriptCs.Contracts.0.16.1\lib\net45\ScriptCs.Contracts.dll</HintPath>
+    <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.12.0.817, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuGet.Core.2.12.0\lib\net40-Client\NuGet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,33 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClickTwicePack.cs" />
-    <Compile Include="ClickTwicePackSettings.cs" />
-    <Compile Include="IScriptHost.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Publisher.cs" />
-    <Compile Include="ConsoleScriptHost.cs" />
-    <Compile Include="ScriptPack.cs" />
-    <Compile Include="TemplatePublisher.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="TemplatePackager.cs" />
+    <Compile Include="TemplatePackageSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClickTwice.Publisher.Core\ClickTwice.Publisher.Core.csproj">
       <Project>{af189adc-d4a9-4a30-aa12-d5cfd96523be}</Project>
       <Name>ClickTwice.Publisher.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClickTwice.Publisher.MSBuild\ClickTwice.Publisher.MSBuild.csproj">
-      <Project>{a0a4508d-c0b8-4f18-a61f-7d5b98e0aef6}</Project>
-      <Name>ClickTwice.Publisher.MSBuild</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ClickTwice.Templating\ClickTwice.Templating.csproj">
-      <Project>{f34d7ce7-5be7-4393-9f0c-8f23b8dbc05d}</Project>
-      <Name>ClickTwice.Templating</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
