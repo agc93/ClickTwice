@@ -8,7 +8,7 @@ namespace ClickTwice.Templating
 {
     public class TemplatePackageSettings
     {
-        public List<string> Authors { get; set; }
+        public List<string> Authors { get; set; } = new List<string>();
         public string Description { get; set; }
         public string Id { get; set; }
         public string Version { get; set; }

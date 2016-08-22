@@ -4,16 +4,16 @@ using ClickTwice.Templating;
 
 namespace ScriptCs.ClickTwice
 {
-    public class TemplatePublisher
+    public class ScriptTemplatePublisher : ITemplatePublisher
     {
-        public TemplatePublisher(string templateDirectory)
+        public ScriptTemplatePublisher(string templateDirectory)
         {
             TemplateDirectory = templateDirectory;
         }
 
-        private string TemplateDirectory { get; set; }
+        private string TemplateDirectory { get; }
 
-        public TemplatePublisher SetMetadata(string id, string version, string author, string description)
+        public ScriptTemplatePublisher SetMetadata(string id, string version, string author, string description = null)
         {
             Metadata = new TemplatePackageSettings()
             {
@@ -25,23 +25,23 @@ namespace ScriptCs.ClickTwice
             return this;
         }
 
-        private TemplatePackageSettings Metadata { get; set; }
+        public TemplatePackageSettings Metadata { get; private set; }
 
-        public TemplatePublisher SetMetadata(TemplatePackageSettings settings)
+        public ScriptTemplatePublisher SetMetadata(TemplatePackageSettings settings)
         {
             Metadata = settings;
             return this;
         }
 
-        public TemplatePublisher EnableVisualStudioMode()
+        public ScriptTemplatePublisher EnableVisualStudioMode()
         {
             PackagingMode = PackagingMode.VisualStudio;
             return this;
         }
 
-        private PackagingMode PackagingMode { get; set; } = PackagingMode.Minimal;
+        public PackagingMode PackagingMode { get; set; } = PackagingMode.Minimal;
 
-        public TemplatePublisher ToPackageFile(string outputPath)
+        public ITemplatePublisher ToPackageFile(string outputPath)
         {
             var mgr = new TemplatePackager(Metadata);
             var fi = mgr.Package(TemplateDirectory, PackagingMode);
@@ -49,7 +49,7 @@ namespace ScriptCs.ClickTwice
             return this;
         }
 
-        public TemplatePublisher ToGallery(string apiKey = null, string galleryUri = null)
+        public ITemplatePublisher ToGallery(string apiKey = null, string galleryUri = null)
         {
             var mgr = new TemplatePackager(Metadata)
             {

@@ -40,9 +40,9 @@ namespace ScriptCs.ClickTwice
             configure.Invoke(Settings);
         }
 
-        public TemplatePublisher PublishTemplate(string templateDirectory)
+        public ScriptTemplatePublisher PublishTemplate(string templateDirectory)
         {
-            
+            return new ScriptTemplatePublisher(templateDirectory);
         }
 
         private ClickTwicePackSettings Settings { get; set; } = new ClickTwicePackSettings();

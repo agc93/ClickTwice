@@ -54,7 +54,7 @@
     <Compile Include="Publisher.cs" />
     <Compile Include="ConsoleScriptHost.cs" />
     <Compile Include="ScriptPack.cs" />
-    <Compile Include="TemplatePublisher.cs" />
+    <Compile Include="ScriptTemplatePublisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

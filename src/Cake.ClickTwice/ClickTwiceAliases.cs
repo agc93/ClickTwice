@@ -1,21 +1,20 @@
 ﻿using System;
 using Cake.Core;
 using Cake.Core.Annotations;
-using Cake.Core.Diagnostics;
 using Cake.Core.IO;
-using Cake.Core.Tooling;
 using ClickTwice.Publisher.Core;
-using ClickTwice.Publisher.Core.Handlers;
 
 namespace Cake.ClickTwice
 {
     [CakeAliasCategory("ClickOnce")]
+    [CakeNamespaceImport("ClickTwice.Templating")]
     [CakeNamespaceImport("ClickTwice.Publisher.Core")]
     [CakeNamespaceImport("ClickTwice.Publisher.Core.Resources")]
     [CakeNamespaceImport("ClickTwice.Publisher.Core.Handlers")]
     [CakeNamespaceImport("ClickTwice.Handlers.AppDetailsPage")]
     public static class ClickTwiceAliases
     {
+        [CakeNamespaceImport("ClickTwice.Templating")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core.Resources")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core.Handlers")]
@@ -29,6 +28,7 @@ namespace Cake.ClickTwice
         }
 
         [CakeMethodAlias]
+        [CakeNamespaceImport("ClickTwice.Templating")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core.Resources")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core.Handlers")]
@@ -45,6 +45,7 @@ namespace Cake.ClickTwice
         }
 
         [CakePropertyAlias]
+        [CakeNamespaceImport("ClickTwice.Templating")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core.Resources")]
         [CakeNamespaceImport("ClickTwice.Publisher.Core.Handlers")]
@@ -53,42 +54,6 @@ namespace Cake.ClickTwice
         {
             if (ctx.Environment.IsUnix()) throw new PlatformNotSupportedException("ClickTwice is currently only supported on the Windows platform");
             return new ClickTwiceRunner(ctx.Log, ctx.Environment, ctx.FileSystem, ctx.ProcessRunner, ctx.Tools);
-        }
-    }
-
-    public class ClickTwiceRunner
-    {
-        public ClickTwiceRunner(ICakeLog log, ICakeEnvironment environment, IFileSystem fileSystem, IProcessRunner processRunner, IToolLocator tools)
-        {
-            Environment = environment;
-            FileSystem = fileSystem;
-            Log = log;
-        }
-
-        private ICakeLog Log { get; set; }
-
-        private IFileSystem FileSystem { get; set; }
-
-        internal ICakeEnvironment Environment { get; set; }
-
-        public void RunInputHandlers(string projectFilePath, params IInputHandler[] inputHandlers)
-        {
-            inputHandlers.ProcessHandlers(
-                FileSystem.GetFile(projectFilePath).Path.GetDirectory().MakeAbsolute(Environment).FullPath,
-                s => Log.Information(s));
-        }
-
-        public ManifestPublisher GenerateManifest(string projectFilePath, InformationSource source = InformationSource.Both)
-        {
-            return new ManifestPublisher(this, projectFilePath);
-            //return new ManifestManager(new FilePath(projectFilePath).MakeAbsolute(Environment).FullPath, string.Empty, source).CreateAppManifest();
-        }
-
-        public void RunOutputHandlers(string publishDirectoryPath, params IOutputHandler[] outputHandlers)
-        {
-            outputHandlers.ProcessHandlers(
-                FileSystem.GetDirectory(publishDirectoryPath).Path.MakeAbsolute(Environment).FullPath,
-                s => Log.Information(s));
         }
     }
 
