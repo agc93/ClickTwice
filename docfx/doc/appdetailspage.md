@@ -23,11 +23,17 @@ pack.Configure(s => s.WithHandler(new AppDetailsPageHandler("TemplatePackage")))
 pack.PublishApp(projectPath).To("./artifacts/publish");
 ```
 
-Where `"TemplatePackage"` is the NuGet package ID of your chosen template. You can optionally a source as well, for use with private NuGet repositories. In addition to specifying a template name as above, you can also provide a `FileInfo` object to use a local `nupkg` file for your template.
+Where `"TemplatePackage"` is the NuGet package ID of your chosen template. You can optionally provide a source as well, for use with private NuGet repositories. In addition to specifying a template name as above, you can also provide a `FileInfo` object to use a local `nupkg` file for your template.
+
+> The `AppDetailsPageHandler` requires both a standard manifest (`.cltw`) **and** an `app.info` file. The handler will not run without both.
 
 ## Template packages
 
 As outlined in the [Templating documentation](/doc/templating.html), ClickTwice templates are simply a NuGet package full of static files and any number of `*.cshtml` Razor view files.
+
+When the handler is run, it will copy all static content into the publish directory (see below), and will then run any `.cshtml` files through the Razor compiler, generating `.html` files in the same relative location.
+
+> ClickTwice template packages do not require any special metadata, but are often prefixed with `ClickTwice.Templates`. 
 
 ### Web files
 
