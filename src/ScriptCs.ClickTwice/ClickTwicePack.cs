@@ -11,8 +11,8 @@ namespace ScriptCs.ClickTwice
 {
     public class ClickTwicePack : IScriptPackContext
     {
-        public Publisher PublishApp(string projectFilePath, Action<ClickTwicePackSettings> configure = null) {
-            
+        public Publisher PublishApp(string projectFilePath, Action<ClickTwicePackSettings> configure = null)
+        {
             configure?.Invoke(Settings);
             var host = new ConsoleScriptHost();
             BasePublishManager mgr;
@@ -32,6 +32,10 @@ namespace ScriptCs.ClickTwice
             mgr.Loggers = Settings.Loggers;
             mgr.Loggers.RemoveAll(l => l.GetType() == typeof(ConsoleLogger));
             mgr.Loggers.Add(new ConsoleLogger(Settings.LogBuildMessages));
+            if (!string.IsNullOrWhiteSpace(Settings.PublishVersion))
+            {
+                mgr.AdditionalProperties.Add("ApplicationVersion", Settings.PublishVersion);
+            }
             return new Publisher(mgr) {Host = host};
         }
 

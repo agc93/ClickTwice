@@ -75,6 +75,12 @@ namespace ScriptCs.ClickTwice
             return this;
         }
 
+        public ClickTwicePackSettings WithVersion(string version)
+        {
+            PublishVersion = version;
+            return this;
+        }
+
         internal bool LogBuildMessages { get; set; }
 
         internal bool OutputClean { get; set; } = true;
@@ -88,6 +94,8 @@ namespace ScriptCs.ClickTwice
         internal bool UseAssemblyInfo { get; set; }
 
         internal bool UseAppManifest { get; set; } = true;
+
+        internal string PublishVersion { get; set; } = string.Empty;
 
         internal List<IPublishLogger> Loggers { get; set; } = new List<IPublishLogger>();
 
