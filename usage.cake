@@ -14,42 +14,53 @@ var projectPath = File(@"./path/to/the/project.proj");
 
 Setup(ctx =>
 {
-    // Executed BEFORE the first task.
-    Information("Running tasks...");
+	// Executed BEFORE the first task.
+	Information("Running tasks...");
 	CleanDirectory("./artifacts/publish");
-    CreateDirectory("./artifacts/publish");
+	CreateDirectory("./artifacts/publish");
 });
 
 Task("Publish")
-    .Does(() =>
+	.Does(() =>
 {
-    PublishApp(projectPath)
-                .SetConfiguration("Debug")
-                .ThrowOnHandlerFailure()
-                .WithHandler(new AppInfoHandler(new AppInfoManager()))
-                .WithHandler(new AppDetailsPageHandler("ClickTwice.Templates.SolidState") {
-                    FileNameMap = new Dictionary<string, string> {
-                        {"index.html", "details.html"}
-                    }
-                })
-                .WithHandler(new InstallPageHandler(fileName: "index.html", linkText: "Details", linkTarget: "details.html"))
-                .PublishTo("./artifacts/publish/");
+	PublishApp(projectPath)
+				.SetConfiguration("Debug")
+				.ThrowOnHandlerFailure()
+				.WithHandler(new AppInfoHandler(new AppInfoManager()))
+				.WithHandler(new AppDetailsPageHandler("ClickTwice.Templates.SolidState") {
+					FileNameMap = new Dictionary<string, string> {
+						{"index.html", "details.html"}
+					}
+				})
+				.WithHandler(new InstallPageHandler(fileName: "index.html", linkText: "Details", linkTarget: "details.html"))
+				.PublishTo("./artifacts/publish/");
 });
 
 Task("Long-Form")
 .Does(() => {
-    var handler = new AppInfoHandler(new AppInfoManager());
-    ClickTwice.RunInputHandlers(projectPath, handler);
-    MSBuild(projectPath, settings =>
+	var handler = new AppInfoHandler(new AppInfoManager());
+	ClickTwice.RunInputHandlers(projectPath, handler);
+	MSBuild(projectPath, settings =>
 		settings.SetPlatformTarget(PlatformTarget.MSIL)
 			.WithProperty("PublishDir", Directory("./artifacts/publish").Path.MakeAbsolute(Context.Environment).ToString() + "\\")
 			.SetVerbosity(Verbosity.Quiet)
 			.WithTarget("Build")
-            .WithTarget("Publish")
+			.WithTarget("Publish")
 			.SetConfiguration("Debug"));
-    //build here
-    ClickTwice.GenerateManifest(projectPath).Publish("./artifacts/publish");
-    ClickTwice.RunOutputHandlers("./artifacts/publish", handler, new InstallPageHandler());
+	//build here
+	ClickTwice.GenerateManifest(projectPath).Publish("./artifacts/publish");
+	ClickTwice.RunOutputHandlers("./artifacts/publish", handler, new InstallPageHandler());
+});
+
+Task("Template-Publishing")
+.Does(() => {
+	ClickTwice.PublishTemplate("./artifacts/template/", s => 
+		s.AddAuthor("Alistair Chapman")
+			.UsePackageId("TemplatePackage")
+			.UseVersion("0.0.1")
+			.UseDescription("Optional description"))
+	.ToPackageFile("artifacts/publish.nupkg")
+	.ToGallery(galleryUri: "http://nuget.org/api/v2");
 });
 
 RunTarget(target);

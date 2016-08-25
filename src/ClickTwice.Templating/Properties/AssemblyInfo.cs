@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ClickTwice.CommandLine")]
+[assembly: AssemblyTitle("ClickTwice.Templating")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ClickTwice.CommandLine")]
+[assembly: AssemblyProduct("ClickTwice.Templating")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8265f22f-8451-42d8-b0b7-9bbb537ff4d3")]
+[assembly: Guid("f34d7ce7-5be7-4393-9f0c-8f23b8dbc05d")]
 
 // Version information for an assembly consists of the following four values:
 //

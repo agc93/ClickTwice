@@ -57,6 +57,7 @@
     <Compile Include="CakeLogger.cs" />
     <Compile Include="CakePublishExtensions.cs" />
     <Compile Include="CakePublishManager.cs" />
+    <Compile Include="CakeTemplatePublisher.cs" />
     <Compile Include="ClickTwiceAliases.cs" />
     <Compile Include="ClickTwiceManager.cs" />
     <Compile Include="ClickTwiceManagerExtensions.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="ManifestPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishException.cs" />
+    <Compile Include="Samples.cs" />
+    <Compile Include="TemplatePackageSettingsExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -77,6 +80,10 @@
     <ProjectReference Include="..\ClickTwice.Publisher.Core\ClickTwice.Publisher.Core.csproj">
       <Project>{af189adc-d4a9-4a30-aa12-d5cfd96523be}</Project>
       <Name>ClickTwice.Publisher.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClickTwice.Templating\ClickTwice.Templating.csproj">
+      <Project>{F34D7CE7-5BE7-4393-9F0C-8F23B8DBC05D}</Project>
+      <Name>ClickTwice.Templating</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

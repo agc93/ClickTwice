@@ -69,5 +69,25 @@ namespace Cake.ClickTwice
                 FileSystem.GetDirectory(publishDirectoryPath).Path.MakeAbsolute(Environment).FullPath,
                 s => Log.Information(s));
         }
+
+        public CakeTemplatePublisher PublishTemplate(DirectoryPath templateDirectory, string packageId, string version, string author, string description = null)
+        {
+            var s = new TemplatePackageSettings()
+            {
+                Id = packageId,
+                Version = "0.0.1",
+                Authors = new List<string>() { author },
+                Description = description
+            };
+            return new CakeTemplatePublisher(templateDirectory.MakeAbsolute(Environment).FullPath, s);
+        }
+
+        public CakeTemplatePublisher PublishTemplate(DirectoryPath templateDirectory,
+            Action<TemplatePackageSettings> configure)
+        {
+            var s = new TemplatePackageSettings();
+            configure?.Invoke(s);
+            return new CakeTemplatePublisher(templateDirectory.MakeAbsolute(Environment).FullPath, s);
+        }
     }
 }

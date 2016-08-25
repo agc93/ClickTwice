@@ -54,6 +54,7 @@
     <Compile Include="Publisher.cs" />
     <Compile Include="ConsoleScriptHost.cs" />
     <Compile Include="ScriptPack.cs" />
+    <Compile Include="ScriptTemplatePublisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -66,6 +67,10 @@
     <ProjectReference Include="..\ClickTwice.Publisher.MSBuild\ClickTwice.Publisher.MSBuild.csproj">
       <Project>{a0a4508d-c0b8-4f18-a61f-7d5b98e0aef6}</Project>
       <Name>ClickTwice.Publisher.MSBuild</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClickTwice.Templating\ClickTwice.Templating.csproj">
+      <Project>{f34d7ce7-5be7-4393-9f0c-8f23b8dbc05d}</Project>
+      <Name>ClickTwice.Templating</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
