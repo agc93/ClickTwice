@@ -75,6 +75,10 @@
       <Project>{a0a4508d-c0b8-4f18-a61f-7d5b98e0aef6}</Project>
       <Name>ClickTwice.Publisher.MSBuild</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClickTwice.Templating\ClickTwice.Templating.csproj">
+      <Project>{F34D7CE7-5BE7-4393-9F0C-8F23B8DBC05D}</Project>
+      <Name>ClickTwice.Templating</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using ClickTwice.CommandLine.Packaging;
 using ClickTwice.Handlers.AppDetailsPage;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
 using ClickTwice.Publisher.MSBuild;
+using ClickTwice.Templating;
 
 namespace TestApp
 {

@@ -1,9 +1,12 @@
-﻿using Cake.Core;
+﻿using System;
+using System.Collections.Generic;
+using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
 using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Handlers;
+using ClickTwice.Templating;
 
 namespace Cake.ClickTwice
 {
@@ -70,6 +73,15 @@ namespace Cake.ClickTwice
                 s => Log.Information(s));
         }
 
+        /// <summary>
+        /// Prepares a directory-based ClickTwice template, using the provided metadata
+        /// </summary>
+        /// <param name="templateDirectory">Path to the tempalte directory</param>
+        /// <param name="packageId">Id of the package to generate</param>
+        /// <param name="version">Version of the generated package</param>
+        /// <param name="author">Author of the generated package</param>
+        /// <param name="description">Optional description of the generated package</param>
+        /// <returns></returns>
         public CakeTemplatePublisher PublishTemplate(DirectoryPath templateDirectory, string packageId, string version, string author, string description = null)
         {
             var s = new TemplatePackageSettings()
@@ -82,6 +94,12 @@ namespace Cake.ClickTwice
             return new CakeTemplatePublisher(templateDirectory.MakeAbsolute(Environment).FullPath, s);
         }
 
+        /// <summary>
+        /// Prepares a directory-based ClickTwice template, using the provided metadata
+        /// </summary>
+        /// <param name="templateDirectory">Path to the tempalte directory</param>
+        /// <param name="configure">Action for configuring template package settings</param>
+        /// <returns></returns>
         public CakeTemplatePublisher PublishTemplate(DirectoryPath templateDirectory,
             Action<TemplatePackageSettings> configure)
         {
