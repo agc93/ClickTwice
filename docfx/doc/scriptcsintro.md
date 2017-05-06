@@ -39,7 +39,7 @@ And there's even more options available from the [`ClickTwicePackSettings`](/api
 ```csharp
 Configure(s => 
     s.SetConfiguration("Debug")
-    .UseLocalMsBuild()
+    .UseIntegratedMsBuild()
     .SetPlatform("AnyCPU")
     .EnableBuildMessages()
     .WithHandler(new AppInfoHandler())
@@ -52,15 +52,18 @@ Plus, since ScriptCs scripts can run any C# code, you can now supercharge your b
 
 ## C# 6 support
 
-Note that due to an incompatibility between the internal builder that ships with ClickTwice and the way that ScriptCs loads assemblies, you won't be able to build WPF applications using C# 6 features, when using the default settings.
+Note that due to an incompatibility between the internal builder that ships with ClickTwice and the way that ScriptCs loads assemblies, we can only build WPF applications using C# 6 features, by using a system-local copy of MSBuild (i.e. 'shelling out').
 
-Fortunately, you can easily revert to using a locally installed copy of MSBuild from your system, by adding `UseLocalMsBuild()` to your configuration
+If you don't have MSBuild installed in your build environment, and don't need C# 6 features, you can build using a special bundled-in MSBuild instance by adding `UseIntegratedMsBuild()` to your configuration.
 
 ```csharp
-Configure(s => s.UseLocalMsBuild());
+Configure(s => s.UseIntegratedMsBuild());
 PublishApp(yourProjectPathHere).To("./artifacts/publish/");
 ```
+
 ```csharp
 // alternate short form
-PublishApp(yourProjectPathHere, s => s.UseLocalMsBuild()).To("./artifacts/publish/");
+PublishApp(yourProjectPathHere, s => s.UseIntegratedMsBuild()).To("./artifacts/publish/");
 ```
+
+Using this, you don't even need MSBuild installed to build your app!

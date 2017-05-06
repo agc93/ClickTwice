@@ -57,9 +57,9 @@ namespace ScriptCs.ClickTwice
             return this;
         }
 
-        public ClickTwicePackSettings UseLocalMsBuild()
+        public ClickTwicePackSettings UseIntegratedMsBuild()
         {
-            UseDirectPublish = true;
+            UseDirectPublish = false;
             return this;
         }
 
@@ -89,7 +89,7 @@ namespace ScriptCs.ClickTwice
 
         internal string Configuration { get; set; } = "Release";
 
-        internal bool UseDirectPublish { get; set; }
+        internal bool UseDirectPublish { get; set; }= true;
 
         internal bool UseAssemblyInfo { get; set; }
 
