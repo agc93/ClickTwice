@@ -72,8 +72,13 @@
     ],
     "dest": "_site",
     "template": [
-      "default"
+      "statictoc"
     ],
+    "globalMetadata": {
+      "_appTitle": "ClickTwice",
+      "_appFooter": "Copyright © 2017 Alistair Chapman",
+      "_appLogoPath": "assets/appLogo.png"
+    },
     "noLangKeyword": false
   }
 }

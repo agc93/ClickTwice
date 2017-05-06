@@ -25,6 +25,7 @@ pack.PublishApp(projectPath).To("./artifacts/publish");
 
 Where `"TemplatePackage"` is the NuGet package ID of your chosen template. You can optionally provide a source as well, for use with private NuGet repositories. In addition to specifying a template name as above, you can also provide a `FileInfo` object to use a local `nupkg` file for your template.
 
+> [!WARN]
 > The `AppDetailsPageHandler` requires both a standard manifest (`.cltw`) **and** an `app.info` file. The handler will not run without both.
 
 ## Template packages
@@ -33,7 +34,11 @@ As outlined in the [Templating documentation](/doc/templating.html), ClickTwice 
 
 When the handler is run, it will copy all static content into the publish directory (see below), and will then run any `.cshtml` files through the Razor compiler, generating `.html` files in the same relative location.
 
-> ClickTwice template packages do not require any special metadata, but are often prefixed with `ClickTwice.Templates`. 
+> [!NOTE]
+> If you don't have your own template, the `ClickTwice.Templates.SolidState` package is a good start!
+
+> [!NOTE]
+> ClickTwice template packages do not require any special metadata, but are often prefixed with `ClickTwice.Templates`.
 
 ### Web files
 
@@ -43,7 +48,6 @@ In order to keep deployment directories clean and simple, ClickTwice does not le
 
 Using third-party templates is obviously dead simple, but can lead to a problem: incorrect file naming and file naming conflicts. The answer to this in the `AppDetailsPageHandler` is in it's optional `Dictionary<string, string> FileNameMap` property. This dictionary is a simple source-to-target mapping of file names found in the provided template and what file they should be generated as in the destination folder:
 
-```csharp
 ```csharp
 //for Cake
 PublishApp(projectPath)

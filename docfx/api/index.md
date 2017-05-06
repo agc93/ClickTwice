@@ -1,3 +1,5 @@
+# ClickTwice
 
-# PLACEHOLDER
-TODO: Add .NET projects to *src* folder and run `docfx` to generate a **REAL** *API Documentation*!
+The ultimate WPF build toolchain.
+
+Browse through the API using the menu on the left.

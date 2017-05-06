@@ -4,9 +4,9 @@
 
 The ClickTwice Update Manager is a standalone library for use in WPF applications to more easily integrate with your ClickOnce deployment environment. It's fully compatible with any ClickOnce network deployment, even if you're not using the rest of the ClickTwice toolchain.
 
-You can install the update manager using the following command: 
+You can install the update manager using the following command:
 
-> Install-Package ClickTwice.UpdateManager
+> `Install-Package ClickTwice.UpdateManager`
 
 This will install the library into your application. The Update Manager is wholly self-contained in a special `UpdateManagerViewModel` class, that you can either use as a `DataContext` directly, inherit from, or use as a property in your existing view models. A short summary of the functions available from the view model is below.
 

@@ -8,7 +8,7 @@
     <owners>Alistair Chapman</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
     <projectUrl>https://bitbucket.org/agc93/clicktwice</projectUrl>
-    <iconUrl>https://maxcdn.icons8.com/Color/PNG/96/Programming/software_box-96.png</iconUrl>
+    <iconUrl>https://maxcdn.icons8.com/Color/PNG/96/Industry/engineering-96.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A helper library for managing updates to ClickOnce-deployed applications. Provides a fully-fledged ViewModel for use in WPF apps allowing for granular control and visibility into application updates. This library is built around the standard System.Deployment update mechanisms.</description>
     <copyright>Copyright 2015. Icon by Icons8</copyright>
