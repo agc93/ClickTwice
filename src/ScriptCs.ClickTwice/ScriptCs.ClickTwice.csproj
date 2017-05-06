@@ -32,9 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="ScriptCs.Contracts, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ScriptCs.Contracts.0.16.1\lib\net45\ScriptCs.Contracts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ScriptCs.Contracts, Version=0.17.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ScriptCs.Contracts.0.17.1\lib\net45\ScriptCs.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -57,9 +56,6 @@
     <Compile Include="ScriptTemplatePublisher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ClickTwice.Publisher.Core\ClickTwice.Publisher.Core.csproj">
       <Project>{af189adc-d4a9-4a30-aa12-d5cfd96523be}</Project>
       <Name>ClickTwice.Publisher.Core</Name>
@@ -73,7 +69,9 @@
       <Name>ClickTwice.Templating</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

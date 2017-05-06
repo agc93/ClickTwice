@@ -13,8 +13,8 @@
   	<copyright>Copyright 2016</copyright>
   	<tags>clicktwice publish clickonce wpf msbuild scriptcs build</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" />
-      <dependency id="RazorEngine" />
+      <dependency id="Newtonsoft.Json" version="10.0.2" />
+      <dependency id="RazorEngine" version="3.9.3" />
     </dependencies>
   </metadata>
   <files>
