@@ -4,7 +4,7 @@
 
 This powerful handler comes shipped with most ClickTwice packages and provides for dead simple page generation abilities with user-built templates and full support for Razor syntax in templates.
 
-Whereas the `LaunchPageHandler` simply produces a basic one-file template to launch your ClickTwice-published app, using this handler you can generate much more complex sites, built from one or multiple pages. 
+Whereas the `InstallPageHandler` simply produces a basic one-file template to launch your ClickTwice-published app, using this handler you can generate much more complex sites, built from one or multiple pages. 
 
 ## Usage
 

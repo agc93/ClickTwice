@@ -22,23 +22,24 @@ The NuGet prerelease packages are automatically built and deployed from the `dev
 
 ## Usage
 
-To publish your app, just use the `PublishApp` method, as per below:
+First, you'll need to import the script pack using the `Require<T>` method, then to publish your app, just use the `PublishApp` method, as per below:
 
 ```csharp
-PublishApp(yourProjectPathHere).To("./artifacts/publish/");
+var pack = Require<ClickTwicePack>();
+pack.PublishApp(yourProjectPathHere).To("./artifacts/publish/");
 ```
 
 That's it! Now that is just a plain MSBuild build and publish, with no additional features. If you want to add handlers, you will need to configure your settings object. You can do this by preparing an `Action<ClickTwicePackSettings>` and pass it directly into your `PublishApp` method, or use the `Configure` method
 
 ```csharp
-Configure(s => s.WithHandler(new AppInfoHandler()).WithLogger(new FileLogger()));
-PublishApp(yourProjectPathHere).To("./artifacts/publish");
+pack.Configure(s => s.WithHandler(new AppInfoHandler()).WithLogger(new FileLogger()));
+pack.PublishApp(yourProjectPathHere).To("./artifacts/publish");
 ```
 
 And there's even more options available from the [`ClickTwicePackSettings`](/api/ScriptCs.ClickTwice.ClickTwicePackSettings.html) to explore. For example, the following also works:
 
 ```csharp
-Configure(s => 
+pack.Configure(s => 
     s.SetConfiguration("Debug")
     .UseIntegratedMsBuild()
     .SetPlatform("AnyCPU")
@@ -46,7 +47,7 @@ Configure(s =>
     .WithHandler(new AppInfoHandler())
     .WithLogger(new FileLogger())
 );
-PublishApp(yourProjectPathHere).To("./artifacts/publish/");
+pack.PublishApp(yourProjectPathHere).To("./artifacts/publish/");
 ```
 
 Plus, since ScriptCs scripts can run any C# code, you can now supercharge your build script with anything you can do with C#!
@@ -58,13 +59,13 @@ Note that due to an incompatibility between the internal builder that ships with
 If you don't have MSBuild installed in your build environment, and don't need C# 6 features, you can build using a special bundled-in MSBuild instance by adding `UseIntegratedMsBuild()` to your configuration.
 
 ```csharp
-Configure(s => s.UseIntegratedMsBuild());
-PublishApp(yourProjectPathHere).To("./artifacts/publish/");
+pack.Configure(s => s.UseIntegratedMsBuild());
+pack.PublishApp(yourProjectPathHere).To("./artifacts/publish/");
 ```
 
 ```csharp
 // alternate short form
-PublishApp(yourProjectPathHere, s => s.UseIntegratedMsBuild()).To("./artifacts/publish/");
+pack.PublishApp(yourProjectPathHere, s => s.UseIntegratedMsBuild()).To("./artifacts/publish/");
 ```
 
 Using this, you don't even need MSBuild installed to build your app!
