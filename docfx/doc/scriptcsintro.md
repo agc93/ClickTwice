@@ -17,7 +17,8 @@ scriptcs -Pre -Install ScriptCs.ClickTwice
 
 The NuGet prerelease packages are automatically built and deployed from the `develop` branch so they can be considered bleeding-edge while the non-prerelease packages will be much more stable.
 
-> **NOTE:** The `ScriptCs.ClickTwice` uses NuGet dependencies to bring in some third-party libraries. Check the package details if you are worried about this.
+> [!NOTE]
+> The `ScriptCs.ClickTwice` uses NuGet dependencies to bring in some third-party libraries. Check the package details if you are worried about this.
 
 ## Usage
 

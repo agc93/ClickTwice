@@ -25,7 +25,7 @@ pack.PublishApp(projectPath).To("./artifacts/publish");
 
 Where `"TemplatePackage"` is the NuGet package ID of your chosen template. You can optionally provide a source as well, for use with private NuGet repositories. In addition to specifying a template name as above, you can also provide a `FileInfo` object to use a local `nupkg` file for your template.
 
-> [!WARN]
+> [!WARNING]
 > The `AppDetailsPageHandler` requires both a standard manifest (`.cltw`) **and** an `app.info` file. The handler will not run without both.
 
 ## Template packages

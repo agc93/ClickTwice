@@ -19,7 +19,8 @@ The NuGet prerelease packages are automatically built and deployed from the `dev
 
 Versioning is predominantly SemVer-compliant so you can set your version constraints if you're worried about changes.
 
-> **NOTE:** These packages include their dependent libraries (including RazorEngine and friends) at this time, as Cake is currently unable to correctly reference NuGet dependencies.
+> [!NOTE]
+> These packages include their dependent libraries (including RazorEngine and friends) at this time, as Cake is currently unable to correctly reference NuGet dependencies.
 
 ## Usage
 

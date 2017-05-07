@@ -5,8 +5,8 @@
   	<title>ClickTwice Publisher for ScriptCs</title>
   	<authors>Alistair Chapman</authors>
   	<owners>achapman</owners>
-  	<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
-  	<projectUrl>https://bitbucket.org/agc93/clicktwice</projectUrl>
+  	<licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+  	<projectUrl>https://github.com/agc93/clicktwice</projectUrl>
   	<iconUrl>https://maxcdn.icons8.com/Color/PNG/96/Industry/engineering-96.png</iconUrl>
   	<requireLicenseAcceptance>false</requireLicenseAcceptance>
   	<description>ScriptCs host for ClickTwice publishing, including the script pack</description>
@@ -19,11 +19,12 @@
     </dependencies>
   </metadata>
   <files>
-  	<file src="lib\ScriptCs.ClickTwice\ScriptCs.ClickTwice.dll" target="lib\net45" />
-  	<file src="lib\ScriptCs.ClickTwice\ClickTwice.Publisher.Core.dll" target="lib\net45" />
+  	<!--<file src="lib\ScriptCs.ClickTwice\ScriptCs.ClickTwice.dll" target="lib\net45" />-->
+		<file src="lib\ScriptCs.ClickTwice\*.dll" target="lib\net45" />
+  	<!--<file src="lib\ScriptCs.ClickTwice\ClickTwice.Publisher.Core.dll" target="lib\net45" />
     <file src="lib\ScriptCs.ClickTwice\ClickTwice.Publisher.MSBuild.dll" target="lib\net45" />
     <file src="lib\ClickTwice.Handlers.AppDetailsPage\ClickTwice.Handlers.AppDetailsPage.dll" target="lib\net45" />
 		<file src="lib\ClickTwice.Templating\ClickTwice.Templating.dll" target="lib\net45" />
-		<file src="lib\ClickTwice.Templating\ClickTwice.Templating.dll" target="lib\net45" />
+		<file src="lib\ClickTwice.Templating\ClickTwice.Templating.dll" target="lib\net45" />-->
 </files>
 </package>

@@ -462,7 +462,7 @@ namespace ClickTwice.Publisher.Core.Resources
             #line default
             #line hidden
             this.Write("\r\n\t\t\t\r\n\t\t\t<li><a href=\"http://html5up.net\">HTML5 UP</a></li>\r\n\t\t\t<li><a href=\"htt" +
-                    "ps://bitbucket.org/agc93/clicktwice\" target=\"_blank\">ClickTwice</a></li>\r\n\t\t</ul" +
+                    "ps://github.com/agc93/clicktwice\" target=\"_blank\">ClickTwice</a></li>\r\n\t\t</ul" +
                     ">\r\n\t</footer>\r\n\r\n\t<!-- Scripts -->\r\n\t<!--[if lte IE 8]><script src=\"assets/js/ie" +
                     "/respond.min.js\"></script><![endif]-->\r\n<!-- <script src=\"assets/js/main.js\"></s" +
                     "cript> -->\r\n<script type=\"text/javascript\">\r\n/*\r\n\tEventually by HTML5 UP\r\n\thtml5" +
