@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
-using ClickTwice.Publisher.Core;
 using NuGet;
 
 namespace ClickTwice.Templating
@@ -90,53 +88,5 @@ namespace ClickTwice.Templating
             var ps = new PackageServer(PublishDestination.ToString(), "userAgent");
             ps.PushPackage(apiKey, package, size, 1800, false);
         }
-    }
-
-    internal interface IPackager
-    {
-        List<string> GetContentFiles(string rootDirectory);
-    }
-
-    internal class VisualStudioPackager : IPackager
-    {
-        public List<string> GetContentFiles(string rootDirectory)
-        {
-            var xml = new XmlDocument();
-            xml.Load(new DirectoryInfo(rootDirectory).GetFiles("*.csproj").First().FullName);
-            XmlNamespaceManager mgr = new XmlNamespaceManager(xml.NameTable);
-            mgr.AddNamespace("msb", "http://schemas.microsoft.com/developer/msbuild/2003");
-            var nodeList = xml.SelectNodes("//msb:Project/msb:ItemGroup/msb:Content", mgr);
-            if (nodeList != null)
-            {
-                var contentFiles =
-                    nodeList.Cast<XmlNode>()
-                        .Where(x => !string.IsNullOrWhiteSpace(x.Attributes?["Include"].Value))
-                        .Select(x => x.Attributes["Include"].Value);
-                return contentFiles.Where(f => !f.EndsWith("config")).ToList();
-            }
-            return new List<string>();
-        }
-    }
-
-    internal class MinimalPackager : IPackager
-    {
-        public List<string> GetContentFiles(string rootDirectory)
-        {
-            var files = new DirectoryInfo(rootDirectory).EnumerateFilesForExtensions(false, ".nupkg", ".nuspec", ".config");
-            return
-                files.Select(f => f.FullName)
-                    .Select(n => n.Replace(rootDirectory, string.Empty).Trim().TrimStart('\\'))
-                    .ToList();
-            //return
-            //    new DirectoryInfo(rootDirectory).GetFilesExceptExtensions(".nupkg", ".nuspec", ".dll", ".config")
-            //        .Select(f => f.FullName.Replace(rootDirectory, string.Empty))
-            //        .ToList();
-        }
-    }
-
-    public enum PackagingMode
-    {
-        VisualStudio,
-        Minimal
     }
 }

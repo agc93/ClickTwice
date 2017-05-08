@@ -423,7 +423,7 @@ function CompareVersions(v1, v2)
                     <TR>
                         <TD CLASS="FooterText" ALIGN="center">
                             <A HREF="http://go.microsoft.com/fwlink/?LinkId=154571">ClickOnce and .NET Framework Resources</A>
-							<A HREF="https://bitbucket.org/agc93/clicktwice">ClickTwice Home Page</A>
+							<A HREF="https://github.com/agc93/clicktwice">ClickTwice Home Page</A>
                         </TD>
                     </TR>
                     <TR><TD HEIGHT="5"><SPACER TYPE="block" HEIGHT="5" /></TD></TR>

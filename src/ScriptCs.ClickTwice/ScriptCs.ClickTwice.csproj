@@ -54,6 +54,7 @@
     <Compile Include="ConsoleScriptHost.cs" />
     <Compile Include="ScriptPack.cs" />
     <Compile Include="ScriptTemplatePublisher.cs" />
+    <Compile Include="SessionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClickTwice.Publisher.Core\ClickTwice.Publisher.Core.csproj">

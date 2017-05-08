@@ -240,7 +240,7 @@ namespace ClickTwice.Publisher.Core.Resources
                     "R>\r\n                    <TR>\r\n                        <TD CLASS=\"FooterText\" ALI" +
                     "GN=\"center\">\r\n                            <A HREF=\"http://go.microsoft.com/fwlin" +
                     "k/?LinkId=154571\">ClickOnce and .NET Framework Resources</A>\r\n\t\t\t\t\t\t\t<A HREF=\"ht" +
-                    "tps://bitbucket.org/agc93/clicktwice\">ClickTwice Home Page</A>\r\n                " +
+                    "tps://github.com/agc93/clicktwice\">ClickTwice Home Page</A>\r\n                " +
                     "        </TD>\r\n                    </TR>\r\n                    <TR><TD HEIGHT=\"5\"" +
                     "><SPACER TYPE=\"block\" HEIGHT=\"5\" /></TD></TR>\r\n                    <TR><TD HEIGH" +
                     "T=\"1\" bgcolor=\"#cecece\"><SPACER TYPE=\"block\" HEIGHT=\"1\" /></TD></TR>\r\n          " +

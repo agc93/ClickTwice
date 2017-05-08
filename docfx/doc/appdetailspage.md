@@ -4,7 +4,7 @@
 
 This powerful handler comes shipped with most ClickTwice packages and provides for dead simple page generation abilities with user-built templates and full support for Razor syntax in templates.
 
-Whereas the `LaunchPageHandler` simply produces a basic one-file template to launch your ClickTwice-published app, using this handler you can generate much more complex sites, built from one or multiple pages. 
+Whereas the `InstallPageHandler` simply produces a basic one-file template to launch your ClickTwice-published app, using this handler you can generate much more complex sites, built from one or multiple pages. 
 
 ## Usage
 
@@ -25,7 +25,7 @@ pack.PublishApp(projectPath).To("./artifacts/publish");
 
 Where `"TemplatePackage"` is the NuGet package ID of your chosen template. You can optionally provide a source as well, for use with private NuGet repositories. In addition to specifying a template name as above, you can also provide a `FileInfo` object to use a local `nupkg` file for your template.
 
-> [!WARN]
+> [!WARNING]
 > The `AppDetailsPageHandler` requires both a standard manifest (`.cltw`) **and** an `app.info` file. The handler will not run without both.
 
 ## Template packages
