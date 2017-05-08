@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Handlers | ClickTwice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Handlers | ClickTwice ">
+    <meta name="generator" content="docfx 2.16.8.3">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/appLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                <ul class="nav level1 navbar-nav">
+                  <li class="active">
+                    <a href="../doc/intro.html" title="Documentation" class="active">Documentation</a>
+                  </li>
+                  <li class="">
+                    <a href="../api/index.html" title="API Reference" class="">API Reference</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="intro.html" title="Introduction" class="">Introduction</a>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Fundamentals</a>
+                        
+                        <ul class="nav level2">
+                          <li class="active">
+                            <a href="handlers.html" title="Handlers" class="active">Handlers</a>
+                          </li>
+                          <li class="">
+                            <a href="manifests.html" title="Manifests" class="">Manifests</a>
+                          </li>
+                          <li class="">
+                            <a href="logging.html" title="Logging" class="">Logging</a>
+                          </li>
+                          <li class="">
+                            <a href="builtins.html" title="Built-In Types" class="">Built-In Types</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Hosts</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="cakeintro.html" title="Cake" class="">Cake</a>
+                          </li>
+                          <li class="">
+                            <a href="scriptcsintro.html" title="ScriptCs" class="">ScriptCs</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">App Details Page</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="appdetailspage.html" title="Details Page handler" class="">Details Page handler</a>
+                          </li>
+                          <li class="">
+                            <a href="templating.html" title="Templating" class="">Templating</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <a href="updatemgr.html" title="Update Manager" class="">Update Manager</a>
+                    </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+              <h1 id="handlers">Handlers</h1>
+              
+<p>Handlers are one of the most powerful parts of the ClickTwice toolchain. Handlers are generic processing modules: when included in a publish, they are automatically invoked at the correct stage in the build to perform any sort of operation on your application.</p>
+<p>Handlers can be <em>input handlers</em>, <em>output handlers</em> or sometimes both. Input handlers are run on the project source, before building. An input handler can transform your source, add missing or generated files, update metadata or anything you need to do before publishing. Output handlers, on the other hand, are run on the published output, before copying to the target location. This means they have access to the final published app files, including any generated manifests, and can do any post-build or pre-deploy steps as required.</p>
+<h2 id="using-handlers">Using handlers</h2>
+<p>The exact syntax for using handlers depends on your choice of host, but essentially comes down to adding <code>IInputHandler</code> and <code>IOutputHandler</code> objects to the <code>InputHandlers</code> and <code>OutputHandlers</code> collections on your <code>PublishManager</code>. Since that is a scary way of putting it, the built-in hosts both include a simple <code>WithHandler</code> method, so you can do the following:</p>
+<pre><code class="lang-csharp">//PublishApp(...) //for Cake
+//Configure(...) //for scriptcs
+publish.WithHandler(new InstallPageHandler);
+</code></pre><p>Remember, this syntax may vary slightly between hosts, so check the documentation for more detail.</p>
+<h2 id="building-handlers">Building handlers</h2>
+<p>Building your own build handlers is dead simple: just create a <code>public</code> class, that inherits from <code>IInputHandler</code> or <code>IOutputHandler</code>. Give your handler a <code>Name</code> property, and implement the required <code>Process(string)</code> method and you&#39;re good to go!</p>
+<pre><code class="lang-csharp">using ClickTwice.Publisher.Core.Handlers;
+
+public class SimpleHandler : IInputHandler 
+{
+    public string Name =&gt; &quot;Simple Handler&quot;;
+
+    HandlerResponse Process(string inputPath) {
+        return new HandlerResponse(this, true);
+    }
+}
+</code></pre><p>That&#39;s it! You can do anything you like in your handler. The <code>HandlerResponse</code> object you return just needs to return a <code>bool</code> to indicate if it was successful or not, and an optional message for the user. The <code>inputPath</code> parameter will be the path to the project directory (i.e. the source).</p>
+<h3 id="configurators">Configurators</h3>
+<p>There is also a special kind of quasi-handler called a <em>build configurator</em>. Configurators run during the build phase, right before invoking MSBuild, and can be used to perform low-level tweaks of the build configuration before building, without any post-processing. Note that since these have the option of modifying your builds in unpredictable and potentially dangerous ways, make sure to only ever use configurators you fully trust! Some hosts will even print a warning before invoking configurators for clarity. </p>
+<blockquote><p>Configurators are an early preview feature and may change in future releases</p>
+</blockquote>
+<h4 id="custom-configurator">Custom configurator</h4>
+<p>Configurators inherit from <code>BuildConfigurator</code>, and can override the <code>ProcessConfiguration</code> and <code>ProcessTargets</code> methods to read or manipulate the dictionary of build properties or list of build targets. These configurators are perfect for fine-tuned control of build properties and parameters such as suppressing errors or adding new custom targets to your publish.</p>
+
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/agc93/ClickTwice/blob/develop/docfx/doc/handlers.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2017 Alistair Chapman
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

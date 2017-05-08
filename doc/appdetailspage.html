@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ClickTwice App Page Generator | ClickTwice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ClickTwice App Page Generator | ClickTwice ">
+    <meta name="generator" content="docfx 2.16.8.3">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/appLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                <ul class="nav level1 navbar-nav">
+                  <li class="active">
+                    <a href="../doc/intro.html" title="Documentation" class="active">Documentation</a>
+                  </li>
+                  <li class="">
+                    <a href="../api/index.html" title="API Reference" class="">API Reference</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="intro.html" title="Introduction" class="">Introduction</a>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Fundamentals</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="handlers.html" title="Handlers" class="">Handlers</a>
+                          </li>
+                          <li class="">
+                            <a href="manifests.html" title="Manifests" class="">Manifests</a>
+                          </li>
+                          <li class="">
+                            <a href="logging.html" title="Logging" class="">Logging</a>
+                          </li>
+                          <li class="">
+                            <a href="builtins.html" title="Built-In Types" class="">Built-In Types</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Hosts</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="cakeintro.html" title="Cake" class="">Cake</a>
+                          </li>
+                          <li class="">
+                            <a href="scriptcsintro.html" title="ScriptCs" class="">ScriptCs</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">App Details Page</a>
+                        
+                        <ul class="nav level2">
+                          <li class="active">
+                            <a href="appdetailspage.html" title="Details Page handler" class="active">Details Page handler</a>
+                          </li>
+                          <li class="">
+                            <a href="templating.html" title="Templating" class="">Templating</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <a href="updatemgr.html" title="Update Manager" class="">Update Manager</a>
+                    </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+              <h1 id="clicktwice-app-page-generator">ClickTwice App Page Generator</h1>
+              
+<h2 id="introduction">Introduction</h2>
+<p>This powerful handler comes shipped with most ClickTwice packages and provides for dead simple page generation abilities with user-built templates and full support for Razor syntax in templates.</p>
+<p>Whereas the <code>InstallPageHandler</code> simply produces a basic one-file template to launch your ClickTwice-published app, using this handler you can generate much more complex sites, built from one or multiple pages. </p>
+<h2 id="usage">Usage</h2>
+<p>To use, just add a new instance of <code>AppDetailsPageHandler</code> to your handlers using the appropriate method for your host:</p>
+<pre><code class="lang-csharp">//for Cake
+PublishApp(projectPath)
+    .WithHandler(new AppDetailsPageHandler(&quot;TemplatePackage&quot;)) // your package ID here
+    .PublishTo(&quot;./artifacts/publish/&quot;);
+</code></pre><pre><code class="lang-csharp">// for scriptcs
+pack.Configure(s =&gt; s.WithHandler(new AppDetailsPageHandler(&quot;TemplatePackage&quot;)));
+pack.PublishApp(projectPath).To(&quot;./artifacts/publish&quot;);
+</code></pre><p>Where <code>&quot;TemplatePackage&quot;</code> is the NuGet package ID of your chosen template. You can optionally provide a source as well, for use with private NuGet repositories. In addition to specifying a template name as above, you can also provide a <code>FileInfo</code> object to use a local <code>nupkg</code> file for your template.</p>
+<div class="WARNING"><h5>Warning</h5><p>The <code>AppDetailsPageHandler</code> requires both a standard manifest (<code>.cltw</code>) <strong>and</strong> an <code>app.info</code> file. The handler will not run without both.</p>
+</div>
+<h2 id="template-packages">Template packages</h2>
+<p>As outlined in the <a href="/doc/templating.html">Templating documentation</a>, ClickTwice templates are simply a NuGet package full of static files and any number of <code>*.cshtml</code> Razor view files.</p>
+<p>When the handler is run, it will copy all static content into the publish directory (see below), and will then run any <code>.cshtml</code> files through the Razor compiler, generating <code>.html</code> files in the same relative location.</p>
+<div class="NOTE"><h5>Note</h5><p>If you don&#39;t have your own template, the <code>ClickTwice.Templates.SolidState</code> package is a good start!</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>ClickTwice template packages do not require any special metadata, but are often prefixed with <code>ClickTwice.Templates</code>.</p>
+</div>
+<h3 id="web-files">Web files</h3>
+<p>In order to keep deployment directories clean and simple, ClickTwice does not leave generated views in the deployment root: it puts them in a separate content directory (available as <code>ContentDirectory</code> in the <code>Model</code>), with the exception of the special view named <code>index.cshtml</code> which will be generated in-place.</p>
+<h3 id="file-name-mappings">File Name Mappings</h3>
+<p>Using third-party templates is obviously dead simple, but can lead to a problem: incorrect file naming and file naming conflicts. The answer to this in the <code>AppDetailsPageHandler</code> is in it&#39;s optional <code>Dictionary&lt;string, string&gt; FileNameMap</code> property. This dictionary is a simple source-to-target mapping of file names found in the provided template and what file they should be generated as in the destination folder:</p>
+<pre><code class="lang-csharp">//for Cake
+PublishApp(projectPath)
+    .WithHandler(new AppDetailsPageHandler(&quot;ClickTwice.Templates.SolidState&quot;) {
+        FileNameMap = new Dictionary&lt;string, string&gt; {
+            {&quot;index.html&quot;, &quot;details.html&quot;}
+        }
+    })
+    .PublishTo(&quot;./artifacts/publish/&quot;);
+</code></pre><p>This will generate <code>index.cshtml</code> (note the <code>html</code> extension) from the <em>&quot;ClickTwice.Templates.SolidState&quot;</em> NuGet package in the target folder as <code>details.html</code>. </p>
+
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/agc93/ClickTwice/blob/develop/docfx/doc/appdetailspage.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2017 Alistair Chapman
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
