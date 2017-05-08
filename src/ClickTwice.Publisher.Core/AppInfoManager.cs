@@ -23,42 +23,49 @@ namespace ClickTwice.Publisher.Core
             this.AppInfo = appInfo;
         }
 
-        public void AddAuthor(string authorName)
+        public AppInfoManager AddAuthor(string authorName)
         {
             AppInfo.Author.Names.AddIfNotExists(authorName);
+            return this;
         }
 
-        public void AddContactDetails(ContactDetails details)
+        public AppInfoManager AddContactDetails(ContactDetails details)
         {
             AppInfo.Author = details;
+            return this;
         }
 
-        public void AddInstallationInformation(string information)
+        public AppInfoManager AddInstallationInformation(string information)
         {
             AppInfo.InstallationInformation = information;
+            return this;
         }
 
-        public void AddPrerequisites(params string[] prerequisites)
+        public AppInfoManager AddPrerequisites(params string[] prerequisites)
         {
             foreach (var prerequisite in prerequisites)
             {
                 AppInfo.PrerequisiteInformation.Add(prerequisite);
             }
+            return this;
         }
 
-        public void AddSupportInformation(string supportInfo)
+        public AppInfoManager AddSupportInformation(string supportInfo)
         {
             AppInfo.SupportInformation = supportInfo;
+            return this;
         }
 
-        public void AddDeveloperNotice(string devInfo)
+        public AppInfoManager AddDeveloperNotice(string devInfo)
         {
             AppInfo.DeveloperInformation = devInfo;
+            return this;
         }
 
-        public void AddAppInformation(string appInfo)
+        public AppInfoManager AddAppInformation(string appInfo)
         {
             AppInfo.AppInformation = appInfo;
+            return this;
         }
 
         public void DeployAppInformation(string pathToDeploymentDir)
