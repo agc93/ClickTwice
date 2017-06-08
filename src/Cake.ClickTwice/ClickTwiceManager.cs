@@ -42,7 +42,7 @@ namespace Cake.ClickTwice
         internal List<IOutputHandler> OutputHandlers { get; set; } = new List<IOutputHandler>();
         internal List<IPublishLogger> Loggers { get; set; } = new List<IPublishLogger>();
         internal bool CleanOutput { get; set; }
-        internal bool ForceBuild { get; set; } = true;
+        internal PublishBehaviour Behaviour { get; set; } = PublishBehaviour.None;
 
         internal string PublishVersion { get; set; }
 
@@ -65,7 +65,7 @@ namespace Cake.ClickTwice
             Loggers.Add(new CakeLogger(Log));
             var mgr = new CakePublishManager(this);
             var responses = mgr.PublishApp(outputDirectory.MakeAbsolute(Environment).FullPath,
-                ForceBuild ? PublishBehaviour.CleanFirst : PublishBehaviour.DoNotBuild);
+                behaviour: Behaviour);
             foreach (var r in responses)
             {
                 Log.Information($"Handler finished: {r.Result} - {r.ResultMessage}");

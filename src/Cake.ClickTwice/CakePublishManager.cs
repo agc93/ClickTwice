@@ -35,7 +35,7 @@ namespace Cake.ClickTwice
             Loggers.AddRange(mgr.Loggers);
             ErrorAction = mgr.ErrorAction;
             if (!string.IsNullOrWhiteSpace(mgr.PublishVersion))
-                AdditionalProperties.Add("ApplicationVersion", mgr.PublishVersion);
+                AdditionalProperties.Add("ApplicationVersion", mgr.PublishVersion.ToVersionString());
         }
 
         private Action<IEnumerable<HandlerResponse>> ErrorAction { get; set; }

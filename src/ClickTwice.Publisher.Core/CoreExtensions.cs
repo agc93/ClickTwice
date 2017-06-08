@@ -187,5 +187,16 @@ namespace ClickTwice.Publisher.Core
             }
             return targets;
         }
+
+        public static string ToVersionString(this string version)
+        {
+            // remember %2a == *
+            var segments = version.Split('.').ToList();
+            while (segments.Count < 4)
+            {
+                segments.Add(".%2a");
+            }
+            return string.Join(".", segments);
+        }
     }
 }

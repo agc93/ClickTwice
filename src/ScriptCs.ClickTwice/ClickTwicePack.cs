@@ -34,7 +34,7 @@ namespace ScriptCs.ClickTwice
             mgr.Loggers.Add(new ConsoleLogger(Settings.LogBuildMessages));
             if (!string.IsNullOrWhiteSpace(Settings.PublishVersion))
             {
-                mgr.AdditionalProperties.Add("ApplicationVersion", Settings.PublishVersion);
+                mgr.AdditionalProperties.Add("ApplicationVersion", Settings.PublishVersion.ToVersionString());
             }
             return new Publisher(mgr) {Host = host};
         }

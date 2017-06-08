@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cake.Common.Tools.MSBuild;
 using System.Linq;
+using ClickTwice.Publisher.Core;
 using ClickTwice.Publisher.Core.Handlers;
 using ClickTwice.Publisher.Core.Loggers;
 
@@ -116,7 +117,19 @@ namespace Cake.ClickTwice
         /// <returns>The updated manager</returns>
         public static ClickTwiceManager ForceRebuild(this ClickTwiceManager manager)
         {
-            manager.ForceBuild = true;
+            manager.Behaviour = PublishBehaviour.CleanFirst;
+            return manager;
+        }
+
+        /// <summary>
+        /// Publishes the application without building it first.
+        /// </summary>
+        /// <remarks>This essentially means that we only pass the <c>Publish</c> target to MSBuild.</remarks>
+        /// <param name="manager">The manager</param>
+        /// <returns>The updated manager.</returns>
+        public static ClickTwiceManager DoNotBuild(this ClickTwiceManager manager)
+        {
+            manager.Behaviour = PublishBehaviour.DoNotBuild;
             return manager;
         }
 
