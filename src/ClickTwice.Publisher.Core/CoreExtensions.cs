@@ -194,7 +194,7 @@ namespace ClickTwice.Publisher.Core
             var segments = version.Split('.').ToList();
             while (segments.Count < 4)
             {
-                segments.Add(".%2a");
+                segments.Add("%2a");
             }
             return string.Join(".", segments);
         }
