@@ -49,5 +49,10 @@ namespace Cake.ClickTwice
                 settings.WithProperty(prop.Key, prop.Value);
             }
         }
+
+        internal static string GetDirectoryPath(this Cake.Core.IO.FilePath path, Cake.Core.ICakeEnvironment environment)
+        {
+            return path.GetDirectory().MakeAbsolute(environment).FullPath;
+        }
     }
 }

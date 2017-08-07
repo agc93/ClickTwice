@@ -98,7 +98,7 @@ namespace Cake.ClickTwice
             string outputPath;
             if (behaviour == PublishBehaviour.DoNotBuild)
             {
-                outputPath = Path.Combine(new FileInfo(ProjectFilePath).Directory.FullName, "bin", Configuration);
+                outputPath = Path.Combine(new FilePath(ProjectFilePath).GetDirectoryPath(Environment), "bin", Configuration);
                 BuildAction = null;
             }
             else
@@ -121,12 +121,18 @@ namespace Cake.ClickTwice
             };
             BuildSettings.AddTargets(behaviour);
             BuildSettings.AddProperties(props, AdditionalProperties);
+            Log($"Invoking build actions for {ProjectFilePath} ({behaviour})");
             BuildAction?.Invoke(this);
-            var publishDir =
+            var publishDir = new DirectoryPath(props["PublishDir"]); // much simpler. Stupider, but simpler.
+            /*var publishDir =
                 new DirectoryPath(
                     new DirectoryInfo(props["OutputPath"]).GetDirectories()
-                        .FirstOrDefault(d => d.Name == "app.publish")
-                        .FullName);
+                        .FirstOrDefault(d => d.Name == "app.publish")?
+                        .FullName); */
+            // the above logic falls apart fast when the directory doesn't exist yet (i.e. for DoNotBuild behaviour)
+            Log(FileSystem.Exist(publishDir)
+                ? "No publish directory found in app directory (using 'app.publish')"
+                : $"Found publish directory at {publishDir.GetDirectoryName()}");
             if (GenerateManifest)
             {
                 PrepareManifestManager(publishDir, InformationSource.Both);
@@ -184,7 +190,7 @@ namespace Cake.ClickTwice
         {
             foreach (var logger in Loggers.Where(l => isBuildMessage ? l.IncludeBuildMessages : l != null))
             {
-                logger.Log($"{DateTime.Now.ToString("T")} - {content}");
+                logger.Log($"{DateTime.Now:T} - {content}");
             }
         }
 
