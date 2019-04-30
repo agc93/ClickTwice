@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<package >
+<?xml version="1.0" encoding="utf-8"?>
+<package>
   <metadata>
   	<id>Cake.ClickTwice</id>
   	<title>ClickTwice Publisher for Cake</title>
@@ -7,7 +7,7 @@
   	<owners>achapman</owners>
   	<licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
   	<projectUrl>https://github.com/agc93/clicktwice</projectUrl>
-  	<iconUrl>https://maxcdn.icons8.com/Color/PNG/96/Industry/engineering-96.png</iconUrl>
+  	<iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
   	<requireLicenseAcceptance>false</requireLicenseAcceptance>
   	<description>Cake host for ClickTwice publishing, including the addin and all required libraries</description>
   	<copyright>Copyright 2016</copyright>
